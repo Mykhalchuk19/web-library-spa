@@ -1,0 +1,29 @@
+import axios from 'axios';
+import { pathOr } from 'ramda';
+import { baseUrlApi } from '../../constants';
+import { IParams, IRes } from './interfaces';
+
+const HTTP_GET = 'get';
+
+export const getParamsUrl = (params?: IParams) : string => (params ? `?${Object.keys(params).map((key: string) => `${key}=${params[key]}`).join('&')}` : '');
+
+const createAxiosInstance = (headers = {}, route: string, method: any, params?: IParams) => axios({
+  baseURL: `${baseUrlApi}${route}`,
+  headers,
+  method,
+  [method !== HTTP_GET ? 'data' : 'params']: params,
+  paramsSerializer: () => getParamsUrl(params),
+});
+
+export const createRequestApi: CallableFunction = (method: any, route: string) => (params: IParams) => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return createAxiosInstance(headers, route, method, params);
+  }
+  return createAxiosInstance({}, route, method, params);
+};
+
+export const normalizeRequestData: CallableFunction = (res: IRes) => pathOr({}, ['data'], res);

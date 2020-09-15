@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { CustomInput, CustomButton } from '../../components';
@@ -10,9 +10,6 @@ import './style.sass';
 
 export interface Values {
     username: string;
-    firstname: string;
-    lastname: string;
-    email: string;
     password: string;
 }
 
@@ -23,12 +20,12 @@ interface Props {
 }
 
 const useStyles = makeStyles({
-  signup__wrapper: {
+  signin__wrapper: {
     width: 'auto',
     maxWidth: '400px',
     margin: '0 auto',
   },
-  signup__btn: {
+  signin__btn: {
     margin: '0 auto 10px',
   },
 });
@@ -45,16 +42,13 @@ const SignUpForm: React.FC<Props> = (Props) => {
   } = useFormik<Values>({
     initialValues: {
       username: '',
-      firstname: '',
-      lastname: '',
-      email: '',
       password: '',
     },
     validateOnChange: false,
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(userActions.userSignUpRequest(formValues));
+      dispatch(userActions.userSignInRequest(formValues));
       setSubmitting(true);
     },
   });
@@ -62,14 +56,14 @@ const SignUpForm: React.FC<Props> = (Props) => {
   return (
     <Paper
       elevation={3}
-      className={classes.signup__wrapper}
+      className={classes.signin__wrapper}
     >
-      <form onSubmit={handleSubmit} className="signup__form">
-        <div className="signup__header">
-          <h2 className="signup__title">Sign Up</h2>
+      <form onSubmit={handleSubmit} className="signin__form">
+        <div className="signin__header">
+          <h2 className="signin__title">Sign In</h2>
         </div>
-        <div className="signup__body">
-          <div className="signup__row">
+        <div className="signin__body">
+          <div className="signin__row">
             <CustomInput
               id="username"
               label="Username"
@@ -82,46 +76,7 @@ const SignUpForm: React.FC<Props> = (Props) => {
               }}
             />
           </div>
-          <div className="signup__row">
-            <CustomInput
-              id="firstname"
-              label="First name"
-              error={errors.firstname || ''}
-              inputProps={{
-                name: 'firstname',
-                disabled: isSubmitting,
-                onChange: handleChange,
-                value: values.firstname,
-              }}
-            />
-          </div>
-          <div className="signup__row">
-            <CustomInput
-              id="lastname"
-              label="Last name"
-              error={errors.lastname || ''}
-              inputProps={{
-                name: 'lastname',
-                disabled: isSubmitting,
-                onChange: handleChange,
-                value: values.lastname,
-              }}
-            />
-          </div>
-          <div className="signup__row">
-            <CustomInput
-              id="email"
-              label="Email"
-              error={errors.email || ''}
-              inputProps={{
-                name: 'email',
-                disabled: isSubmitting,
-                onChange: handleChange,
-                value: values.email,
-              }}
-            />
-          </div>
-          <div className="signup__row">
+          <div className="signin__row">
             <CustomInput
               id="password"
               label="Password"
@@ -135,10 +90,10 @@ const SignUpForm: React.FC<Props> = (Props) => {
               }}
             />
           </div>
-          <div className="signup__row">
+          <div className="signin__row">
             <CustomButton
               type="submit"
-              className={classes.signup__btn}
+              className={classes.signin__btn}
             >
               Submit
             </CustomButton>
