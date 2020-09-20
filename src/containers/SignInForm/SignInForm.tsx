@@ -1,10 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { CustomInput, CustomButton } from '../../components';
-import { userActions } from '../../state/user';
+import { userActions, userSelectors } from '../../state/user';
 import rules from './rules';
 import './style.sass';
 
@@ -26,12 +27,16 @@ const useStyles = makeStyles({
     margin: '0 auto',
   },
   signin__btn: {
-    margin: '0 auto 10px',
+    marginBottom: '10px',
+  },
+  signin__link: {
+    marginTop: '10px',
   },
 });
 
-const SignUpForm: React.FC<Props> = (Props) => {
+const SignUpForm: React.FC<Props> = () => {
   const dispatch = useDispatch();
+  const isPending = useSelector(userSelectors.getAuthPending);
   const {
     handleSubmit,
     values,
@@ -49,7 +54,7 @@ const SignUpForm: React.FC<Props> = (Props) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       dispatch(userActions.userSignInRequest(formValues));
-      setSubmitting(true);
+      setSubmitting(isPending);
     },
   });
   const classes = useStyles();
@@ -97,6 +102,12 @@ const SignUpForm: React.FC<Props> = (Props) => {
             >
               Submit
             </CustomButton>
+            <NavLink
+              to="/auth/signup"
+              className="signin__link"
+            >
+              I`m not signed up yet
+            </NavLink>
           </div>
         </div>
       </form>

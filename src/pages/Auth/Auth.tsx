@@ -9,6 +9,7 @@ const Auth: React.FC = () => (
     <Switch>
       <Route exact path="/auth/signup/" component={SignUpForm} />
       <Route exact path="/auth/signin/" component={SignInForm} />
+      <Route path="/" component={SignUpForm} />
     </Switch>
   </>
 );

@@ -16,6 +16,10 @@ const userReducer = handleActions({
     userData: payload,
     pending: false,
   }),
+  [userTypes.USER_AUTHENTICATION_ERROR]: (state) => ({
+    ...state,
+    pending: false,
+  }),
 }, {
   userData: {},
   pending: false,

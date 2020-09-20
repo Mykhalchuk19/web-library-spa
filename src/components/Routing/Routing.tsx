@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import {
   BrowserRouter, Switch, Route, Redirect, useLocation,
 } from 'react-router-dom';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
-import { Auth } from '../../pages';
+import Loader from '../Loader/Loader';
+
+const Auth = lazy(() => import('../../pages/Auth/Auth'));
+const Profile = lazy(() => import('../../pages/Profile/Profile'));
 
 const Routing: React.FC = () => {
   const location = useLocation();
   const fixUrl = () => (location.pathname.slice(-1) !== '/' ? <Redirect to={`${location.pathname}/`} /> : <></>);
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact strict path="/:url" render={fixUrl} />
-        <Route path="/auth/" component={Auth} />
-      </Switch>
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route exact strict path="/:url" render={fixUrl} />
+          <Route path="/auth/" component={Auth} />
+          <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute exact={false} path="/" component={Profile} />
+        </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 };

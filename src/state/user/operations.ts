@@ -3,7 +3,7 @@ import {
 } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import userTypes from './types';
-import { userAuthenticationSuccess } from './actions';
+import { userAuthenticationSuccess, userAuthenticationError } from './actions';
 import { authenticationRequestHelpers, apiHelpers } from '../../utils/requestHelpers';
 
 const { normalizeRequestData } = apiHelpers;
@@ -15,8 +15,9 @@ function* singUp() {
       const res = normalizeRequestData(yield call(authenticationRequestHelpers.signUpRequest,
         { ...action.payload }));
       yield put(userAuthenticationSuccess({ ...res }));
+      yield put(push('/'));
     } catch (e) {
-      console.error(e, 'e');
+      yield put(userAuthenticationError());
     }
   }
 }
@@ -28,13 +29,15 @@ function* singIn() {
       const res = normalizeRequestData(yield call(authenticationRequestHelpers.signInRequest,
         { ...action.payload }));
       yield put(userAuthenticationSuccess({ ...res }));
+      yield put(push('/'));
     } catch (e) {
-      console.error(e, 'e');
+      yield put(userAuthenticationError());
     }
   }
 }
 
-export default function* () {
+// eslint-disable-next-line func-names
+export default function* (): Generator {
   yield fork(singUp);
   yield fork(singIn);
 }
