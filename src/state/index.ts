@@ -10,7 +10,7 @@ interface IHistory {
   history?: any,
 }
 
-const rootReducer = (history: IHistory) => combineReducers({
+const rootReducer = (history: IHistory): any => combineReducers({
   router: connectRouter(history as any),
   user: userReducer,
 });

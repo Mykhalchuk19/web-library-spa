@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import {
-  BrowserRouter, Switch, Route, Redirect, useLocation,
+  Switch, Route, Redirect, useLocation,
 } from 'react-router-dom';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Loader from '../Loader/Loader';
@@ -12,16 +12,14 @@ const Routing: React.FC = () => {
   const location = useLocation();
   const fixUrl = () => (location.pathname.slice(-1) !== '/' ? <Redirect to={`${location.pathname}/`} /> : <></>);
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Loader />}>
-        <Switch>
-          <Route exact strict path="/:url" render={fixUrl} />
-          <Route path="/auth/" component={Auth} />
-          <PrivateRoute exact path="/profile" component={Profile} />
-          <PrivateRoute exact={false} path="/" component={Profile} />
-        </Switch>
-      </Suspense>
-    </BrowserRouter>
+    <Suspense fallback={<Loader />}>
+      <Switch>
+        <Route exact strict path="/:url" render={fixUrl} />
+        <Route path="/auth/" component={Auth} />
+        <PrivateRoute exact path="/profile" component={Profile} />
+        <PrivateRoute exact={false} path="/" component={Profile} />
+      </Switch>
+    </Suspense>
   );
 };
 

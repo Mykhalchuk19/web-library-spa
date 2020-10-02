@@ -24,8 +24,8 @@ const store = createStore(
   persistedReducer,
   composeWithDevTools(
     applyMiddleware(
-      routerMiddleware(history),
       sagaMiddleware,
+      routerMiddleware(history),
     ),
   ),
 );
