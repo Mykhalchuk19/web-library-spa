@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 
 type BProps = {
     type?: 'submit' | 'reset' | 'button';
-    onClick?: () => void;
+    onClick?: () => void | CallableFunction;
     children: React.ReactNode;
     className?: string,
 }

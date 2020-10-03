@@ -54,7 +54,7 @@ const SignUpForm: React.FC<Props> = () => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       dispatch(userActions.userSignInRequest(formValues));
-      setSubmitting(isPending);
+      setSubmitting(!isPending);
     },
   });
   const classes = useStyles();

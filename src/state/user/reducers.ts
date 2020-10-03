@@ -18,6 +18,7 @@ const userReducer = handleActions({
   }),
   [userTypes.USER_AUTHENTICATION_ERROR]: (state) => ({
     ...state,
+    pending: false,
   }),
   [userTypes.USER_LOG_OUT]: (state) => ({
     ...state,
