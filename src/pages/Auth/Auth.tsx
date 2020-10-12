@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify';
 import { Header } from '../../components';
 import { SignUpForm, SignInForm } from '../../containers';
 import 'react-toastify/dist/ReactToastify.css';
-import ModalWindow from '../../components/ModalWindow/ModalWindow';
 
 const Auth: React.FC = () => (
   <>

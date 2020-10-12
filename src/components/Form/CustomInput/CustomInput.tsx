@@ -15,7 +15,7 @@ interface IProps {
     inputProps: IObject;
 }
 
-const CustomInput: React.FC<IProps> = ({
+export const CustomInput: React.FC<IProps> = ({
   label, id, error, inputProps,
 }: IProps) => {
   const [width, setWidth] = useState(0);
@@ -41,5 +41,3 @@ const CustomInput: React.FC<IProps> = ({
     </div>
   );
 };
-
-export default CustomInput;

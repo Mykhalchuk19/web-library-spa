@@ -1,5 +1,5 @@
 import { toast, ToastOptions } from 'react-toastify';
-import { ReactNode, ReactText } from 'react';
+import { ReactText } from 'react';
 
 type TNotifications = {
   content: string | null | number,

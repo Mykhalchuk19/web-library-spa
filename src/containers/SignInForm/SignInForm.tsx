@@ -4,7 +4,7 @@ import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { CustomInput, CustomButton } from '../../components';
+import { Form, CustomButton } from '../../components';
 import { userActions, userSelectors } from '../../state/user';
 import rules from './rules';
 import './style.sass';
@@ -17,7 +17,7 @@ export interface Values {
 interface Props {
     initialValues?: Values;
     validateOnChange?: boolean;
-    onSubmit?: (v: Values) => Promise<unknown>
+    onSubmit?: (v: Values) => Promise<void>
 }
 
 const useStyles = makeStyles({
@@ -63,13 +63,13 @@ const SignUpForm: React.FC<Props> = () => {
       elevation={3}
       className={classes.signin__wrapper}
     >
-      <form onSubmit={handleSubmit} className="signin__form">
+      <form className="signin__form" onSubmit={handleSubmit}>
         <div className="signin__header">
           <h2 className="signin__title">Sign In</h2>
         </div>
         <div className="signin__body">
           <div className="signin__row">
-            <CustomInput
+            <Form.CustomInput
               id="username"
               label="Username"
               error={errors.username || ''}
@@ -82,7 +82,7 @@ const SignUpForm: React.FC<Props> = () => {
             />
           </div>
           <div className="signin__row">
-            <CustomInput
+            <Form.CustomInput
               id="password"
               label="Password"
               error={errors.password || ''}
