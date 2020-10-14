@@ -4,8 +4,10 @@ import {
 import { push } from 'connected-react-router';
 import userTypes from './types';
 import { PushNotifications } from '../../utils/helpers';
-import { userAuthenticationSuccess, userAuthenticationError } from './actions';
-import { authenticationRequestHelpers, apiHelpers } from '../../utils/requestHelpers';
+import {
+  userAuthenticationSuccess, userAuthenticationError, userUpdateSuccess, userUpdateFailure,
+} from './actions';
+import { authenticationRequestHelpers, apiHelpers, userRequestHelpers } from '../../utils/requestHelpers';
 
 const { normalizeRequestData } = apiHelpers;
 
@@ -47,8 +49,23 @@ function* logOut() {
   localStorage.removeItem('authToken');
 }
 
+function* updateUser() {
+  while (true) {
+    try {
+      const action = yield take(userTypes.USER_UPDATE_REQUEST);
+      const res = normalizeRequestData(yield call(userRequestHelpers.updateUserRequest,
+        { ...action.payload }));
+      yield put(userUpdateSuccess({ ...res }));
+    } catch (e) {
+      yield put(userUpdateFailure());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
 // eslint-disable-next-line func-names
 export default function* (): Generator {
   yield fork(singUp);
   yield fork(singIn);
+  yield fork(updateUser);
 }

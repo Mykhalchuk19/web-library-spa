@@ -1,7 +1,7 @@
 import { createRequestApi } from './api';
 
-const signUpRequest = createRequestApi('post', 'user/signup');
-const signInRequest = createRequestApi('post', 'user/signin');
+const signUpRequest = createRequestApi('post', 'auth/signup/');
+const signInRequest = createRequestApi('post', 'auth/signin/');
 
 export {
   signUpRequest,
