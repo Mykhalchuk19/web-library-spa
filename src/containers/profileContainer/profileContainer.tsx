@@ -1,25 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../Layout/Layout';
 import { Form, CustomButton } from '../../components';
-import { userActions, userSelectors } from '../../state/user';
-import rules from './rules';
+import useProfile from './useProfile';
 import './style.sass';
-
-export interface Values {
-    username: string,
-    firstname: string,
-    lastname: string,
-    email: string,
-}
-
-interface Props {
-    initialValues?: Values;
-    validateOnChange?: boolean;
-    onSubmit?: (v: Values) => Promise<void>
-}
 
 const useStyles = makeStyles({
   profile__btn: {
@@ -27,32 +11,15 @@ const useStyles = makeStyles({
   },
 });
 
-const ProfileContainer: React.FC<Props> = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(userSelectors.getUserData);
-  const isPending = useSelector(userSelectors.getAuthPending);
+const ProfileContainer: React.FC = () => {
   const {
     handleSubmit,
     values,
     errors,
     handleChange,
-    setSubmitting,
     isSubmitting,
-  } = useFormik<Values>({
-    initialValues: {
-      username: user.username,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-    },
-    validateOnChange: false,
-    validationSchema: rules,
-    enableReinitialize: true,
-    onSubmit: (formValues) => {
-      dispatch(userActions.userUpdateRequest({ ...formValues }, { id: user.id }));
-      setSubmitting(!isPending);
-    },
-  });
+  } = useProfile();
+
   const classes = useStyles();
   return (
     <Layout>

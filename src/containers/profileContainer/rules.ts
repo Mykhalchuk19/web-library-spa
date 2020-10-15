@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { Values } from './profileContainer';
+import { Values } from './useProfile';
 
 const rules = yup.object<Values>({
   username: yup.string().required('Username is required'),
