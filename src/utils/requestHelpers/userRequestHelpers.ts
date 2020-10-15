@@ -1,6 +1,6 @@
 import { createRequestApi } from './api';
 
-const updateUserRequest = createRequestApi('put', 'user/8');
+const updateUserRequest = createRequestApi('put', 'users/');
 
 export {
   updateUserRequest,

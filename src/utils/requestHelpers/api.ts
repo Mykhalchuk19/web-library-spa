@@ -5,7 +5,11 @@ import { IParams, IRes } from './interfaces';
 
 const HTTP_GET = 'get';
 
-export const getParamsUrl = (params?: IParams) : string => (params ? `?${Object.keys(params).map((key: string) => `${key}=${params[key]}`).join('&')}` : '');
+// TODO: needed refactoring
+
+export const getParamsUrl = (params?: IParams) : string => (params ? `${Object.keys(params).map((key: string) => `${key}=${params[key]}`).join('&')}` : '');
+
+const getValueFromQueryParams = (queryParams?: IParams): string => (queryParams ? Object.values(queryParams)[0].toString() : '');
 
 const createAxiosInstance = (
   headers = {},
@@ -14,12 +18,10 @@ const createAxiosInstance = (
   params?: IParams,
   queryParams?: IParams,
 ) => axios({
-  baseURL: `${baseUrlApi}${route}`,
+  baseURL: `${baseUrlApi}${route}${getValueFromQueryParams(queryParams)}`,
   headers,
   method,
-  [queryParams ? 'params' : '']: queryParams,
   [method !== HTTP_GET ? 'data' : 'params']: params,
-  paramsSerializer: () => getParamsUrl(params),
 });
 
 export const createRequestApi: CallableFunction = (method: any, route: string) => (params: IParams, queryParams: IParams) => {

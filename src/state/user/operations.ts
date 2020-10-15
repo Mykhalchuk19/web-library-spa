@@ -53,8 +53,9 @@ function* updateUser() {
   while (true) {
     try {
       const action = yield take(userTypes.USER_UPDATE_REQUEST);
+      console.log(action.payload);
       const res = normalizeRequestData(yield call(userRequestHelpers.updateUserRequest,
-        { ...action.payload }));
+        { ...action.payload }, { id: 8 }));
       yield put(userUpdateSuccess({ ...res }));
     } catch (e) {
       yield put(userUpdateFailure());

@@ -53,7 +53,7 @@ const useProfile = (): IUseProfile => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       dispatch(userActions.userUpdateRequest({ ...formValues }, { id: user.id }));
-      setSubmitting(!isPending);
+      setSubmitting(isPending);
     },
   });
   return {
