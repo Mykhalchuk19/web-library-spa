@@ -19,7 +19,7 @@ const ProfileContainer: React.FC = () => {
     handleChange,
     isSubmitting,
   } = useProfile();
-
+  console.log(isSubmitting);
   const classes = useStyles();
   return (
     <Layout>

@@ -12,7 +12,7 @@ import rootReducer, { rootSaga } from './state';
 const persistConfig = {
   key: 'user',
   storage,
-  whitelist: ['user'],
+  whitelist: ['userData'],
 };
 
 const sagaMiddleware = createSagaMiddleware();

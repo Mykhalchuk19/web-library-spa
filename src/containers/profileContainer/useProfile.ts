@@ -52,7 +52,7 @@ const useProfile = (): IUseProfile => {
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(userActions.userUpdateRequest({ ...formValues }, { id: user.id }));
+      dispatch(userActions.userUpdateRequest({ ...formValues, id: user.id }));
       setSubmitting(isPending);
     },
   });
