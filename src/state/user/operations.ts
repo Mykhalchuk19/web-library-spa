@@ -13,6 +13,8 @@ import {
   userUpdateFailure,
   userDeleteSuccess,
   userDeleteFailure,
+  getCurrentUserSuccess,
+  getCurrentUserFailure,
 } from './actions';
 import { authenticationRequestHelpers, apiHelpers, userRequestHelpers } from '../../utils/requestHelpers';
 
@@ -98,6 +100,19 @@ function* deleteUser() {
   }
 }
 
+function* getCurrentUser() {
+  while (true) {
+    try {
+      yield take(userTypes.GET_CURRENT_USER_REQUEST);
+      const res = normalizeRequestData(yield call(userRequestHelpers.getCurrentUser));
+      yield put((getCurrentUserSuccess({ ...res })));
+    } catch (e) {
+      yield put(getCurrentUserFailure());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
 // eslint-disable-next-line func-names
 export default function* (): Generator {
   yield fork(singUp);
@@ -105,4 +120,5 @@ export default function* (): Generator {
   yield fork(getListUsers);
   yield fork(updateUser);
   yield fork(deleteUser);
+  yield fork(getCurrentUser);
 }

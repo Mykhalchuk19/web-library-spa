@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as React from 'react';
@@ -32,6 +33,7 @@ interface IUseProfile {
 
 const useProfile = (): IUseProfile => {
   const dispatch = useDispatch();
+
   const user = useSelector(userSelectors.getUserData);
   const isPending = useSelector(userSelectors.getAuthPending);
   const {
@@ -56,6 +58,9 @@ const useProfile = (): IUseProfile => {
       setSubmitting(isPending);
     },
   });
+  useEffect(() => {
+    dispatch(userActions.getCurrentUserRequest());
+  }, [dispatch]);
   return {
     dispatch,
     user,

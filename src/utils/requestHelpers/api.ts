@@ -24,11 +24,12 @@ const createAxiosInstance = (
   [method !== HTTP_GET ? 'data' : 'params']: params,
 });
 
+// eslint-disable-next-line max-len
 export const createRequestApi: CallableFunction = (method: any, route: string) => (params: IParams, queryParams: IParams) => {
   const token = localStorage.getItem('authToken');
   if (token) {
     const headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
     };
     return createAxiosInstance(headers, route, method, params, queryParams);
   }

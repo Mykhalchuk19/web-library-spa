@@ -17,6 +17,9 @@ export const {
   userDeleteRequest,
   userDeleteSuccess,
   userDeleteFailure,
+  getCurrentUserRequest,
+  getCurrentUserSuccess,
+  getCurrentUserFailure,
 } = createActions(
   userTypes.USER_SIGN_UP_REQUEST,
   userTypes.USER_SIGN_IN_REQUEST,
@@ -32,4 +35,7 @@ export const {
   userTypes.USER_DELETE_REQUEST,
   userTypes.USER_DELETE_SUCCESS,
   userTypes.USER_DELETE_FAILURE,
+  userTypes.GET_CURRENT_USER_REQUEST,
+  userTypes.GET_CURRENT_USER_SUCCESS,
+  userTypes.GET_CURRENT_USER_FAILURE,
 );

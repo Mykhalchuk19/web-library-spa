@@ -73,6 +73,19 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: false,
   }),
+  [userTypes.GET_CURRENT_USER_REQUEST]: (state) => ({
+    ...state,
+    pending: true,
+  }),
+  [userTypes.GET_CURRENT_USER_SUCCESS]: (state, action: IAction) => ({
+    ...state,
+    userData: action.payload.userData,
+    pending: false,
+  }),
+  [userTypes.GET_CURRENT_USER_FAILURE]: (state) => ({
+    ...state,
+    pending: false,
+  }),
 }, {
   ...initialState,
 });
