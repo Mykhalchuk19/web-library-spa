@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -54,9 +54,12 @@ const SignUpForm: React.FC<Props> = () => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       dispatch(userActions.userSignInRequest(formValues));
-      setSubmitting(!isPending);
+      setSubmitting(isPending);
     },
   });
+  useEffect(() => {
+    dispatch(userActions.usersListRequest());
+  }, [dispatch]);
   const classes = useStyles();
   return (
     <Paper

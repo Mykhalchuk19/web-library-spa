@@ -8,6 +8,7 @@ import Loader from '../Loader/Loader';
 const Auth = lazy(() => import('../../pages/Auth/Auth'));
 const Profile = lazy(() => import('../../pages/Profile/Profile'));
 const ErrorPage = lazy(() => import('../../pages/ErrorPage/ErrorPage'));
+const Users = lazy(() => import('../../pages/Users/Users'));
 
 const Routing: React.FC = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const Routing: React.FC = () => {
       <Switch>
         <Route exact strict path="/:url" render={fixUrl} />
         <Route path="/auth/" component={Auth} />
+        <PrivateRoute exact path="/users" component={Users} />
         <PrivateRoute exact path="/profile" component={Profile} />
         <PrivateRoute exact path="/" component={Profile} />
         <PrivateRoute exact path="*" component={ErrorPage} />
