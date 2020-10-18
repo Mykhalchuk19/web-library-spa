@@ -4,7 +4,10 @@ export interface IProps {
     count: number,
     page: number,
     rowsPerPage: number,
-    onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
+    onChangePage: (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+        rowsPerPage: number) => void;
 }
 
 interface IUseUsersPagination {
@@ -20,14 +23,30 @@ interface IUseUsersPagination {
 const UseUsersPagination = ({
   page, count, rowsPerPage, onChangePage,
 }: IProps): IUseUsersPagination => {
-  // eslint-disable-next-line max-len
-  const handleNextPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, page + 1); }, [page, onChangePage]);
-  // eslint-disable-next-line max-len
-  const handlePreviousPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, page - 1); }, [page, onChangePage]);
-  // eslint-disable-next-line max-len
-  const handleLastPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1)); }, [count, rowsPerPage, onChangePage]);
-  // eslint-disable-next-line max-len
-  const handleFirstPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, 0); }, [onChangePage]);
+  const handleNextPage = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onChangePage(event, page + 1, rowsPerPage);
+    },
+    [page, onChangePage],
+  );
+  const handlePreviousPage = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onChangePage(event, page - 1, rowsPerPage);
+    },
+    [page, onChangePage],
+  );
+  const handleLastPage = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1), rowsPerPage);
+    },
+    [count, rowsPerPage, onChangePage],
+  );
+  const handleFirstPage = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onChangePage(event, 0, rowsPerPage);
+    },
+    [onChangePage],
+  );
 
   return {
     rowsPerPage,
