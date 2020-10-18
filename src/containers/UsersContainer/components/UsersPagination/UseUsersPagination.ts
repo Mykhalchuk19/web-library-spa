@@ -1,6 +1,4 @@
 import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { userSelectors } from '../../../../state/user';
 
 export interface IProps {
     count: number,
@@ -23,13 +21,13 @@ const UseUsersPagination = ({
   page, count, rowsPerPage, onChangePage,
 }: IProps): IUseUsersPagination => {
   // eslint-disable-next-line max-len
-  const handleNextPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, page + 1); }, [page]);
+  const handleNextPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, page + 1); }, [page, onChangePage]);
   // eslint-disable-next-line max-len
-  const handlePreviousPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, page - 1); }, [page]);
+  const handlePreviousPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, page - 1); }, [page, onChangePage]);
   // eslint-disable-next-line max-len
-  const handleLastPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1)); }, [count, rowsPerPage]);
+  const handleLastPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1)); }, [count, rowsPerPage, onChangePage]);
   // eslint-disable-next-line max-len
-  const handleFirstPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, 0); }, []);
+  const handleFirstPage = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { onChangePage(event, 0); }, [onChangePage]);
 
   return {
     rowsPerPage,

@@ -1,8 +1,15 @@
 import React from 'react';
+import { isEmpty } from 'ramda';
 import {
-  Table, TableBody, TableCell, TableRow, TableContainer, TableHead, TablePagination, TableFooter,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableFooter,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../Layout/Layout';
 import { USER_FIELDS } from '../../constants';
 import { UsersPagination } from './components';
@@ -11,13 +18,14 @@ import './style.sass';
 
 const UsersContainer: React.FC = () => {
   const {
-    users, limit, page, count, changePage,
+    usersForShow, limit, page, count, changePage, changeRowsPerPage,
   } = useUsers();
   return (
     <>
       <Layout>
         <div className="users__wrapper">
           <h2 className="users__title">Users</h2>
+          { !isEmpty(usersForShow) && (
           <TableContainer>
             <Table>
               <TableHead>
@@ -33,7 +41,7 @@ const UsersContainer: React.FC = () => {
               </TableHead>
               <TableBody>
                 {
-                  users.map(({
+                  usersForShow.map(({
                     id, username, firstname, lastname, email,
                   }) => (
                     <TableRow key={id}>
@@ -64,7 +72,7 @@ const UsersContainer: React.FC = () => {
                     rowsPerPage={limit}
                     page={page}
                     onChangePage={changePage}
-                    onChangeRowsPerPage={() => {}}
+                    onChangeRowsPerPage={changeRowsPerPage}
                     colSpan={5}
                     ActionsComponent={UsersPagination}
                   />
@@ -72,6 +80,7 @@ const UsersContainer: React.FC = () => {
               </TableFooter>
             </Table>
           </TableContainer>
+          )}
         </div>
       </Layout>
     </>

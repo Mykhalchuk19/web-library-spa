@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import { uniq } from 'ramda';
 import { IAction, UserState } from '../../interfaces/userInterfaces';
 import userTypes from './types';
 
@@ -50,7 +51,12 @@ const userReducer = handleActions<UserState, string>({
   }),
   [userTypes.USERS_LIST_SUCCESS]: (state, action: IAction) => ({
     ...state,
-    list: { ...action.payload },
+    list: {
+      users: uniq([...state.list.users, ...action.payload.users]),
+      limit: action.payload.limit,
+      count: action.payload.count,
+      page: action.payload.page,
+    },
     pending: false,
   }),
   [userTypes.USERS_LIST_FAILURE]: (state) => ({
@@ -68,6 +74,7 @@ const userReducer = handleActions<UserState, string>({
       users: [...state.list.users.filter((id) => id === action.payload.user)],
       limit: state.list.limit,
       page: state.list.page,
+      count: state.list.count,
     },
   }),
   [userTypes.USER_DELETE_FAILURE]: (state) => ({
