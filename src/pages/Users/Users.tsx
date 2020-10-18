@@ -1,5 +1,6 @@
 import React from 'react';
+import { UsersContainer } from '../../containers';
 
-const Users: React.FC = () => <p>324234</p>;
+const Users: React.FC = () => <UsersContainer />;
 
 export default Users;

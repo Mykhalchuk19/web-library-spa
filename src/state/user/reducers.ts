@@ -1,14 +1,15 @@
 import { handleActions } from 'redux-actions';
-import { IUserData, IAction, UserState } from './interfaces';
+import { IAction, UserState } from '../../interfaces/userInterfaces';
 import userTypes from './types';
 
 const initialState: UserState = {
-  userData: {},
+  userData: { },
   pending: false,
   list: {
     users: [],
-    limit: null,
-    page: null,
+    limit: 10,
+    page: 0,
+    count: 0,
   },
 };
 

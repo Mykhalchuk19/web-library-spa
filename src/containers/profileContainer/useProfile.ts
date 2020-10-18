@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as React from 'react';
 import { userActions, userSelectors } from '../../state/user';
+import { userInterfaces } from '../../interfaces';
 import rules from './rules';
 
 export interface Values {
@@ -12,20 +13,13 @@ export interface Values {
     email: string,
 }
 
-type IUser = {
-    username?: string | undefined,
-    firstname?: string | undefined,
-    lastname?: string | undefined,
-    email?: string | undefined,
-}
-
 interface IUseProfile {
     dispatch: any,
-    user: IUser,
+    user: userInterfaces.IUser,
     isPending: boolean
     handleSubmit: (e?: React.FormEvent<HTMLFormElement>) => void,
-    values: IUser,
-    errors: IUser,
+    values: userInterfaces.IUser,
+    errors: userInterfaces.IUser,
     handleChange: (e: React.ChangeEvent<any>) => void,
     setSubmitting: (isSubmitting: boolean) => void,
     isSubmitting: boolean,

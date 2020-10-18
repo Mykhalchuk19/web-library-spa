@@ -8,8 +8,8 @@ export interface IUserData {
 
 type IList = {
     users: Array<IUserData>,
-    limit: number | null,
-    page: number | null,
+    limit: number,
+    page: number,
 }
 
 export interface UserState {
