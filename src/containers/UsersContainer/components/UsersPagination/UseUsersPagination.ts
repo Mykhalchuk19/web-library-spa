@@ -6,8 +6,7 @@ export interface IProps {
     rowsPerPage: number,
     onChangePage: (
         event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
-        rowsPerPage: number) => void;
+        newPage: number) => void;
 }
 
 interface IUseUsersPagination {
@@ -25,25 +24,25 @@ const UseUsersPagination = ({
 }: IProps): IUseUsersPagination => {
   const handleNextPage = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
-      onChangePage(event, page + 1, rowsPerPage);
+      onChangePage(event, page + 1);
     },
     [page, onChangePage],
   );
   const handlePreviousPage = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
-      onChangePage(event, page - 1, rowsPerPage);
+      onChangePage(event, page - 1);
     },
     [page, onChangePage],
   );
   const handleLastPage = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
-      onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1), rowsPerPage);
+      onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
     },
     [count, rowsPerPage, onChangePage],
   );
   const handleFirstPage = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
-      onChangePage(event, 0, rowsPerPage);
+      onChangePage(event, 0);
     },
     [onChangePage],
   );

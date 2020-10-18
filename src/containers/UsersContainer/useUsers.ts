@@ -10,8 +10,7 @@ interface IUseUsers {
   count: number,
   changePage: (
       event: React.MouseEvent<HTMLButtonElement> | null,
-      newPage: number,
-      rowsPerPage: number) => void,
+      newPage: number) => void,
   changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
 }
 
@@ -27,11 +26,10 @@ const useUsers = (): IUseUsers => {
   const changePage = useCallback((
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
-    rowsPerPage: number,
   ) => {
-    dispatch(userActions.usersListRequest({ page: newPage, limit: rowsPerPage }));
+    dispatch(userActions.usersListRequest({ page: newPage, limit }));
   },
-  [dispatch]);
+  [dispatch, limit]);
   const changeRowsPerPage = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       dispatch(userActions.usersListRequest({ page: 0, limit: parseInt(event.target.value, 10) }));

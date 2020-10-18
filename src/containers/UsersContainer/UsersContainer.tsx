@@ -67,7 +67,6 @@ const UsersContainer: React.FC = () => {
               <TableFooter>
                 <TableRow>
                   <TablePagination
-                    // rowsPerPageOptions={[5, 10, 25]}
                     count={count}
                     rowsPerPage={limit}
                     page={page}
