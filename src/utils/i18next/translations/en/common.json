@@ -1,0 +1,23 @@
+{
+  "Username": "Username",
+  "Password": "Password",
+  "First name": "First name",
+  "Last name": "Last name",
+  "Email": "Email",
+  "Web library": "Web library",
+  "Submit": "Submit",
+  "Username is required": "Username is required",
+  "Password is required": "Password is required",
+  "Password is too long": "Password is too long",
+  "Password is too short": "Password is too short",
+  "First name is required": "First name is required",
+  "Last name is required": "Last name is required",
+  "Email is required": "Email is required",
+  "Email is not valid": "Email is not valid",
+  "Save": "Save",
+  "Log out": "Log out",
+  "Users": "Users",
+  "Profile": "Profile",
+  "Error": "Error",
+  "Rows per page": "Rows per page"
+}

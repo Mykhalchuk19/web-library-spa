@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { userActions, userSelectors } from '../../state/user';
 import { userInterfaces } from '../../interfaces';
 import rules from './rules';
@@ -14,7 +16,6 @@ export interface Values {
 }
 
 interface IUseProfile {
-    dispatch: any,
     user: userInterfaces.IUser,
     isPending: boolean
     handleSubmit: (e?: React.FormEvent<HTMLFormElement>) => void,
@@ -23,11 +24,12 @@ interface IUseProfile {
     handleChange: (e: React.ChangeEvent<any>) => void,
     setSubmitting: (isSubmitting: boolean) => void,
     isSubmitting: boolean,
+    t: TFunction,
 }
 
 const useProfile = (): IUseProfile => {
   const dispatch = useDispatch();
-
+  const { t } = useTranslation(['common']);
   const user = useSelector(userSelectors.getUserData);
   const isPending = useSelector(userSelectors.getAuthPending);
   const {
@@ -56,7 +58,6 @@ const useProfile = (): IUseProfile => {
     dispatch(userActions.getCurrentUserRequest());
   }, [dispatch]);
   return {
-    dispatch,
     user,
     isPending,
     handleSubmit,
@@ -65,6 +66,7 @@ const useProfile = (): IUseProfile => {
     handleChange,
     setSubmitting,
     isSubmitting,
+    t,
   };
 };
 

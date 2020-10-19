@@ -1,6 +1,7 @@
 import React, {
   useRef, useState, useEffect, MutableRefObject,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { OutlinedInput, InputLabel, FormControl } from '@material-ui/core';
 import './style.sass';
 
@@ -18,6 +19,7 @@ interface IProps {
 export const CustomInput: React.FC<IProps> = ({
   label, id, error, inputProps,
 }: IProps) => {
+  const { t } = useTranslation(['common']);
   const [width, setWidth] = useState(0);
   const labelRef = useRef() as MutableRefObject<HTMLLabelElement>;
   useEffect(() => setWidth(labelRef.current.offsetWidth), [labelRef]);
@@ -28,7 +30,7 @@ export const CustomInput: React.FC<IProps> = ({
           htmlFor={id}
           ref={labelRef}
         >
-          {label}
+          {t(label)}
         </InputLabel>
         <OutlinedInput
           type="text"
@@ -36,7 +38,7 @@ export const CustomInput: React.FC<IProps> = ({
           {...inputProps}
           labelWidth={width}
         />
-        {error && <span className="input__error">{error}</span>}
+        {error && <span className="input__error">{t(error)}</span>}
       </FormControl>
     </div>
   );

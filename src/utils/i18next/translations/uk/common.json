@@ -1,0 +1,23 @@
+{
+  "Username": "Ім'я користувача",
+  "Password": "Пароль",
+  "First name": "Ім'я",
+  "Last name": "Прізвище",
+  "Email": "Електронна адреса",
+  "Web library": "Веб-бібліотека",
+  "Submit": "Відправити",
+  "Username is required": "Ім'я користувача обов'язкове",
+  "Password is required": "Пароль обов'язковий",
+  "Password is too long": "Пароль занадто довгий",
+  "Password is too short": "Пароль занадто короткий",
+  "First name is required": "Ім'я обов'язкове",
+  "Last name is required": "Прізвище обов'язкове",
+  "Email is required": "Електронна адреса обов'язкова",
+  "Email is not valid": "Електронна адреса не валідна",
+  "Save": "Зберегти",
+  "Log out": "Вийти",
+  "Users": "Користувачі",
+  "Profile": "Профіль",
+  "Error": "Помилка",
+  "Rows per page": "Рядків на сторінку"
+}

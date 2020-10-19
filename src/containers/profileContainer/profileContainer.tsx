@@ -20,6 +20,7 @@ const ProfileContainer: React.FC = () => {
     handleChange,
     isSubmitting,
     user,
+    t,
   } = useProfile();
   const classes = useStyles();
   return (
@@ -27,7 +28,7 @@ const ProfileContainer: React.FC = () => {
       {!isEmpty(user) && (
         <form className="profile__form" onSubmit={handleSubmit}>
           <div className="profile__header">
-            <h2 className="profile__title">Profile</h2>
+            <h2 className="profile__title">{t('Profile')}</h2>
           </div>
           <div className="profile__body">
             <div className="profile__row">
@@ -75,7 +76,7 @@ const ProfileContainer: React.FC = () => {
                 label="Email"
                 error={errors.email || ''}
                 inputProps={{
-                  name: 'firstname',
+                  name: 'email',
                   disabled: isSubmitting,
                   onChange: handleChange,
                   value: values.email,
@@ -87,9 +88,8 @@ const ProfileContainer: React.FC = () => {
               <CustomButton
                 type="submit"
                 className={classes.profile__btn}
-              >
-                Save
-              </CustomButton>
+                text="Save"
+              />
             </div>
           </div>
         </form>

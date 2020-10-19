@@ -47,7 +47,7 @@ const ModalWindow = ({
           <div className="modal-window__wrapper">
             <div className="modal-window__header">
               <h3 className="modal-window__title">{title || 'Title'}</h3>
-              <CustomButton onClick={onClose} className={classes.modal_window__close_btn}>
+              <CustomButton onClick={onClose} className={classes.modal_window__close_btn} text="">
                 <CloseIcon className={classes.modal_window__close_icon} />
               </CustomButton>
               <div className="modal-window__body">{children}</div>

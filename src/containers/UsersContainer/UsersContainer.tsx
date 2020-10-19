@@ -9,7 +9,9 @@ import {
   TableHead,
   TablePagination,
   TableFooter,
+  IconButton,
 } from '@material-ui/core';
+import { Edit, Delete, LastPage } from '@material-ui/icons';
 import Layout from '../Layout/Layout';
 import { USER_FIELDS } from '../../constants';
 import { UsersPagination } from './components';
@@ -18,13 +20,21 @@ import './style.sass';
 
 const UsersContainer: React.FC = () => {
   const {
-    usersForShow, limit, page, count, changePage, changeRowsPerPage,
+    usersForShow,
+    limit,
+    page,
+    count,
+    changePage,
+    changeRowsPerPage,
+    handleEditUser,
+    handleDeleteUser,
+    t,
   } = useUsers();
   return (
     <>
       <Layout>
         <div className="users__wrapper">
-          <h2 className="users__title">Users</h2>
+          <h2 className="users__title">{t('Users')}</h2>
           { !isEmpty(usersForShow) && (
           <TableContainer>
             <Table>
@@ -34,9 +44,11 @@ const UsersContainer: React.FC = () => {
                     <TableCell
                       key={id}
                     >
-                      {field}
+                      {t(field)}
                     </TableCell>
                   ))}
+                  <TableCell colSpan={0.5} />
+                  <TableCell colSpan={0.5} />
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -60,6 +72,24 @@ const UsersContainer: React.FC = () => {
                       <TableCell component="td">
                         {email}
                       </TableCell>
+                      <TableCell component="td" colSpan={0.5}>
+                        <IconButton
+                          onClick={() => handleEditUser(id)}
+                          type="button"
+                          aria-label="edit"
+                        >
+                          <Edit />
+                        </IconButton>
+                      </TableCell>
+                      <TableCell component="td" colSpan={0.5}>
+                        <IconButton
+                          onClick={() => handleDeleteUser(id)}
+                          type="button"
+                          aria-label="delete"
+                        >
+                          <Delete />
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
                   ))
                 }
@@ -69,10 +99,11 @@ const UsersContainer: React.FC = () => {
                   <TablePagination
                     count={count}
                     rowsPerPage={limit}
+                    labelRowsPerPage={t('Rows per page')}
                     page={page}
                     onChangePage={changePage}
                     onChangeRowsPerPage={changeRowsPerPage}
-                    colSpan={5}
+                    colSpan={7}
                     ActionsComponent={UsersPagination}
                   />
                 </TableRow>

@@ -4,6 +4,7 @@ import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { Form, CustomButton } from '../../components';
 import { userActions, userSelectors } from '../../state/user';
 import rules from './rules';
@@ -37,6 +38,7 @@ const useStyles = makeStyles({
 const SignUpForm: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const isPending = useSelector(userSelectors.getAuthPending);
+  const { t } = useTranslation(['auth', 'common']);
   const {
     handleSubmit,
     values,
@@ -65,13 +67,13 @@ const SignUpForm: React.FC<Props> = () => {
     >
       <form className="signin__form" onSubmit={handleSubmit}>
         <div className="signin__header">
-          <h2 className="signin__title">Sign In</h2>
+          <h2 className="signin__title">{t('Sign In')}</h2>
         </div>
         <div className="signin__body">
           <div className="signin__row">
             <Form.CustomInput
               id="username"
-              label="Username"
+              label={t('Username')}
               error={errors.username || ''}
               inputProps={{
                 name: 'username',
@@ -84,7 +86,7 @@ const SignUpForm: React.FC<Props> = () => {
           <div className="signin__row">
             <Form.CustomInput
               id="password"
-              label="Password"
+              label={t('Password')}
               error={errors.password || ''}
               inputProps={{
                 name: 'password',
@@ -99,14 +101,13 @@ const SignUpForm: React.FC<Props> = () => {
             <CustomButton
               type="submit"
               className={classes.signin__btn}
-            >
-              Submit
-            </CustomButton>
+              text={t('Submit')}
+            />
             <NavLink
               to="/auth/signup"
               className="signin__link"
             >
-              I`m not signed up yet
+              {t('I`m not signed up yet')}
             </NavLink>
           </div>
         </div>
