@@ -1,3 +1,7 @@
+import React from 'react';
+import { TFunction } from 'i18next';
+import { userInterfaces } from './index';
+
 export type UserItem = {
     id?: number,
     username?: string,
@@ -29,4 +33,18 @@ export interface UserState {
 export interface IAction {
     type: string,
     [key: string]: any,
+}
+
+export interface IUseUsers {
+    usersForShow: Array<userInterfaces.UserItem>,
+    limit: number,
+    page: number,
+    count: number,
+    changePage: (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number) => void,
+    changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
+    handleEditUser: (id?: number) => void,
+    handleDeleteUser: (id?: number) => void,
+    t: TFunction
 }

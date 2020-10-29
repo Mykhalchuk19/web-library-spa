@@ -1,23 +1,8 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
 import { userActions, userSelectors } from '../../state/user';
-import { userInterfaces } from '../../interfaces';
-
-interface IUseUsers {
-  usersForShow: Array<userInterfaces.UserItem>,
-  limit: number,
-  page: number,
-  count: number,
-  changePage: (
-      event: React.MouseEvent<HTMLButtonElement> | null,
-      newPage: number) => void,
-  changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
-  handleEditUser: (id?: number) => void,
-  handleDeleteUser: (id?: number) => void,
-  t: TFunction
-}
+import { IUseUsers } from '../../interfaces/userInterfaces';
 
 const useUsers = (): IUseUsers => {
   const dispatch = useDispatch();
