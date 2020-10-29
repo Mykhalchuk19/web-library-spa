@@ -2,7 +2,7 @@
   "name": "web-library-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mykhalchuk19.github.io/web-library-spa",
+  "homepage": "https://mykhalchuk19.github.io",
   "engines": {
     "node": "12.19.0",
     "yarn": "1.22.10"
