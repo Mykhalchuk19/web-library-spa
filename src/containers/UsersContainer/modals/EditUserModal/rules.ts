@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { IUserValues } from '../../interfaces/userInterfaces';
+import { IUserValues } from '../../../../interfaces/userInterfaces';
 
 const rules = yup.object<IUserValues>({
   username: yup.string().required('Username is required'),

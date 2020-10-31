@@ -15,6 +15,8 @@ import {
   userDeleteFailure,
   getCurrentUserSuccess,
   getCurrentUserFailure,
+  profileUpdateSuccess,
+  profileUpdateFailure,
 } from './actions';
 import { authenticationRequestHelpers, apiHelpers, userRequestHelpers } from '../../utils/requestHelpers';
 
@@ -72,6 +74,20 @@ function* getListUsers() {
   }
 }
 
+function* updateProfile() {
+  while (true) {
+    try {
+      const action = yield take(userTypes.PROFILE_UPDATE_REQUEST);
+      const res = normalizeRequestData(yield call(userRequestHelpers.updateUserRequest,
+        { ...action.payload }, { id: action.payload.id }));
+      yield put(profileUpdateSuccess({ ...res }));
+    } catch (e) {
+      yield put(profileUpdateFailure());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
 function* updateUser() {
   while (true) {
     try {
@@ -121,4 +137,5 @@ export default function* (): Generator {
   yield fork(updateUser);
   yield fork(deleteUser);
   yield fork(getCurrentUser);
+  yield fork(updateProfile);
 }

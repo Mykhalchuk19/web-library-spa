@@ -17,6 +17,13 @@ export type IUsersList = {
     count: number,
 }
 
+export type IUserValues = {
+    username: string,
+    firstname: string,
+    lastname: string,
+    email: string,
+}
+
 export type IUser = {
     username?: string | undefined,
     firstname?: string | undefined,
@@ -46,5 +53,22 @@ export interface IUseUsers {
     changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
     handleEditUser: (id?: number) => void,
     handleDeleteUser: (id?: number) => void,
-    t: TFunction
+    t: TFunction,
+    closeEditModal: () => void,
+    isOpen: boolean,
+    userId: null | number,
+}
+
+export interface IUsersTable {
+    usersForShow: Array<userInterfaces.UserItem>,
+    limit: number,
+    page: number,
+    count: number,
+    changePage: (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number) => void,
+    changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
+    handleEditUser: (id?: number) => void,
+    handleDeleteUser: (id?: number) => void,
+    t: TFunction,
 }

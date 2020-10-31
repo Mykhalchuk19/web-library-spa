@@ -1,9 +1,9 @@
 export interface IUserData {
-    id?: number,
-    username?: string,
-    firstname?: string,
-    lastname?: string,
-    email?: string,
+    id: number,
+    username: string,
+    firstname: string,
+    lastname: string,
+    email: string,
 }
 
 type IList = {

@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 const SignUpForm: React.FC<Props> = () => {
   const dispatch = useDispatch();
-  const isPending = useSelector(userSelectors.getAuthPending);
+  const isPending = useSelector(userSelectors.getPending);
   const { t } = useTranslation(['auth']);
   const {
     handleSubmit,

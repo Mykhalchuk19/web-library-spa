@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { isEmpty } from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../Layout/Layout';
-import { Form, CustomButton, Loader } from '../../components';
+import { Form, CustomButton } from '../../components';
 import useProfile from './useProfile';
 import './style.sass';
 

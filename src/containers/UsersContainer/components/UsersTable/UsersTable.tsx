@@ -10,10 +10,10 @@ import {
 } from '@material-ui/core';
 import { USER_FIELDS } from '../../../../constants';
 import { UsersPagination } from '../index';
-import { IUseUsers } from '../../../../interfaces/userInterfaces';
+import { IUsersTable } from '../../../../interfaces/userInterfaces';
 import UsersItem from '../UsersItem/UsersItem';
 
-const UsersTable: React.FC<IUseUsers> = ({
+const UsersTable: React.FC<IUsersTable> = ({
   usersForShow,
   handleEditUser,
   handleDeleteUser,
@@ -23,7 +23,7 @@ const UsersTable: React.FC<IUseUsers> = ({
   changePage,
   changeRowsPerPage,
   t,
-} : IUseUsers) => (
+} : IUsersTable) => (
   <TableContainer>
     <Table>
       <TableHead>

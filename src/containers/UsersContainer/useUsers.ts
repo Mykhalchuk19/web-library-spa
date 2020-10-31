@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { userActions, userSelectors } from '../../state/user';
@@ -8,6 +10,8 @@ const useUsers = (): IUseUsers => {
   const dispatch = useDispatch();
   const usersList = useSelector(userSelectors.getUsersList);
   const { t } = useTranslation(['common']);
+  const [isOpen, setOpen] = useState(false);
+  const [userId, setUserId] = useState(null);
   const {
     users, limit, page, count,
   } = usersList;
@@ -35,9 +39,12 @@ const useUsers = (): IUseUsers => {
     [users, limit, page],
   );
 
-  const handleEditUser = useCallback((id) => {}, []);
+  const handleEditUser = useCallback((id) => {
+    setOpen(true);
+    setUserId(id);
+  }, []);
   const handleDeleteUser = useCallback((id) => {}, []);
-
+  const closeEditModal = useCallback(() => setOpen(false), []);
   return {
     usersForShow,
     limit,
@@ -48,6 +55,9 @@ const useUsers = (): IUseUsers => {
     handleEditUser,
     handleDeleteUser,
     t,
+    closeEditModal,
+    isOpen,
+    userId,
   };
 };
 

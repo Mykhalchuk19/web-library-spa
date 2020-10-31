@@ -36,13 +36,17 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     userData: {},
   }),
-  [userTypes.USER_UPDATE_REQUEST]: (state) => ({
+  [userTypes.PROFILE_UPDATE_REQUEST]: (state) => ({
     ...state,
     pending: true,
   }),
-  [userTypes.USER_UPDATE_SUCCESS]: (state, action: IAction) => ({
+  [userTypes.PROFILE_UPDATE_SUCCESS]: (state, action: IAction) => ({
     ...state,
     userData: action.payload.userData,
+    pending: false,
+  }),
+  [userTypes.PROFILE_UPDATE_FAILURE]: (state) => ({
+    ...state,
     pending: false,
   }),
   [userTypes.USERS_LIST_REQUEST]: (state) => ({
@@ -60,6 +64,25 @@ const userReducer = handleActions<UserState, string>({
     pending: false,
   }),
   [userTypes.USERS_LIST_FAILURE]: (state) => ({
+    ...state,
+    pending: false,
+  }),
+  [userTypes.USER_UPDATE_REQUEST]: (state) => ({
+    ...state,
+    pending: true,
+  }),
+  [userTypes.USER_UPDATE_SUCCESS]: (state, action: IAction) => ({
+    ...state,
+    pending: false,
+    list: {
+      // @ts-ignore
+      users: [...state.list.users.map((item: any): any => (item.id === action.payload.userData.id ? action.payload.userData : item))],
+      limit: state.list.limit,
+      page: state.list.page,
+      count: state.list.count,
+    },
+  }),
+  [userTypes.USER_UPDATE_FAILURE]: (state) => ({
     ...state,
     pending: false,
   }),

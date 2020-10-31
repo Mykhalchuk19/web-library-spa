@@ -5,22 +5,15 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { userActions, userSelectors } from '../../state/user';
-import { userInterfaces } from '../../interfaces';
+import { IUser, IUserValues } from '../../interfaces/userInterfaces';
 import rules from './rules';
 
-export interface Values {
-    username: string,
-    firstname: string,
-    lastname: string,
-    email: string,
-}
-
 interface IUseProfile {
-    user: userInterfaces.IUser,
+    user: IUser,
     isPending: boolean
     handleSubmit: (e?: React.FormEvent<HTMLFormElement>) => void,
-    values: userInterfaces.IUser,
-    errors: userInterfaces.IUser,
+    values: IUser,
+    errors: IUser,
     handleChange: (e: React.ChangeEvent<any>) => void,
     setSubmitting: (isSubmitting: boolean) => void,
     isSubmitting: boolean,
@@ -31,7 +24,7 @@ const useProfile = (): IUseProfile => {
   const dispatch = useDispatch();
   const { t } = useTranslation(['common']);
   const user = useSelector(userSelectors.getUserData);
-  const isPending = useSelector(userSelectors.getAuthPending);
+  const isPending = useSelector(userSelectors.getPending);
   const {
     handleSubmit,
     values,
@@ -39,7 +32,7 @@ const useProfile = (): IUseProfile => {
     handleChange,
     setSubmitting,
     isSubmitting,
-  } = useFormik<Values>({
+  } = useFormik<IUserValues>({
     initialValues: {
       username: user.username,
       firstname: user.firstname,
@@ -50,7 +43,7 @@ const useProfile = (): IUseProfile => {
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(userActions.userUpdateRequest({ ...formValues, id: user.id }));
+      dispatch(userActions.profileUpdateRequest({ ...formValues, id: user.id }));
       setSubmitting(isPending);
     },
   });

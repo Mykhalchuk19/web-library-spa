@@ -20,6 +20,9 @@ export const {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserFailure,
+  profileUpdateRequest,
+  profileUpdateSuccess,
+  profileUpdateFailure,
 } = createActions(
   userTypes.USER_SIGN_UP_REQUEST,
   userTypes.USER_SIGN_IN_REQUEST,
@@ -38,4 +41,7 @@ export const {
   userTypes.GET_CURRENT_USER_REQUEST,
   userTypes.GET_CURRENT_USER_SUCCESS,
   userTypes.GET_CURRENT_USER_FAILURE,
+  userTypes.PROFILE_UPDATE_REQUEST,
+  userTypes.PROFILE_UPDATE_SUCCESS,
+  userTypes.PROFILE_UPDATE_FAILURE,
 );
