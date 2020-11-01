@@ -10,7 +10,8 @@ const useUsers = (): IUseUsers => {
   const dispatch = useDispatch();
   const usersList = useSelector(userSelectors.getUsersList);
   const { t } = useTranslation(['common']);
-  const [isOpen, setOpen] = useState(false);
+  const [isOpenEditModal, setOpenEditModal] = useState(false);
+  const [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
   const [userId, setUserId] = useState(null);
   const {
     users, limit, page, count,
@@ -40,11 +41,15 @@ const useUsers = (): IUseUsers => {
   );
 
   const handleEditUser = useCallback((id) => {
-    setOpen(true);
+    setOpenEditModal(true);
     setUserId(id);
   }, []);
-  const handleDeleteUser = useCallback((id) => {}, []);
-  const closeEditModal = useCallback(() => setOpen(false), []);
+  const closeEditModal = useCallback(() => setOpenEditModal(false), []);
+  const handleDeleteUser = useCallback((id) => {
+    setOpenDeleteModal(true);
+    setUserId(id);
+  }, []);
+  const closeDeleteModal = useCallback(() => setOpenDeleteModal(false), []);
   return {
     usersForShow,
     limit,
@@ -56,7 +61,9 @@ const useUsers = (): IUseUsers => {
     handleDeleteUser,
     t,
     closeEditModal,
-    isOpen,
+    isOpenEditModal,
+    isOpenDeleteModal,
+    closeDeleteModal,
     userId,
   };
 };

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import { Header } from '../../components';
 import { SignUpForm, SignInForm } from '../../containers';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Auth: React.FC = () => (
   <>
@@ -13,7 +11,6 @@ const Auth: React.FC = () => (
       <Route exact path="/auth/signin/" component={SignInForm} />
       <Route path="/" component={SignUpForm} />
     </Switch>
-    <ToastContainer />
   </>
 );
 

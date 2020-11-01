@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { uniq } from 'ramda';
-import { IAction, UserState } from '../../interfaces/userInterfaces';
+import { IAction, UserState, UserItem } from '../../interfaces/userInterfaces';
 import userTypes from './types';
 
 const initialState: UserState = {
@@ -75,8 +75,7 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: false,
     list: {
-      // @ts-ignore
-      users: [...state.list.users.map((item: any): any => (item.id === action.payload.userData.id ? action.payload.userData : item))],
+      users: [...(state.list.users as Array<UserItem>).map((item: UserItem): Array<UserItem> => (item.id === action.payload.userData.id ? action.payload.userData : item))],
       limit: state.list.limit,
       page: state.list.page,
       count: state.list.count,
@@ -94,7 +93,7 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: false,
     list: {
-      users: [...state.list.users.filter((id) => id === action.payload.user)],
+      users: [...state.list.users.filter((item) => item.id !== action.payload.user)],
       limit: state.list.limit,
       page: state.list.page,
       count: state.list.count,

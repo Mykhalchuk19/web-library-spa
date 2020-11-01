@@ -20,5 +20,8 @@
   "Profile": "Profile",
   "Error": "Error",
   "Rows per page": "Rows per page",
-  "Edit user": "Edit user"
+  "Edit user": "Edit user",
+  "Delete user": "Delete user",
+  "Delete": "Delete",
+  "Cancel": "Cancel"
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { isEmpty } from 'ramda';
 import Layout from '../Layout/Layout';
 import { UsersTable } from './components';
-import { EditUserModal } from './modals';
+import { EditUserModal, DeleteUserModal } from './modals';
 import useUsers from './useUsers';
 import './style.sass';
 
@@ -17,8 +17,10 @@ const UsersContainer: React.FC = () => {
     handleEditUser,
     handleDeleteUser,
     t,
-    isOpen,
+    isOpenEditModal,
     closeEditModal,
+    isOpenDeleteModal,
+    closeDeleteModal,
     userId,
   } = useUsers();
   return (
@@ -42,8 +44,13 @@ const UsersContainer: React.FC = () => {
         </div>
       </Layout>
       <EditUserModal
-        isOpen={isOpen}
+        isOpen={isOpenEditModal}
         closeEditModal={closeEditModal}
+        userId={userId}
+      />
+      <DeleteUserModal
+        isOpen={isOpenDeleteModal}
+        closeDeleteModal={closeDeleteModal}
         userId={userId}
       />
     </>

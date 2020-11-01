@@ -55,7 +55,9 @@ export interface IUseUsers {
     handleDeleteUser: (id?: number) => void,
     t: TFunction,
     closeEditModal: () => void,
-    isOpen: boolean,
+    isOpenEditModal: boolean,
+    closeDeleteModal: () => void,
+    isOpenDeleteModal: boolean,
     userId: null | number,
 }
 

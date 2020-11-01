@@ -2,8 +2,10 @@ import React, { Suspense, lazy } from 'react';
 import {
   Switch, Route, Redirect, useLocation,
 } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Loader from '../Loader/Loader';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Auth = lazy(() => import('../../pages/Auth/Auth'));
 const Profile = lazy(() => import('../../pages/Profile/Profile'));
@@ -23,6 +25,7 @@ const Routing: React.FC = () => {
         <PrivateRoute exact path="/" component={Profile} />
         <PrivateRoute exact path="*" component={ErrorPage} />
       </Switch>
+      <ToastContainer />
     </Suspense>
   );
 };

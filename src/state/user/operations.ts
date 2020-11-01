@@ -19,6 +19,7 @@ import {
   profileUpdateFailure,
 } from './actions';
 import { authenticationRequestHelpers, apiHelpers, userRequestHelpers } from '../../utils/requestHelpers';
+import { SUCCESS_MESSAGES } from '../../constants';
 
 const { normalizeRequestData } = apiHelpers;
 
@@ -26,6 +27,7 @@ function* singUp() {
   while (true) {
     try {
       const action = yield take(userTypes.USER_SIGN_UP_REQUEST);
+      console.log(action.payload);
       const res = normalizeRequestData(yield call(authenticationRequestHelpers.signUpRequest,
         { ...action.payload }));
       yield put(userAuthenticationSuccess({ ...res }));
@@ -81,6 +83,7 @@ function* updateProfile() {
       const res = normalizeRequestData(yield call(userRequestHelpers.updateUserRequest,
         { ...action.payload }, { id: action.payload.id }));
       yield put(profileUpdateSuccess({ ...res }));
+      PushNotifications.success({ content: SUCCESS_MESSAGES.PROFILE_SUCCESSFULLY_EDITED });
     } catch (e) {
       yield put(profileUpdateFailure());
       PushNotifications.error({ content: e.response.data.error });
@@ -95,6 +98,7 @@ function* updateUser() {
       const res = normalizeRequestData(yield call(userRequestHelpers.updateUserRequest,
         { ...action.payload }, { id: action.payload.id }));
       yield put(userUpdateSuccess({ ...res }));
+      yield call(PushNotifications.success, { content: SUCCESS_MESSAGES.USER_SUCCESSFULLY_EDITED });
     } catch (e) {
       yield put(userUpdateFailure());
       PushNotifications.error({ content: e.response.data.error });
@@ -109,6 +113,7 @@ function* deleteUser() {
       const res = normalizeRequestData(yield call(userRequestHelpers.deleteUserRequest,
         {}, { id: action.payload.id }));
       yield put(userDeleteSuccess(({ ...res })));
+      PushNotifications.success({ content: SUCCESS_MESSAGES.USER_SUCCESSFULLY_DELETED });
     } catch (e) {
       yield put(userDeleteFailure());
       PushNotifications.error({ content: e.response.data.error });
