@@ -22,6 +22,7 @@ const UsersContainer: React.FC = () => {
     isOpenDeleteModal,
     closeDeleteModal,
     userId,
+    onUsersSearch,
   } = useUsers();
   return (
     <>
@@ -39,6 +40,7 @@ const UsersContainer: React.FC = () => {
             page={page}
             changePage={changePage}
             changeRowsPerPage={changeRowsPerPage}
+            onUsersSearch={onUsersSearch}
           />
           )}
         </div>

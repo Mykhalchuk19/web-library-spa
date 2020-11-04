@@ -13,6 +13,7 @@ const useUsers = (): IUseUsers => {
   const [isOpenEditModal, setOpenEditModal] = useState(false);
   const [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
   const {
     users, limit, page, count,
   } = usersList;
@@ -24,15 +25,15 @@ const useUsers = (): IUseUsers => {
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
   ) => {
-    dispatch(userActions.usersListRequest({ page: newPage, limit }));
+    dispatch(userActions.usersListRequest({ page: newPage, limit, q: searchValue }));
   },
-  [dispatch, limit]);
+  [dispatch, limit, searchValue]);
 
   const changeRowsPerPage = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      dispatch(userActions.usersListRequest({ page: 0, limit: parseInt(event.target.value, 10) }));
+      dispatch(userActions.usersListRequest({ page: 0, limit: parseInt(event.target.value, 10), q: searchValue }));
     },
-    [dispatch],
+    [dispatch, searchValue],
   );
 
   const usersForShow = useMemo(
@@ -50,6 +51,10 @@ const useUsers = (): IUseUsers => {
     setUserId(id);
   }, []);
   const closeDeleteModal = useCallback(() => setOpenDeleteModal(false), []);
+  const onUsersSearch = useCallback((event) => {
+    setSearchValue(event.target.value);
+    dispatch(userActions.usersListRequest({ q: event.target.value, limit }));
+  }, [dispatch, searchValue, limit]);
   return {
     usersForShow,
     limit,
@@ -65,6 +70,7 @@ const useUsers = (): IUseUsers => {
     isOpenDeleteModal,
     closeDeleteModal,
     userId,
+    onUsersSearch,
   };
 };
 

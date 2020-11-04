@@ -12,7 +12,7 @@ const useDeleteUserModal = (userId: number | null, closeDeleteModal: () => void)
   const onDeleteUser = useCallback(() => {
     dispatch(userActions.userDeleteRequest({ id: userId }));
     closeDeleteModal();
-  }, [dispatch, userId]);
+  }, [dispatch, userId, closeDeleteModal]);
   return {
     onDeleteUser,
   };

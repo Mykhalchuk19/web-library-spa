@@ -56,7 +56,7 @@ const userReducer = handleActions<UserState, string>({
   [userTypes.USERS_LIST_SUCCESS]: (state, action: IAction) => ({
     ...state,
     list: {
-      users: uniq([...state.list.users, ...action.payload.users]),
+      users: action.payload.users,
       limit: action.payload.limit,
       count: action.payload.count,
       page: action.payload.page,

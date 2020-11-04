@@ -9,6 +9,7 @@ import {
   TableRow,
 } from '@material-ui/core';
 import { USER_FIELDS } from '../../../../constants';
+import { Form } from '../../../../components';
 import { UsersPagination } from '../index';
 import { IUsersTable } from '../../../../interfaces/userInterfaces';
 import UsersItem from '../UsersItem/UsersItem';
@@ -23,6 +24,7 @@ const UsersTable: React.FC<IUsersTable> = ({
   changePage,
   changeRowsPerPage,
   t,
+  onUsersSearch,
 } : IUsersTable) => (
   <TableContainer>
     <Table>
@@ -35,8 +37,16 @@ const UsersTable: React.FC<IUsersTable> = ({
               {t(field)}
             </TableCell>
           ))}
-          <TableCell colSpan={0.5} />
-          <TableCell colSpan={0.5} />
+          <TableCell colSpan={2}>
+            <Form.CustomInput
+              id="user-search"
+              label="Search"
+              error=""
+              inputProps={{
+                onChange: (value: string) => onUsersSearch(value),
+              }}
+            />
+          </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

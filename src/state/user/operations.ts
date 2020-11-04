@@ -80,8 +80,8 @@ function* updateProfile() {
   while (true) {
     try {
       const action = yield take(userTypes.PROFILE_UPDATE_REQUEST);
-      const res = normalizeRequestData(yield call(userRequestHelpers.updateUserRequest,
-        { ...action.payload }, { id: action.payload.id }));
+      const res = normalizeRequestData(yield call(userRequestHelpers.updateProfile,
+        { ...action.payload }));
       yield put(profileUpdateSuccess({ ...res }));
       PushNotifications.success({ content: SUCCESS_MESSAGES.PROFILE_SUCCESSFULLY_EDITED });
     } catch (e) {

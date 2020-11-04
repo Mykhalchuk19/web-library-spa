@@ -59,6 +59,7 @@ export interface IUseUsers {
     closeDeleteModal: () => void,
     isOpenDeleteModal: boolean,
     userId: null | number,
+    onUsersSearch: (value?: string) => void,
 }
 
 export interface IUsersTable {
@@ -73,4 +74,5 @@ export interface IUsersTable {
     handleEditUser: (id?: number) => void,
     handleDeleteUser: (id?: number) => void,
     t: TFunction,
+    onUsersSearch: (value?: string) => void,
 }
