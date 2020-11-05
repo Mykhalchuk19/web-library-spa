@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import { uniq } from 'ramda';
 import { IAction, UserState, UserItem } from '../../interfaces/userInterfaces';
 import userTypes from './types';
 

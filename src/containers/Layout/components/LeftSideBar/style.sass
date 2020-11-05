@@ -2,12 +2,18 @@
 
 .left-sidebar
   width: 300px
-  background-color: #2f353a
+  background-color: rgba(47, 53, 58, 1)
   height: 100%
   position: fixed
   top: 0
   bottom: 0
   overflow-x: hidden
+  transition: width .5s ease-in-out
+  z-index: 1000
+  +if-xs
+    width: 100%
+  &__wrapper
+    position: relative
   &__log-out
     text-align: center
   &__copyright
@@ -27,3 +33,5 @@
     &--ua, &--uk
       width: 30px
       height: auto
+  &__hide
+    width: 100px

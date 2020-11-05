@@ -7,6 +7,7 @@ import { I18nextProvider } from 'react-i18next';
 import { store, persistor, history } from './configureStore';
 import { Routing } from './components';
 import './utils/styles/style.sass';
+import './utils/fonts/icomoon/style.css';
 import i18n from './utils/i18next/config';
 
 const App: React.FC = () => (

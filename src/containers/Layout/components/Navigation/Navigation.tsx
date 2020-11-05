@@ -5,15 +5,21 @@ import { NavLink } from 'react-router-dom';
 import { NAVIGATION } from '../../../../constants';
 import './style.sass';
 
-const Navigation: React.FC = () => {
+type TNavigation = {
+    isLeftSideBar: boolean,
+}
+
+const Navigation: React.FC<TNavigation> = ({ isLeftSideBar }: TNavigation) => {
   const { t } = useTranslation(['common']);
   return (
     <nav className="main-nav">
       <MenuList>
         {
-                    Object.values(NAVIGATION).map(({ href, title }) => (
-                      <MenuItem>
-                        <NavLink className="main-nav__link" to={href}>{t(title)}</NavLink>
+                    Object.values(NAVIGATION).map(({ href, title, icon }) => (
+                      <MenuItem key={title}>
+                        <NavLink className="main-nav__link" to={href} title={isLeftSideBar ? `${t(title)}` : ''}>
+                          {isLeftSideBar ? <span className={`${icon} main-nav__icon`} /> : t(title)}
+                        </NavLink>
                       </MenuItem>
                     ))
                 }

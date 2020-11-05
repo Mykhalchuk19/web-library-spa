@@ -1,0 +1,4 @@
+export default {
+  TOGGLE_LEFT_SIDE_BAR: 'TOGGLE_LEFT_SIDE_BAR',
+  RESET_UI: 'RESET_UI',
+};

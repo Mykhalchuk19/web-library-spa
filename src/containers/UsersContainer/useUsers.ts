@@ -54,7 +54,7 @@ const useUsers = (): IUseUsers => {
   const onUsersSearch = useCallback((event) => {
     setSearchValue(event.target.value);
     dispatch(userActions.usersListRequest({ q: event.target.value, limit }));
-  }, [dispatch, searchValue, limit]);
+  }, [dispatch, limit, setSearchValue]);
   return {
     usersForShow,
     limit,

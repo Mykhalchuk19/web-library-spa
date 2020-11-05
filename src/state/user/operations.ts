@@ -18,6 +18,7 @@ import {
   profileUpdateSuccess,
   profileUpdateFailure,
 } from './actions';
+import { resetUi } from '../ui/actions';
 import { authenticationRequestHelpers, apiHelpers, userRequestHelpers } from '../../utils/requestHelpers';
 import { SUCCESS_MESSAGES } from '../../constants';
 
@@ -27,7 +28,6 @@ function* singUp() {
   while (true) {
     try {
       const action = yield take(userTypes.USER_SIGN_UP_REQUEST);
-      console.log(action.payload);
       const res = normalizeRequestData(yield call(authenticationRequestHelpers.signUpRequest,
         { ...action.payload }));
       yield put(userAuthenticationSuccess({ ...res }));
@@ -57,9 +57,12 @@ function* singIn() {
 }
 
 function* logOut() {
-  yield take(userTypes.USER_LOG_OUT);
-  yield push('/');
-  localStorage.removeItem('authToken');
+  while (true) {
+    yield take(userTypes.USER_LOG_OUT);
+    yield localStorage.removeItem('authToken');
+    yield put(push('/auth/signin'));
+    yield put(resetUi());
+  }
 }
 
 function* getListUsers() {
@@ -143,4 +146,5 @@ export default function* (): Generator {
   yield fork(deleteUser);
   yield fork(getCurrentUser);
   yield fork(updateProfile);
+  yield fork(logOut);
 }
