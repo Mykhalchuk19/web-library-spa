@@ -8,6 +8,16 @@ export type UserItem = {
     firstname?: string,
     lastname?: string,
     email?: string,
+    type?: number,
+    permissions?: Array<PermissionItem>
+}
+
+export type PermissionItem = {
+    module: string,
+    read: string,
+    create: string,
+    update: string,
+    delete: string,
 }
 
 export type IUsersList = {

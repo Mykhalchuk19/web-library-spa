@@ -1,6 +1,8 @@
 import React from 'react';
 import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons';
+import { PermissionComponent } from '../../../../components';
+import { ACTIONS, MODULES } from '../../../../constants/permissions';
 
 type UsersItem = {
     id: number | undefined,
@@ -32,22 +34,26 @@ const UsersItem: React.FC<UsersItem> = ({
       {email}
     </TableCell>
     <TableCell component="td" colSpan={0.5}>
-      <IconButton
-        onClick={() => handleEditUser(id)}
-        type="button"
-        aria-label="edit"
-      >
-        <Edit />
-      </IconButton>
+      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.USERS}>
+        <IconButton
+          onClick={() => handleEditUser(id)}
+          type="button"
+          aria-label="edit"
+        >
+          <Edit />
+        </IconButton>
+      </PermissionComponent>
     </TableCell>
     <TableCell component="td" colSpan={0.5}>
-      <IconButton
-        onClick={() => handleDeleteUser(id)}
-        type="button"
-        aria-label="delete"
-      >
-        <Delete />
-      </IconButton>
+      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.USERS}>
+        <IconButton
+          onClick={() => handleDeleteUser(id)}
+          type="button"
+          aria-label="delete"
+        >
+          <Delete />
+        </IconButton>
+      </PermissionComponent>
     </TableCell>
   </TableRow>
 );

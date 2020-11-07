@@ -4,6 +4,7 @@ import CustomButton from './CustomButton/CustomButton';
 import Routing from './Routing/Routing';
 import Loader from './Loader/Loader';
 import ModalWindow from './ModalWindow/ModalWindow';
+import PermissionComponent from './PermissionComponent/PermissionComponent';
 
 export {
   Header,
@@ -12,4 +13,5 @@ export {
   Loader,
   ModalWindow,
   Form,
+  PermissionComponent,
 };

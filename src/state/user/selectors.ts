@@ -12,6 +12,9 @@ const getUserData = createSelector(pathOr({
   lastname: '',
   email: '',
 }, ['user', 'userData']), identity);
+
+const getMyPermissions = createSelector(pathOr([], ['user', 'userData', 'permissions']), identity);
+
 const getUsersList = createSelector(pathOr({
   users: [],
   limit: 10,
@@ -37,4 +40,5 @@ export {
   getUserData,
   getUsersList,
   getUserById,
+  getMyPermissions,
 };
