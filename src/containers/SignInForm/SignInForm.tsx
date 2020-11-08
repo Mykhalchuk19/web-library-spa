@@ -7,19 +7,9 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Form, CustomButton } from '../../components';
 import { userActions, userSelectors } from '../../state/user';
+import { SignInProps, SignInValues } from '../../interfaces/authInterfaces';
 import rules from './rules';
 import './style.sass';
-
-export interface Values {
-    username: string;
-    password: string;
-}
-
-interface Props {
-    initialValues?: Values;
-    validateOnChange?: boolean;
-    onSubmit?: (v: Values) => Promise<void>
-}
 
 const useStyles = makeStyles({
   signin__wrapper: {
@@ -35,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SignUpForm: React.FC<Props> = () => {
+const SignUpForm: React.FC<SignInProps> = () => {
   const dispatch = useDispatch();
   const isPending = useSelector(userSelectors.getPending);
   const { t } = useTranslation(['auth', 'common']);
@@ -46,7 +36,7 @@ const SignUpForm: React.FC<Props> = () => {
     handleChange,
     setSubmitting,
     isSubmitting,
-  } = useFormik<Values>({
+  } = useFormik<SignInValues>({
     initialValues: {
       username: '',
       password: '',

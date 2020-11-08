@@ -4,9 +4,9 @@ import React, {
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { userActions, userSelectors } from '../../state/user';
-import { IUseUsers } from '../../interfaces/userInterfaces';
+import { TUseUsers } from '../../interfaces/userInterfaces';
 
-const useUsers = (): IUseUsers => {
+const useUsers = (): TUseUsers => {
   const dispatch = useDispatch();
   const usersList = useSelector(userSelectors.getUsersList);
   const { t } = useTranslation(['common']);

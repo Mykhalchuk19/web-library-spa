@@ -2,13 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CustomButton, Form, ModalWindow } from '../../../../components';
 import useEditUserModal from './useEditUserModal';
+import { TEditUserModal } from '../../../../interfaces/userInterfaces';
 import './style.sass';
-
-type TEditUserModal = {
-    isOpen : boolean,
-    closeEditModal: () => void,
-    userId: number | null,
-}
+import { ROLES_LIST } from '../../../../constants/permissions';
 
 const useStyles = makeStyles({
   user_edit__btn: {
@@ -85,6 +81,22 @@ const EditUserModal: React.FC<TEditUserModal> = ({
                 onChange: handleChange,
                 value: values.email,
               }}
+            />
+          </div>
+          <div className="edit-user__row">
+            <Form.CustomSelect
+              id="role"
+              label="Role"
+              error={errors.type}
+              selectProps={{
+                name: 'type',
+                disabled: isSubmitting,
+                value: values.type,
+                onChange: handleChange('type'),
+              }}
+              defaultValue={values.type}
+              selectValues={ROLES_LIST}
+
             />
           </div>
           <div className="edit-user__row">

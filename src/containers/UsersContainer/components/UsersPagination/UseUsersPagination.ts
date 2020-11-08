@@ -1,27 +1,9 @@
 import React, { useCallback } from 'react';
-
-export interface IProps {
-    count: number,
-    page: number,
-    rowsPerPage: number,
-    onChangePage: (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number) => void;
-}
-
-interface IUseUsersPagination {
-    rowsPerPage: number,
-    page: number,
-    count: number,
-    handleNextPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    handlePreviousPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    handleLastPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    handleFirstPage: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
+import { TUserPaginationProps, TUseUsersPagination } from '../../../../interfaces/userInterfaces';
 
 const UseUsersPagination = ({
   page, count, rowsPerPage, onChangePage,
-}: IProps): IUseUsersPagination => {
+}: TUserPaginationProps): TUseUsersPagination => {
   const handleNextPage = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       onChangePage(event, page + 1);

@@ -15,14 +15,14 @@ const Navigation: React.FC<TNavigation> = ({ isLeftSideBar }: TNavigation) => {
     <nav className="main-nav">
       <MenuList>
         {
-                    Object.values(NAVIGATION).map(({ href, title, icon }) => (
-                      <MenuItem key={title}>
-                        <NavLink className="main-nav__link" to={href} title={isLeftSideBar ? `${t(title)}` : ''}>
-                          {isLeftSideBar ? <span className={`${icon} main-nav__icon`} /> : t(title)}
-                        </NavLink>
-                      </MenuItem>
-                    ))
-                }
+            Object.values(NAVIGATION).map(({ href, title, icon }) => (
+              <MenuItem key={title}>
+                <NavLink className="main-nav__link" to={href} title={isLeftSideBar ? `${t(title)}` : ''}>
+                  {isLeftSideBar ? <span className={`${icon} main-nav__icon`} /> : t(title)}
+                </NavLink>
+              </MenuItem>
+            ))
+        }
       </MenuList>
     </nav>
   );

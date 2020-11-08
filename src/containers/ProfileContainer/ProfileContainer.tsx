@@ -1,5 +1,7 @@
 import React, { memo } from 'react';
-import { isEmpty } from 'ramda';
+import {
+  isEmpty,
+} from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../Layout/Layout';
 import { Form, CustomButton } from '../../components';
@@ -21,6 +23,7 @@ const ProfileContainer: React.FC = () => {
     isSubmitting,
     user,
     t,
+    labelForRole,
   } = useProfile();
   const classes = useStyles();
   return (
@@ -81,6 +84,19 @@ const ProfileContainer: React.FC = () => {
                   onChange: handleChange,
                   value: values.email,
                   type: 'email',
+                }}
+              />
+            </div>
+            <div className="profile__row">
+              <Form.CustomInput
+                id="type"
+                label="Role"
+                error={errors.type || ''}
+                readOnly
+                inputProps={{
+                  name: 'type',
+                  disabled: isSubmitting,
+                  value: t(labelForRole),
                 }}
               />
             </div>

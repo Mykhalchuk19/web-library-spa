@@ -1,26 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
+import { find, propEq } from 'ramda';
 import { userActions, userSelectors } from '../../state/user';
-import { IUser, IUserValues } from '../../interfaces/userInterfaces';
+import { TUserValues, TUseProfile } from '../../interfaces/userInterfaces';
 import rules from './rules';
+import { ROLES_LIST } from '../../constants/permissions';
 
-interface IUseProfile {
-    user: IUser,
-    isPending: boolean
-    handleSubmit: (e?: React.FormEvent<HTMLFormElement>) => void,
-    values: IUser,
-    errors: IUser,
-    handleChange: (e: React.ChangeEvent<any>) => void,
-    setSubmitting: (isSubmitting: boolean) => void,
-    isSubmitting: boolean,
-    t: TFunction,
-}
-
-const useProfile = (): IUseProfile => {
+const useProfile = (): TUseProfile => {
   const dispatch = useDispatch();
   const { t } = useTranslation(['common']);
   const user = useSelector(userSelectors.getUserData);
@@ -32,12 +20,13 @@ const useProfile = (): IUseProfile => {
     handleChange,
     setSubmitting,
     isSubmitting,
-  } = useFormik<IUserValues>({
+  } = useFormik<TUserValues>({
     initialValues: {
-      username: user.username,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
+      username: user.username || '',
+      firstname: user.firstname || '',
+      lastname: user.lastname || '',
+      email: user.email || '',
+      type: user.type || 1,
     },
     validateOnChange: false,
     validationSchema: rules,
@@ -50,6 +39,11 @@ const useProfile = (): IUseProfile => {
   useEffect(() => {
     dispatch(userActions.getCurrentUserRequest());
   }, [dispatch]);
+
+  const labelForRole = useMemo(() => {
+    const currentRole: any = find(propEq('value', values.type))(ROLES_LIST);
+    return currentRole ? currentRole.label : '';
+  }, [values.type]);
   return {
     user,
     isPending,
@@ -60,6 +54,7 @@ const useProfile = (): IUseProfile => {
     setSubmitting,
     isSubmitting,
     t,
+    labelForRole,
   };
 };
 

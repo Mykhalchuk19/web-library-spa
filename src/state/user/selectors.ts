@@ -11,6 +11,7 @@ const getUserData = createSelector(pathOr({
   firstname: '',
   lastname: '',
   email: '',
+  type: undefined,
 }, ['user', 'userData']), identity);
 
 const getMyPermissions = createSelector(pathOr([], ['user', 'userData', 'permissions']), identity);
@@ -31,6 +32,7 @@ const getUserById = createSelector(
     firstname: '',
     lastname: '',
     email: '',
+    type: undefined,
   },
 );
 

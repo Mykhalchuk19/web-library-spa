@@ -11,10 +11,10 @@ import {
 import { USER_FIELDS } from '../../../../constants';
 import { Form } from '../../../../components';
 import { UsersPagination } from '../index';
-import { IUsersTable } from '../../../../interfaces/userInterfaces';
+import { TUsersTable } from '../../../../interfaces/userInterfaces';
 import UsersItem from '../UsersItem/UsersItem';
 
-const UsersTable: React.FC<IUsersTable> = ({
+const UsersTable: React.FC<TUsersTable> = ({
   usersForShow,
   handleEditUser,
   handleDeleteUser,
@@ -25,7 +25,7 @@ const UsersTable: React.FC<IUsersTable> = ({
   changeRowsPerPage,
   t,
   onUsersSearch,
-} : IUsersTable) => (
+} : TUsersTable) => (
   <TableContainer>
     <Table>
       <TableHead>
@@ -40,7 +40,7 @@ const UsersTable: React.FC<IUsersTable> = ({
           <TableCell colSpan={2}>
             <Form.CustomInput
               id="user-search"
-              label="Search"
+              label={t('Search')}
               error=""
               inputProps={{
                 onChange: (value: string) => onUsersSearch(value),

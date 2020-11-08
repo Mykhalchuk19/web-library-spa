@@ -1,14 +1,9 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { ModalWindow, CustomButton } from '../../../../components';
 import useDeleteUserModal from './useDeleteUserModal';
+import { TDeleteUserModal } from '../../../../interfaces/userInterfaces';
 import './style.sass';
-import { makeStyles } from '@material-ui/core/styles';
-
-type TDeleteUserModal = {
-    userId: null | number,
-    closeDeleteModal: () => void,
-    isOpen: boolean,
-}
 
 const useStyles = makeStyles({
   user_delete__btn_delete: {

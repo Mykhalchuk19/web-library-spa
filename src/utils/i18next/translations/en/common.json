@@ -23,5 +23,10 @@
   "Edit user": "Edit user",
   "Delete user": "Delete user",
   "Delete": "Delete",
-  "Cancel": "Cancel"
+  "Cancel": "Cancel",
+  "Role": "Role",
+  "User": "User",
+  "Manager": "Manager",
+  "Admin": "Admin",
+  "Search": "Search"
 }

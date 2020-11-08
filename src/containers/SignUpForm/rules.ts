@@ -1,7 +1,7 @@
 import * as yup from 'yup';
-import { Values } from './SignUpForm';
+import { SignUpValues } from '../../interfaces/authInterfaces';
 
-const rules = yup.object<Values>({
+const rules = yup.object<SignUpValues>({
   username: yup.string().required('Username is required'),
   firstname: yup.string().required('First name is required'),
   lastname: yup.string().required('Last name is required'),

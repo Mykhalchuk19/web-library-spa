@@ -3,20 +3,11 @@ import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons';
 import { PermissionComponent } from '../../../../components';
 import { ACTIONS, MODULES } from '../../../../constants/permissions';
+import { UsersItemTable } from '../../../../interfaces/userInterfaces';
 
-type UsersItem = {
-    id: number | undefined,
-    username: string | undefined,
-    firstname: string | undefined,
-    lastname: string | undefined,
-    email: string | undefined,
-    handleEditUser: (id?: number) => void,
-    handleDeleteUser: (id?: number) => void,
-}
-
-const UsersItem: React.FC<UsersItem> = ({
+const UsersItem: React.FC<UsersItemTable> = ({
   id, username, firstname, lastname, email, handleEditUser, handleDeleteUser,
-}: UsersItem) => (
+}: UsersItemTable) => (
   <TableRow key={id}>
     <TableCell component="td">
       {id}

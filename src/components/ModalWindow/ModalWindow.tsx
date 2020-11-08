@@ -4,14 +4,8 @@ import ReactDOM from 'react-dom';
 import CloseIcon from '@material-ui/icons/Close';
 import { useTranslation } from 'react-i18next';
 import CustomButton from '../CustomButton/CustomButton';
+import { ModalWindow as ModalWindowTypes } from '../../interfaces/componentInterfaces';
 import './style.sass';
-
-type MWProps = {
-    title?: string,
-    isOpen: boolean,
-    onClose?: () => void | CallableFunction,
-    children?: JSX.Element
-}
 
 const useStyles = makeStyles({
   modal_window__close_btn: {
@@ -37,7 +31,7 @@ const useStyles = makeStyles({
 
 const ModalWindow = ({
   title, isOpen, onClose, children,
-}: MWProps): ReactPortal => {
+}: ModalWindowTypes): ReactPortal => {
   useLayoutEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
   }, [isOpen]);

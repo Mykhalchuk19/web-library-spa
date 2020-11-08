@@ -1,11 +1,6 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import usePermissionComponent from './usePermissionComponent';
-
-type TPermissionComponent = {
-  module: string,
-  action: string,
-  children: ReactNode
-}
+import { TPermissionComponent } from '../../interfaces/componentInterfaces';
 
 const PermissionComponent: React.FC<TPermissionComponent> = ({ module, action, children }: TPermissionComponent) => {
   const { havePermissions } = usePermissionComponent(module, action);

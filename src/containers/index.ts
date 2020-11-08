@@ -1,6 +1,6 @@
 import SignUpForm from './SignUpForm/SignUpForm';
 import SignInForm from './SignInForm/SignInForm';
-import ProfileContainer from './profileContainer/profileContainer';
+import ProfileContainer from './ProfileContainer/ProfileContainer';
 import UsersContainer from './UsersContainer/UsersContainer';
 
 export {

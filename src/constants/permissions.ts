@@ -4,6 +4,21 @@ const ROLES = {
   ADMIN: 3,
 };
 
+const ROLES_LIST = [
+  {
+    label: 'User',
+    value: 1,
+  },
+  {
+    label: 'Manager',
+    value: 2,
+  },
+  {
+    label: 'Admin',
+    value: 3,
+  },
+];
+
 const ACTIONS = {
   READ: 'read',
   CREATE: 'create',
@@ -20,4 +35,5 @@ export {
   MODULES,
   ACTIONS,
   ROLES,
+  ROLES_LIST,
 };

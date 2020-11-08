@@ -2,18 +2,11 @@ import React, { memo } from 'react';
 import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { isEmpty } from 'ramda';
-// eslint-disable-next-line react/require-default-props
-type BProps = {
-    type?: 'submit' | 'reset' | 'button';
-    onClick?: () => void | CallableFunction;
-    children?: React.ReactNode;
-    className?: string,
-    text: string,
-}
+import { Button as ButtonTypes } from '../../interfaces/componentInterfaces';
 
-const CustomButton: React.FC<BProps> = ({
+const CustomButton: React.FC<ButtonTypes> = ({
   children, type, onClick, className, text,
-}: BProps) => {
+}: ButtonTypes) => {
   const { t } = useTranslation(['common']);
   return (
     <Button

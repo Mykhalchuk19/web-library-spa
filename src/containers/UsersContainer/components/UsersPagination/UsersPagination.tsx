@@ -3,9 +3,10 @@ import { IconButton } from '@material-ui/core';
 import {
   LastPage, FirstPage, KeyboardArrowLeft, KeyboardArrowRight,
 } from '@material-ui/icons';
-import UseUsersPagination, { IProps } from './UseUsersPagination';
+import { TUserPaginationProps } from '../../../../interfaces/userInterfaces';
+import UseUsersPagination from './UseUsersPagination';
 
-const UsersPagination: React.FC<IProps> = (props: IProps) => {
+const UsersPagination: React.FC<TUserPaginationProps> = (props: TUserPaginationProps) => {
   const {
     page,
     count,

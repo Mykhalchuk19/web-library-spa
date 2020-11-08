@@ -3,15 +3,9 @@ import { useCallback } from 'react';
 import i18n from '../../../../utils/i18next/config';
 import { userActions } from '../../../../state/user';
 import { uiActions, uiSelectors } from '../../../../state/ui';
+import { TUseLeftSideBar } from '../../../../interfaces/uiInterfaces';
 
-interface IUseLeftSideBar {
-    logOut: () => void,
-    changeLanguage: (lng: string) => Promise<void>
-    toggleLeftSideBar: () => void,
-    isLeftSideBar: boolean,
-}
-
-const UseLeftSideBar = (): IUseLeftSideBar => {
+const UseLeftSideBar = (): TUseLeftSideBar => {
   const dispatch = useDispatch();
   const isLeftSideBar = useSelector(uiSelectors.isLeftSideBarSelector);
   const logOut = useCallback(() => dispatch(userActions.userLogOut()), [dispatch]);

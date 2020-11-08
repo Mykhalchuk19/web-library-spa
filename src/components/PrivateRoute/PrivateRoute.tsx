@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Redirect, useLocation } from 'react-router-dom';
-import { IPrivateRoute } from './interfaces';
+import { TPrivateRoute } from '../../interfaces/componentInterfaces';
 
-const PrivateRoute: React.FC<IPrivateRoute> = ({
+const PrivateRoute: React.FC<TPrivateRoute> = ({
   component: Component, exact, path, ...props
-}: IPrivateRoute) => {
+}: TPrivateRoute) => {
   const location = useLocation();
   return (
     localStorage.getItem('authToken') ? (
