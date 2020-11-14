@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
-import { TCategoriesPaginationProps, TUseCategoriesPagination } from '../../../../interfaces/categoriesInterfaces';
+import { TUsePagination, TPaginationProps } from './interfaces';
 
-const UseCategoriesPagination = ({
+const usePagination = ({
   page, count, rowsPerPage, onChangePage,
-}: TCategoriesPaginationProps): TUseCategoriesPagination => {
+}: TPaginationProps): TUsePagination => {
   const handleNextPage = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       onChangePage(event, page + 1);
@@ -40,4 +40,4 @@ const UseCategoriesPagination = ({
   };
 };
 
-export default UseCategoriesPagination;
+export default usePagination;

@@ -80,10 +80,6 @@ export type TUseUsers = {
     limit: number,
     page: number,
     count: number,
-    changePage: (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number) => void,
-    changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
     handleEditUser: (id?: number) => void,
     handleDeleteUser: (id?: number) => void,
     t: TFunction,
@@ -92,7 +88,6 @@ export type TUseUsers = {
     closeDeleteModal: () => void,
     isOpenDeleteModal: boolean,
     userId: null | number,
-    onUsersSearch: (value?: string) => void,
 }
 
 export type TUsersTable = {
@@ -118,25 +113,6 @@ export type UsersItemTable = {
     email: string | undefined,
     handleEditUser: (id?: number) => void,
     handleDeleteUser: (id?: number) => void,
-}
-
-export type TUserPaginationProps = {
-    count: number,
-    page: number,
-    rowsPerPage: number,
-    onChangePage: (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number) => void;
-}
-
-export type TUseUsersPagination = {
-    rowsPerPage: number,
-    page: number,
-    count: number,
-    handleNextPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    handlePreviousPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    handleLastPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    handleFirstPage: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export type TEditUserModal = {

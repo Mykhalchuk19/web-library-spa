@@ -4,6 +4,8 @@ import Layout from '../Layout/Layout';
 import { UsersTable } from './components';
 import { EditUserModal, DeleteUserModal } from './modals';
 import useUsers from './useUsers';
+import { useGrid } from '../../hooks';
+import { userActions } from '../../state/user';
 import './style.sass';
 
 const UsersContainer: React.FC = () => {
@@ -12,8 +14,6 @@ const UsersContainer: React.FC = () => {
     limit,
     page,
     count,
-    changePage,
-    changeRowsPerPage,
     handleEditUser,
     handleDeleteUser,
     t,
@@ -22,8 +22,13 @@ const UsersContainer: React.FC = () => {
     isOpenDeleteModal,
     closeDeleteModal,
     userId,
-    onUsersSearch,
   } = useUsers();
+
+  const {
+    onSearch,
+    changeRowsPerPage,
+    changePage,
+  } = useGrid({ limit, getListRequest: userActions.usersListRequest });
   return (
     <>
       <Layout>
@@ -40,7 +45,7 @@ const UsersContainer: React.FC = () => {
             page={page}
             changePage={changePage}
             changeRowsPerPage={changeRowsPerPage}
-            onUsersSearch={onUsersSearch}
+            onUsersSearch={onSearch}
           />
           )}
         </div>

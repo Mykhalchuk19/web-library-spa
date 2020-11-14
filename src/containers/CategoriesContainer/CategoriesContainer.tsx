@@ -7,6 +7,8 @@ import { CreateCategoryModal } from './modals';
 import useCategories from './useCategories';
 import './style.sass';
 import CategoriesTable from './components/CategoriesTable/CategoriesTable';
+import { useGrid } from '../../hooks';
+import { categoriesActions } from '../../state/categories';
 
 const useStyles = makeStyles({
   categories_btn_add: {
@@ -26,10 +28,13 @@ const CategoriesContainer: React.FC = () => {
     count, page,
     // handleEditCategory,
     // handleDeleteCategory,
-    changePage,
-    changeRowsPerPage,
-    onCategoriesSearch,
   } = useCategories();
+
+  const {
+    onSearch,
+    changeRowsPerPage,
+    changePage,
+  } = useGrid({ limit, getListRequest: categoriesActions.categoriesGetRequest });
   return (
     <>
       <Layout>
@@ -56,7 +61,7 @@ const CategoriesContainer: React.FC = () => {
             page={page}
             changePage={changePage}
             changeRowsPerPage={changeRowsPerPage}
-            onCategoriesSearch={onCategoriesSearch}
+            onCategoriesSearch={onSearch}
           />
           )}
         </div>

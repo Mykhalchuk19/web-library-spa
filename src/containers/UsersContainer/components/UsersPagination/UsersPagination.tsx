@@ -3,10 +3,10 @@ import { IconButton } from '@material-ui/core';
 import {
   LastPage, FirstPage, KeyboardArrowLeft, KeyboardArrowRight,
 } from '@material-ui/icons';
-import { TUserPaginationProps } from '../../../../interfaces/userInterfaces';
-import UseUsersPagination from './useUsersPagination';
+import { TPaginationProps } from '../../../../hooks/usePagination/interfaces';
+import { usePagination } from '../../../../hooks';
 
-const UsersPagination: React.FC<TUserPaginationProps> = (props: TUserPaginationProps) => {
+const UsersPagination: React.FC<TPaginationProps> = (props: TPaginationProps) => {
   const {
     page,
     count,
@@ -15,7 +15,7 @@ const UsersPagination: React.FC<TUserPaginationProps> = (props: TUserPaginationP
     handleNextPage,
     handleFirstPage,
     handleLastPage,
-  } = UseUsersPagination(props);
+  } = usePagination(props);
   return (
     <>
       <IconButton
