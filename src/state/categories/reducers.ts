@@ -28,6 +28,24 @@ const userReducer = handleActions<TCategoriesState, string>({
     ...state,
     pending: false,
   }),
+  [categoriesTypes.CATEGORIES_GET_REQUEST]: (state) => ({
+    ...state,
+    pending: true,
+  }),
+  [categoriesTypes.CATEGORIES_GET_SUCCESS]: (state, action: TAction) => ({
+    ...state,
+    pending: false,
+    list: {
+      categories: action.payload.categories,
+      limit: action.payload.limit,
+      count: action.payload.count,
+      page: action.payload.page,
+    },
+  }),
+  [categoriesTypes.CATEGORIES_GET_FAILURE]: (state) => ({
+    ...state,
+    pending: false,
+  }),
 }, {
   ...initialState,
 });

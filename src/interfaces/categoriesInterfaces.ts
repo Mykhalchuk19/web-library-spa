@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormikErrors } from 'formik';
 import { TFunction } from 'i18next';
+import { UserItem } from './userInterfaces';
 
 export type TCategoriesState = {
    pending: boolean,
@@ -79,4 +80,47 @@ export type TUseCategories = {
     openCreateCategoryModalHandler: () => void,
     closeCreateCategoryModalHandler: () => void,
     t: TFunction
+}
+
+export type CategoriesItemTable = {
+    id: number | undefined,
+    title: string | undefined,
+    shortDescription: string | undefined,
+    author: string | undefined,
+    // handleEditCategory: (id?: number) => void,
+    // handleDeleteCategory: (id?: number) => void,
+}
+
+export type TCategoriesTable = {
+    categoriesForShow: Array<any>,
+    limit: number,
+    page: number,
+    count: number,
+    changePage: (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number) => void,
+    changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
+    // handleEditCategory: (id?: number) => void,
+    // handleDeleteCategory: (id?: number) => void,
+    t: TFunction,
+    onCategoriesSearch: (value?: string) => void,
+}
+
+export type TCategoriesPaginationProps = {
+    count: number,
+    page: number,
+    rowsPerPage: number,
+    onChangePage: (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number) => void;
+}
+
+export type TUseCategoriesPagination = {
+    rowsPerPage: number,
+    page: number,
+    count: number,
+    handleNextPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    handlePreviousPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    handleLastPage: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    handleFirstPage: (event: React.MouseEvent<HTMLButtonElement>) => void
 }

@@ -1,10 +1,12 @@
 import React from 'react';
+import { isEmpty } from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../Layout/Layout';
 import { CustomButton } from '../../components';
 import { CreateCategoryModal } from './modals';
 import useCategories from './useCategories';
 import './style.sass';
+import CategoriesTable from './components/CategoriesTable/CategoriesTable';
 
 const useStyles = makeStyles({
   categories_btn_add: {
@@ -19,6 +21,14 @@ const CategoriesContainer: React.FC = () => {
     openCreateCategoryModalHandler,
     closeCreateCategoryModalHandler,
     t,
+    categoriesForShow,
+    limit,
+    count, page,
+    // handleEditCategory,
+    // handleDeleteCategory,
+    changePage,
+    changeRowsPerPage,
+    onCategoriesSearch,
   } = useCategories();
   return (
     <>
@@ -35,6 +45,20 @@ const CategoriesContainer: React.FC = () => {
               onClick={openCreateCategoryModalHandler}
             />
           </div>
+          { !isEmpty(categoriesForShow) && (
+          <CategoriesTable
+            categoriesForShow={categoriesForShow}
+            // handleEditCategory={handleEditCategory}
+            // handleDeleteCategory={handleDeleteCategory}
+            t={t}
+            limit={limit}
+            count={count}
+            page={page}
+            changePage={changePage}
+            changeRowsPerPage={changeRowsPerPage}
+            onCategoriesSearch={onCategoriesSearch}
+          />
+          )}
         </div>
       </Layout>
       <CreateCategoryModal

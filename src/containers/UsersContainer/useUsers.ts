@@ -10,6 +10,7 @@ const useUsers = (): TUseUsers => {
   const dispatch = useDispatch();
   const usersList = useSelector(userSelectors.getUsersList);
   const { t } = useTranslation(['common']);
+
   const [isOpenEditModal, setOpenEditModal] = useState(false);
   const [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -40,7 +41,6 @@ const useUsers = (): TUseUsers => {
     () => users.slice(page * limit, page * limit + limit),
     [users, limit, page],
   );
-
   const handleEditUser = useCallback((id) => {
     setOpenEditModal(true);
     setUserId(id);

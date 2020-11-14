@@ -7,7 +7,8 @@ const useCustomAsyncSelect = ({ value, asyncRequest }: TAsyncSelectHookProps): T
   const autoCompleteRequest = async (inputValue: string) => {
     try {
       const { data: { autocomplete: options } } = await asyncRequest({ q: inputValue });
-      return [defaultObj, ...options];
+      if (options.length !== 0) return [defaultObj, ...options];
+      return [defaultObj];
     } catch (e) {
       return e;
     }

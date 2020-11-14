@@ -3,6 +3,7 @@ import { NAVIGATION } from './navigation';
 import { USER_FIELDS } from './user';
 import { LANGUAGES } from './languages';
 import { SUCCESS_MESSAGES } from './notifications';
+import { CATEGORIES_FIELDS } from './categories';
 import * as permissions from './permissions';
 
 export {
@@ -12,4 +13,5 @@ export {
   LANGUAGES,
   SUCCESS_MESSAGES,
   permissions,
+  CATEGORIES_FIELDS,
 };
