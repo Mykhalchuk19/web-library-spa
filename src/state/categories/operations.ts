@@ -1,0 +1,50 @@
+import {
+  put, take, call, fork,
+} from 'redux-saga/effects';
+import categoriesTypes from './types';
+import {
+  categoryCreateSuccess,
+  categoryCreateFailure,
+  categoriesGetSuccess,
+  categoriesGetFailure,
+} from './actions';
+import { PushNotifications } from '../../utils/helpers';
+import { categoriesRequestHelpers } from '../../utils/requestHelpers';
+import { SUCCESS_MESSAGES } from '../../constants';
+import { normalizeRequestData } from '../../utils/requestHelpers/api';
+
+function* createCategory() {
+  while (true) {
+    try {
+      const action = yield take(categoriesTypes.CATEGORY_CREATE_REQUEST);
+      const res = normalizeRequestData(yield call(categoriesRequestHelpers.createCategoryRequest,
+        { ...action.payload }));
+      yield put(categoryCreateSuccess({ ...res }));
+      PushNotifications.success({ content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_CREATED });
+    } catch (e) {
+      yield put(categoryCreateFailure());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
+function* getCategoryList() {
+  while (true) {
+    try {
+      const action = yield take(categoriesTypes.CATEGORIES_GET_REQUEST);
+      const res = normalizeRequestData(yield call(categoriesRequestHelpers.getCategoriesList,
+        { ...action.payload }));
+      yield put(categoriesGetSuccess({ ...res }));
+    } catch (e) {
+      console.error(e);
+      yield put(categoriesGetFailure());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
+// eslint-disable-next-line func-names
+export default function* (): Generator {
+  yield fork(createCategory);
+  yield fork(getCategoryList);
+}

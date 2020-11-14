@@ -10,7 +10,6 @@ document.body.addEventListener('click', (e) => {
   }
 });
 
-// eslint-disable-next-line func-names
 (function () {
   const fontSize = document.getElementById('fontSize');
   const testDrive = document.getElementById('testDrive');

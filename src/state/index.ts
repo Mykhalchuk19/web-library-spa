@@ -3,8 +3,8 @@ import { all } from 'redux-saga/effects';
 import { connectRouter } from 'connected-react-router';
 
 import userReducer, { userSaga } from './user';
+import categoriesReducer, { categoriesSaga } from './categories';
 import uiReducer from './ui';
-// import categoriesReducer, { categoriesSaga } from './categories';
 // import postsReducer, { postsSaga } from './posts';
 
 interface IHistory {
@@ -15,12 +15,13 @@ const rootReducer = (history: IHistory): any => combineReducers({
   router: connectRouter(history as any),
   user: userReducer,
   ui: uiReducer,
+  categories: categoriesReducer,
 });
 
 export const rootSaga = function* () {
   yield all([
     userSaga(),
-    // categoriesSaga(),
+    categoriesSaga(),
     // postsSaga(),
   ]);
 };

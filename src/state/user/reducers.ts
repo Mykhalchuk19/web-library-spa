@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { IAction, UserState, UserItem } from '../../interfaces/userInterfaces';
+import { TAction, UserState, UserItem } from '../../interfaces/userInterfaces';
 import userTypes from './types';
 
 const initialState: UserState = {
@@ -22,7 +22,7 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: true,
   }),
-  [userTypes.USER_AUTHENTICATION_SUCCESS]: (state, action: IAction) => ({
+  [userTypes.USER_AUTHENTICATION_SUCCESS]: (state, action: TAction) => ({
     ...state,
     userData: action.payload.userData,
     pending: false,
@@ -39,7 +39,7 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: true,
   }),
-  [userTypes.PROFILE_UPDATE_SUCCESS]: (state, action: IAction) => ({
+  [userTypes.PROFILE_UPDATE_SUCCESS]: (state, action: TAction) => ({
     ...state,
     userData: action.payload.userData,
     pending: false,
@@ -52,7 +52,7 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: true,
   }),
-  [userTypes.USERS_LIST_SUCCESS]: (state, action: IAction) => ({
+  [userTypes.USERS_LIST_SUCCESS]: (state, action: TAction) => ({
     ...state,
     list: {
       users: action.payload.users,
@@ -70,7 +70,7 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: true,
   }),
-  [userTypes.USER_UPDATE_SUCCESS]: (state, action: IAction) => ({
+  [userTypes.USER_UPDATE_SUCCESS]: (state, action: TAction) => ({
     ...state,
     pending: false,
     list: {
@@ -88,7 +88,7 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: true,
   }),
-  [userTypes.USER_DELETE_SUCCESS]: (state, action: IAction) => ({
+  [userTypes.USER_DELETE_SUCCESS]: (state, action: TAction) => ({
     ...state,
     pending: false,
     list: {
@@ -106,7 +106,7 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: true,
   }),
-  [userTypes.GET_CURRENT_USER_SUCCESS]: (state, action: IAction) => ({
+  [userTypes.GET_CURRENT_USER_SUCCESS]: (state, action: TAction) => ({
     ...state,
     userData: action.payload.userData,
     pending: false,

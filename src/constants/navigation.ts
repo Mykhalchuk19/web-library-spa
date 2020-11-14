@@ -9,4 +9,9 @@ export const NAVIGATION = {
     title: 'Profile',
     icon: 'icon-person',
   },
+  CATEGORIES: {
+    href: '/categories',
+    title: 'Categories',
+    icon: 'icon-categories',
+  },
 };

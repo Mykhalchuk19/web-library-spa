@@ -28,5 +28,10 @@
   "User": "Користувач",
   "Manager": "Менеджер",
   "Admin": "Адміністратор",
-  "Search": "Пошук"
+  "Search": "Пошук",
+  "Categories": "Категорії",
+  "Create category": "Створити категорію",
+  "Title": "Заголовок",
+  "Short description": "Короткий опис",
+  "Description": "Опис"
 }

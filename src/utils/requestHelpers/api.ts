@@ -29,7 +29,7 @@ export const createRequestApi: CallableFunction = (method: any, route: string) =
   const token = localStorage.getItem('authToken');
   if (token) {
     const headers = {
-      Authorization: `${token}`,
+      Authorization: `Bearer ${token}`,
     };
     return createAxiosInstance(headers, route, method, params, queryParams);
   }

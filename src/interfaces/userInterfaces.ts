@@ -57,7 +57,7 @@ export type UserState = {
     list: TUsersList
 }
 
-export interface IAction {
+export type TAction = {
     type: string,
     [key: string]: any,
 }

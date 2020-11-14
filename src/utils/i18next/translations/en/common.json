@@ -28,5 +28,10 @@
   "User": "User",
   "Manager": "Manager",
   "Admin": "Admin",
-  "Search": "Search"
+  "Search": "Search",
+  "Categories": "Categories",
+  "Create category": "Create category",
+  "Title": "Title",
+  "Short description": "Short description",
+  "Description": "Description"
 }

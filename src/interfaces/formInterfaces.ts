@@ -7,7 +7,7 @@ export type IObject = {
 export type InputProps = {
     label: string;
     id: string;
-    error: string;
+    error?: string;
     readOnly?: boolean,
     inputProps: IObject;
 }

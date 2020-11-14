@@ -8,5 +8,5 @@ export type TUseLeftSideBar = {
 }
 
 export type TLayout = {
-    children: React.ReactElement | React.ReactNode
+    children?: React.ReactElement | React.ReactNode
 }
