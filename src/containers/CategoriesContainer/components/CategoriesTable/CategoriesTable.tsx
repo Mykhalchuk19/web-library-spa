@@ -23,6 +23,8 @@ const CategoriesTable: React.FC<TCategoriesTable> = ({
   changeRowsPerPage,
   t,
   onCategoriesSearch,
+  handleEditCategory,
+  handleDeleteCategory,
 } : TCategoriesTable) => (
   <TableContainer>
     <Table>
@@ -50,14 +52,17 @@ const CategoriesTable: React.FC<TCategoriesTable> = ({
       <TableBody>
         {
           categoriesForShow.map(({
-            id, title, short_description: shortDescription, author,
+            id, title, shortDescription, description, author,
           }) => (
             <CategoriesItem
               key={id}
               id={id}
               title={title}
               shortDescription={shortDescription}
+              description={description}
               author={author}
+              handleEditCategory={handleEditCategory}
+              handleDeleteCategory={handleDeleteCategory}
             />
           ))
         }

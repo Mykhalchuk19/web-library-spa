@@ -28,10 +28,16 @@
   "User": "Користувач",
   "Manager": "Менеджер",
   "Admin": "Адміністратор",
+  "Super admin": "Супер адміністратор",
   "Search": "Пошук",
   "Categories": "Категорії",
   "Create category": "Створити категорію",
+  "Edit category": "Редагувати категорію",
+  "Delete category": "Видалити категорію",
   "Title": "Заголовок",
   "Short description": "Короткий опис",
-  "Description": "Опис"
+  "Description": "Опис",
+  "Author": "Автор",
+  "None": "Жодна",
+  "N/A": "Н/А"
 }

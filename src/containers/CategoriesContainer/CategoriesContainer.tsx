@@ -3,7 +3,7 @@ import { isEmpty } from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../Layout/Layout';
 import { CustomButton } from '../../components';
-import { CreateCategoryModal } from './modals';
+import { CreateCategoryModal, EditCategoryModal, DeleteCategoryModal } from './modals';
 import useCategories from './useCategories';
 import './style.sass';
 import CategoriesTable from './components/CategoriesTable/CategoriesTable';
@@ -26,8 +26,13 @@ const CategoriesContainer: React.FC = () => {
     categoriesForShow,
     limit,
     count, page,
-    // handleEditCategory,
-    // handleDeleteCategory,
+    handleEditCategory,
+    handleDeleteCategory,
+    isOpenEditCategoryModal,
+    closeEditCategoryModal,
+    isOpenDeleteCategoryModal,
+    closeDeleteCategoryModal,
+    categoryId,
   } = useCategories();
 
   const {
@@ -53,8 +58,8 @@ const CategoriesContainer: React.FC = () => {
           { !isEmpty(categoriesForShow) && (
           <CategoriesTable
             categoriesForShow={categoriesForShow}
-            // handleEditCategory={handleEditCategory}
-            // handleDeleteCategory={handleDeleteCategory}
+            handleEditCategory={handleEditCategory}
+            handleDeleteCategory={handleDeleteCategory}
             t={t}
             limit={limit}
             count={count}
@@ -69,6 +74,16 @@ const CategoriesContainer: React.FC = () => {
       <CreateCategoryModal
         isOpen={isOpenCreateCategoryModal}
         onClose={closeCreateCategoryModalHandler}
+      />
+      <EditCategoryModal
+        id={categoryId}
+        isOpen={isOpenEditCategoryModal}
+        onClose={closeEditCategoryModal}
+      />
+      <DeleteCategoryModal
+        id={categoryId}
+        isOpen={isOpenDeleteCategoryModal}
+        onClose={closeDeleteCategoryModal}
       />
     </>
   );

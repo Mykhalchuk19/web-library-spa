@@ -11,13 +11,19 @@ export const CustomAsyncSelect: React.FC<TAsyncSelect> = ({
   asyncRequest,
   onChange,
 }: TAsyncSelect) => {
-  const { loadOptions } = useCustomAsyncSelect({ value, asyncRequest });
+  const {
+    loadOptions,
+    defaultValue,
+    defaultOptions,
+  } = useCustomAsyncSelect({ value, asyncRequest });
   return (
     <AsyncReactSelect
       id={id}
       loadOptions={loadOptions}
       onChange={onChange}
       className={className}
+      value={defaultValue}
+      defaultOptions={defaultOptions}
     />
   );
 };

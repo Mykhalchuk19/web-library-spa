@@ -28,10 +28,16 @@
   "User": "User",
   "Manager": "Manager",
   "Admin": "Admin",
+  "Super admin": "Super admin",
   "Search": "Search",
   "Categories": "Categories",
   "Create category": "Create category",
+  "Edit category": "Edit category",
+  "Delete category": "Delete category",
   "Title": "Title",
   "Short description": "Short description",
-  "Description": "Description"
+  "Description": "Description",
+  "Author": "Author",
+  "None": "None",
+  "N/A": "N/A"
 }

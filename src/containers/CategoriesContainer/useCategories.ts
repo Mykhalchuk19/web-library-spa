@@ -1,11 +1,11 @@
-import React, {
+import {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { TUseCategories } from '../../interfaces/categoriesInterfaces';
+import { TUseCategories, TCategoryForMapItem } from '../../interfaces/categoriesInterfaces';
 import { categoriesSelectors, categoriesActions } from '../../state/categories';
-import { createFullName } from '../../utils/helpers/convertDataHelpers';
+import { createFullName, convertEmptyValueForShow } from '../../utils/helpers/convertDataHelpers';
 
 const useCategories = (): TUseCategories => {
   const dispatch = useDispatch();
@@ -23,15 +23,14 @@ const useCategories = (): TUseCategories => {
         id,
         title,
         short_description: shortDescription,
-        creator: {
-          firstname,
-          lastname,
-        },
-      }) => ({
-        id,
-        title,
-        shortDescription,
-        author: createFullName(firstname, lastname),
+        description,
+        creator,
+      }: TCategoryForMapItem) => ({
+        id: convertEmptyValueForShow(id),
+        title: convertEmptyValueForShow(title),
+        shortDescription: convertEmptyValueForShow(shortDescription),
+        description: convertEmptyValueForShow(description),
+        author: convertEmptyValueForShow(createFullName(creator ? creator.firstname : '', creator ? creator.lastname : '')),
       }))
       .slice(page * limit, page * limit + limit),
     [categories, limit, page],
@@ -47,6 +46,24 @@ const useCategories = (): TUseCategories => {
     setOpenCreateCategoryModal(false);
   }, [setOpenCreateCategoryModal]);
 
+  const [isOpenEditCategoryModal, setOpenEditCategoryModal] = useState(false);
+  const [isOpenDeleteCategoryModal, setOpenDeleteCategoryModal] = useState(false);
+  const [categoryId, setCategoryId] = useState(null);
+
+  const handleEditCategory = useCallback((id) => {
+    setOpenEditCategoryModal(true);
+    setCategoryId(id);
+  }, []);
+
+  const closeEditCategoryModal = useCallback(() => setOpenEditCategoryModal(false), []);
+
+  const handleDeleteCategory = useCallback((id) => {
+    setOpenDeleteCategoryModal(true);
+    setCategoryId(id);
+  }, []);
+
+  const closeDeleteCategoryModal = useCallback(() => setOpenDeleteCategoryModal(false), []);
+
   return {
     openCreateCategoryModalHandler,
     closeCreateCategoryModalHandler,
@@ -56,8 +73,13 @@ const useCategories = (): TUseCategories => {
     limit,
     count,
     page,
-    // handleEditCategory,
-    // handleDeleteCategory,
+    handleEditCategory,
+    handleDeleteCategory,
+    closeEditCategoryModal,
+    isOpenEditCategoryModal,
+    isOpenDeleteCategoryModal,
+    closeDeleteCategoryModal,
+    categoryId,
   };
 };
 

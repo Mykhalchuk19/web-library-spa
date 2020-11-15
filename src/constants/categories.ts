@@ -13,6 +13,10 @@ export const CATEGORIES_FIELDS = [
   },
   {
     id: 4,
+    field: 'Description',
+  },
+  {
+    id: 5,
     field: 'Author',
   },
 ];

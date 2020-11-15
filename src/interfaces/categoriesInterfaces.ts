@@ -61,6 +61,7 @@ export type TCategoriesModalViewRules = {
 }
 
 export type TCategoriesModalsProps = {
+    id?: number | null
     isOpen: boolean,
     onClose: () => void,
 }
@@ -83,18 +84,30 @@ export type TUseCategories = {
     limit: number,
     count: number,
     page: number,
+    handleEditCategory: (id?: number) => void,
+    handleDeleteCategory: (id?: number) => void,
+    isOpenEditCategoryModal: boolean,
+    closeEditCategoryModal:() => void,
+    isOpenDeleteCategoryModal: boolean,
+    closeDeleteCategoryModal:() => void,
+    categoryId: number | null | undefined,
 }
 
 export type CategoriesItemTable = {
-    id: number | undefined,
-    title: string | undefined,
-    shortDescription: string | undefined,
-    author: string | undefined,
-    // handleEditCategory: (id?: number) => void,
-    // handleDeleteCategory: (id?: number) => void,
+    id?: number,
+    title?: string,
+    shortDescription?: string,
+    description?: string
+    author?: string,
+    handleEditCategory: (id?: number) => void,
+    handleDeleteCategory: (id?: number) => void,
 }
 
 export type TCategoryForShowItem = Pick<CategoriesItemTable, 'id' | 'title' | 'shortDescription' | 'author'>
+
+export type TCategoryForMapItem = Pick<TCategoryItem, 'id' | 'title' | 'short_description' | 'description'> & {
+    creator: null | TCategoryCreator
+}
 
 export type TCategoriesTable = {
     categoriesForShow: Array<any>,
@@ -105,8 +118,8 @@ export type TCategoriesTable = {
         event: React.MouseEvent<HTMLButtonElement> | null,
         newPage: number) => void,
     changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
-    // handleEditCategory: (id?: number) => void,
-    // handleDeleteCategory: (id?: number) => void,
+    handleEditCategory: (id?: number) => void,
+    handleDeleteCategory: (id?: number) => void,
     t: TFunction,
     onCategoriesSearch: (value?: string) => void,
 }

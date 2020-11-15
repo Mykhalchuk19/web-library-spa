@@ -6,8 +6,8 @@ import { ACTIONS, MODULES } from '../../../../constants/permissions';
 import { CategoriesItemTable } from '../../../../interfaces/categoriesInterfaces';
 
 const CategoriesItem: React.FC<CategoriesItemTable> = ({
-  id, title, shortDescription, author,
-  // handleEditCategory, handleDeleteCategory,
+  id, title, shortDescription, description, author,
+  handleEditCategory, handleDeleteCategory,
 }: CategoriesItemTable) => (
   <TableRow key={id}>
     <TableCell component="td">
@@ -20,14 +20,15 @@ const CategoriesItem: React.FC<CategoriesItemTable> = ({
       {shortDescription}
     </TableCell>
     <TableCell component="td">
+      {description}
+    </TableCell>
+    <TableCell component="td">
       {author}
     </TableCell>
     <TableCell component="td" colSpan={0.5}>
       <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.USERS}>
         <IconButton
-          onClick={() => {
-
-          }}
+          onClick={() => handleEditCategory(id)}
           type="button"
           aria-label="edit"
         >
@@ -38,7 +39,7 @@ const CategoriesItem: React.FC<CategoriesItemTable> = ({
     <TableCell component="td" colSpan={0.5}>
       <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.USERS}>
         <IconButton
-          onClick={() => {}}
+          onClick={() => handleDeleteCategory(id)}
           type="button"
           aria-label="delete"
         >

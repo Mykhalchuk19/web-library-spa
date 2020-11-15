@@ -7,6 +7,10 @@ import {
   categoryCreateFailure,
   categoriesGetSuccess,
   categoriesGetFailure,
+  categoryUpdateSuccess,
+  categoryUpdateFailure,
+  categoryDeleteSuccess,
+  categoryDeleteFailure,
 } from './actions';
 import { PushNotifications } from '../../utils/helpers';
 import { categoriesRequestHelpers } from '../../utils/requestHelpers';
@@ -43,8 +47,40 @@ function* getCategoryList() {
   }
 }
 
+function* updateCategory() {
+  while (true) {
+    try {
+      const action = yield take(categoriesTypes.CATEGORY_UPDATE_REQUEST);
+      const res = normalizeRequestData(yield call(categoriesRequestHelpers.updateCategoryRequest,
+        { ...action.payload }, { id: action.payload.id }));
+      yield put(categoryUpdateSuccess({ ...res }));
+      yield call(PushNotifications.success, { content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_EDITED });
+    } catch (e) {
+      yield put(categoryUpdateFailure());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
+function* deleteCategory() {
+  while (true) {
+    try {
+      const action = yield take(categoriesTypes.CATEGORY_DELETE_REQUEST);
+      const res = normalizeRequestData(yield call(categoriesRequestHelpers.deleteCategoryRequest,
+        {}, { id: action.payload.id }));
+      yield put(categoryDeleteSuccess(({ ...res })));
+      PushNotifications.success({ content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_DELETED });
+    } catch (e) {
+      yield put(categoryDeleteFailure());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
 // eslint-disable-next-line func-names
 export default function* (): Generator {
   yield fork(createCategory);
   yield fork(getCategoryList);
+  yield fork(updateCategory);
+  yield fork(deleteCategory);
 }

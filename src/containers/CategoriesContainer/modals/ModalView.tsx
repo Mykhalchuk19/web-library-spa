@@ -43,6 +43,7 @@ const ModalView: React.FC<TCategoriesModalView> = ({
               value: values.title,
             }}
           />
+          {console.log(values)}
         </div>
         <div className="categories-modal__row">
           <Form.CustomInput

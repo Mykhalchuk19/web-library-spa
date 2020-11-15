@@ -4,7 +4,7 @@ import { CustomButton, Form, ModalWindow } from '../../../../components';
 import useEditUserModal from './useEditUserModal';
 import { TEditUserModal } from '../../../../interfaces/userInterfaces';
 import './style.sass';
-import { ROLES_LIST } from '../../../../constants/permissions';
+import { ROLES_LIST_FOR_UPDATE } from '../../../../constants/permissions';
 
 const useStyles = makeStyles({
   user_edit__btn: {
@@ -95,7 +95,7 @@ const EditUserModal: React.FC<TEditUserModal> = ({
                 onChange: handleChange('type'),
               }}
               defaultValue={values.type}
-              selectValues={ROLES_LIST}
+              selectValues={ROLES_LIST_FOR_UPDATE}
 
             />
           </div>

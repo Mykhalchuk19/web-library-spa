@@ -2,9 +2,10 @@ const ROLES = {
   USER: 1,
   MANAGER: 2,
   ADMIN: 3,
+  SUPER_ADMIN: 4,
 };
 
-const ROLES_LIST = [
+export const ROLES_LIST_FOR_UPDATE = [
   {
     label: 'User',
     value: 1,
@@ -16,6 +17,14 @@ const ROLES_LIST = [
   {
     label: 'Admin',
     value: 3,
+  },
+];
+
+const ROLES_LIST = [
+  ...ROLES_LIST_FOR_UPDATE,
+  {
+    label: 'Super admin',
+    value: 4,
   },
 ];
 

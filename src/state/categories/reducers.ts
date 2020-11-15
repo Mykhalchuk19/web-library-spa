@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import categoriesTypes from './types';
-import { TCategoriesState, TAction } from '../../interfaces/categoriesInterfaces';
+import { TCategoriesState, TAction, TCategoryItem } from '../../interfaces/categoriesInterfaces';
 
 const initialState: TCategoriesState = {
   pending: false,
@@ -43,6 +43,42 @@ const userReducer = handleActions<TCategoriesState, string>({
     },
   }),
   [categoriesTypes.CATEGORIES_GET_FAILURE]: (state) => ({
+    ...state,
+    pending: false,
+  }),
+  [categoriesTypes.CATEGORY_UPDATE_REQUEST]: (state) => ({
+    ...state,
+    pending: true,
+  }),
+  [categoriesTypes.CATEGORY_UPDATE_SUCCESS]: (state, action: TAction) => ({
+    ...state,
+    pending: false,
+    list: {
+      categories: [...(state.list.categories as Array<TCategoryItem>).map((item: TCategoryItem): Array<TCategoryItem> => (item.id === action.payload.category.id ? action.payload.category : item))],
+      limit: state.list.limit,
+      page: state.list.page,
+      count: state.list.count,
+    },
+  }),
+  [categoriesTypes.CATEGORY_UPDATE_FAILURE]: (state) => ({
+    ...state,
+    pending: false,
+  }),
+  [categoriesTypes.CATEGORY_DELETE_REQUEST]: (state) => ({
+    ...state,
+    pending: true,
+  }),
+  [categoriesTypes.CATEGORY_DELETE_SUCCESS]: (state, action: TAction) => ({
+    ...state,
+    pending: false,
+    list: {
+      categories: [...state.list.categories.filter((item) => item.id !== action.payload.category)],
+      limit: state.list.limit,
+      page: state.list.page,
+      count: state.list.count,
+    },
+  }),
+  [categoriesTypes.CATEGORY_DELETE_FAILURE]: (state) => ({
     ...state,
     pending: false,
   }),
