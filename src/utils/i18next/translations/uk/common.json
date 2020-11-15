@@ -1,6 +1,7 @@
 {
   "Username": "Ім'я користувача",
   "Password": "Пароль",
+  "Confirm password": "Підтвердити пароль",
   "First name": "Ім'я",
   "Last name": "Прізвище",
   "Email": "Електронна адреса",
@@ -10,6 +11,8 @@
   "Password is required": "Пароль обов'язковий",
   "Password is too long": "Пароль занадто довгий",
   "Password is too short": "Пароль занадто короткий",
+  "Passwords are not matched": "Паролі не співпадають",
+  "This field is required": "Це поле обов'язкове",
   "First name is required": "Ім'я обов'язкове",
   "Last name is required": "Прізвище обов'язкове",
   "Email is required": "Електронна адреса обов'язкова",

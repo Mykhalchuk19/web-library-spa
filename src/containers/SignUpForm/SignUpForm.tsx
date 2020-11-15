@@ -40,6 +40,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
       lastname: '',
       email: '',
       password: '',
+      confirm_password: '',
     },
     validateOnChange: false,
     validationSchema: rules,
@@ -122,6 +123,20 @@ const SignUpForm: React.FC<SignUpProps> = () => {
                 disabled: isSubmitting,
                 onChange: handleChange,
                 value: values.password,
+                type: 'password',
+              }}
+            />
+          </div>
+          <div className="signup__row">
+            <Form.CustomInput
+              id="confirm_password"
+              label="Confirm password"
+              error={errors.confirm_password || ''}
+              inputProps={{
+                name: 'confirm_password',
+                disabled: isSubmitting,
+                onChange: handleChange,
+                value: values.confirm_password,
                 type: 'password',
               }}
             />

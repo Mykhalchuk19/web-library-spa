@@ -1,6 +1,7 @@
 {
   "Username": "Username",
   "Password": "Password",
+  "Confirm password": "Confirm password",
   "First name": "First name",
   "Last name": "Last name",
   "Email": "Email",
@@ -10,6 +11,8 @@
   "Password is required": "Password is required",
   "Password is too long": "Password is too long",
   "Password is too short": "Password is too short",
+  "Passwords are not matched": "Passwords are not matched",
+  "This field is required": "This field is required",
   "First name is required": "First name is required",
   "Last name is required": "Last name is required",
   "Email is required": "Email is required",
