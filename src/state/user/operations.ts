@@ -5,6 +5,8 @@ import { push } from 'connected-react-router';
 import userTypes from './types';
 import { PushNotifications } from '../../utils/helpers';
 import {
+  userSignUpSuccess,
+  userSignUpError,
   userAuthenticationSuccess,
   userAuthenticationError,
   usersListSuccess,
@@ -30,9 +32,29 @@ function* singUp() {
       const action = yield take(userTypes.USER_SIGN_UP_REQUEST);
       const res = normalizeRequestData(yield call(authenticationRequestHelpers.signUpRequest,
         { ...action.payload }));
-      yield put(userAuthenticationSuccess({ ...res }));
-      yield localStorage.setItem('authToken', res.token);
-      yield put(push('/profile'));
+      yield put(userSignUpSuccess());
+      PushNotifications.success({ content: res.success });
+      yield put(push('/signin'));
+    } catch (e) {
+      yield put(userSignUpError());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
+function* activateAccount() {
+  while (true) {
+    try {
+      const action = yield take(userTypes.USER_AUTHENTICATION_REQUEST);
+      const res = normalizeRequestData(yield call(authenticationRequestHelpers.activateAccountRequest,
+        { ...action.payload }));
+      if (res.token) {
+        yield put(userAuthenticationSuccess({ ...res }));
+        yield localStorage.setItem('authToken', res.token);
+        yield put(push('/profile'));
+      } else {
+        PushNotifications.error({ content: 'Something went wrong' });
+      }
     } catch (e) {
       yield put(userAuthenticationError());
       PushNotifications.error({ content: e.response.data.error });
@@ -140,6 +162,7 @@ function* getCurrentUser() {
 // eslint-disable-next-line func-names
 export default function* (): Generator {
   yield fork(singUp);
+  yield fork(activateAccount);
   yield fork(singIn);
   yield fork(getListUsers);
   yield fork(updateUser);

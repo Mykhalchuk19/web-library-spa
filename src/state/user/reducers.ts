@@ -22,6 +22,18 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: true,
   }),
+  [userTypes.USER_SIGN_UP_SUCCESS]: (state) => ({
+    ...state,
+    pending: false,
+  }),
+  [userTypes.USER_SIGN_UP_ERROR]: (state) => ({
+    ...state,
+    pending: false,
+  }),
+  [userTypes.USER_AUTHENTICATION_REQUEST]: (state) => ({
+    ...state,
+    pending: false,
+  }),
   [userTypes.USER_AUTHENTICATION_SUCCESS]: (state, action: TAction) => ({
     ...state,
     userData: action.payload.userData,

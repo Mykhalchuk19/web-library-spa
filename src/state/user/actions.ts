@@ -4,7 +4,10 @@ import userTypes from './types';
 
 export const {
   userSignUpRequest,
+  userSignUpSuccess,
+  userSignUpError,
   userSignInRequest,
+  userAuthenticationRequest,
   userAuthenticationSuccess,
   userAuthenticationError,
   userLogOut,
@@ -25,7 +28,10 @@ export const {
   profileUpdateFailure,
 } = createActions(
   userTypes.USER_SIGN_UP_REQUEST,
+  userTypes.USER_SIGN_UP_SUCCESS,
+  userTypes.USER_SIGN_UP_ERROR,
   userTypes.USER_SIGN_IN_REQUEST,
+  userTypes.USER_AUTHENTICATION_REQUEST,
   userTypes.USER_AUTHENTICATION_SUCCESS,
   userTypes.USER_AUTHENTICATION_ERROR,
   userTypes.USER_LOG_OUT,
