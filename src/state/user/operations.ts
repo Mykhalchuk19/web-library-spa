@@ -12,6 +12,8 @@ import {
   userAuthenticationError,
   forgotPasswordSuccess,
   forgotPasswordFailure,
+  resetPasswordSuccess,
+  resetPasswordFailure,
   usersListSuccess,
   usersListFailure,
   userUpdateSuccess,
@@ -94,6 +96,22 @@ function* forgotPassword() {
       yield put(push('/signin'));
     } catch (e) {
       yield put(forgotPasswordFailure());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
+function* resetPassword() {
+  while (true) {
+    try {
+      const action = yield take(userTypes.RESET_PASSWORD_REQUEST);
+      const res = normalizeRequestData(yield call(authenticationRequestHelpers.resetPasswordRequest,
+        { ...action.payload }));
+      yield put(resetPasswordSuccess());
+      PushNotifications.success({ content: res.success });
+      yield put(push('/signin'));
+    } catch (e) {
+      yield put(resetPasswordFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }
@@ -186,6 +204,7 @@ export default function* (): Generator {
   yield fork(activateAccount);
   yield fork(singIn);
   yield fork(forgotPassword);
+  yield fork(resetPassword);
   yield fork(getListUsers);
   yield fork(updateUser);
   yield fork(deleteUser);

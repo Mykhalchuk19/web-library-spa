@@ -24,6 +24,6 @@ export type SignUpProps = {
     onSubmit?: (v: SignUpValues) => Promise<void>
 }
 
-export type TForgotPasswordValues = {
-    email?: string
-}
+export type TForgotPasswordValues = Pick<SignUpValues, 'email'>
+
+export type TResetPasswordValues = Pick<SignUpValues, 'password' | 'confirm_password'>

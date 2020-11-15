@@ -62,7 +62,7 @@ const ForgotPassword: React.FC = () => {
               label={t('Email')}
               error={errors.email || ''}
               inputProps={{
-                name: 'username',
+                name: 'email',
                 disabled: isSubmitting,
                 onChange: handleChange,
                 value: values.email,
