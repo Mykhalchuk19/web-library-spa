@@ -23,3 +23,7 @@ export type SignUpProps = {
     validateOnChange?: boolean;
     onSubmit?: (v: SignUpValues) => Promise<void>
 }
+
+export type TForgotPasswordValues = {
+    email?: string
+}

@@ -51,58 +51,66 @@ const SignUpForm: React.FC<SignInProps> = () => {
   });
   const classes = useStyles();
   return (
-    <Paper
-      elevation={3}
-      className={classes.signin__wrapper}
-    >
-      <form className="signin__form" onSubmit={handleSubmit}>
-        <div className="signin__header">
-          <h2 className="signin__title">{t('Sign In')}</h2>
-        </div>
-        <div className="signin__body">
-          <div className="signin__row">
-            <Form.CustomInput
-              id="username"
-              label={t('Username')}
-              error={errors.username || ''}
-              inputProps={{
-                name: 'username',
-                disabled: isSubmitting,
-                onChange: handleChange,
-                value: values.username,
-              }}
-            />
+    <>
+      <Paper
+        elevation={3}
+        className={classes.signin__wrapper}
+      >
+        <form className="signin__form" onSubmit={handleSubmit}>
+          <div className="signin__header">
+            <h2 className="signin__title">{t('Sign In')}</h2>
           </div>
-          <div className="signin__row">
-            <Form.CustomInput
-              id="password"
-              label={t('Password')}
-              error={errors.password || ''}
-              inputProps={{
-                name: 'password',
-                disabled: isSubmitting,
-                onChange: handleChange,
-                value: values.password,
-                type: 'password',
-              }}
-            />
+          <div className="signin__body">
+            <div className="signin__row">
+              <Form.CustomInput
+                id="username"
+                label={t('Username')}
+                error={errors.username || ''}
+                inputProps={{
+                  name: 'username',
+                  disabled: isSubmitting,
+                  onChange: handleChange,
+                  value: values.username,
+                }}
+              />
+            </div>
+            <div className="signin__row">
+              <Form.CustomInput
+                id="password"
+                label={t('Password')}
+                error={errors.password || ''}
+                inputProps={{
+                  name: 'password',
+                  disabled: isSubmitting,
+                  onChange: handleChange,
+                  value: values.password,
+                  type: 'password',
+                }}
+              />
+            </div>
+            <div className="signin__row">
+              <CustomButton
+                type="submit"
+                className={classes.signin__btn}
+                text={t('Submit')}
+              />
+              <NavLink
+                to="/auth/signup"
+                className="signin__link"
+              >
+                {t('I`m not signed up yet')}
+              </NavLink>
+            </div>
           </div>
-          <div className="signin__row">
-            <CustomButton
-              type="submit"
-              className={classes.signin__btn}
-              text={t('Submit')}
-            />
-            <NavLink
-              to="/auth/signup"
-              className="signin__link"
-            >
-              {t('I`m not signed up yet')}
-            </NavLink>
-          </div>
-        </div>
-      </form>
-    </Paper>
+        </form>
+      </Paper>
+      <NavLink
+        to="/auth/forgot-password"
+        className="signin__link signin__forgot-password"
+      >
+        {t('I don\'t remember password')}
+      </NavLink>
+    </>
   );
 };
 

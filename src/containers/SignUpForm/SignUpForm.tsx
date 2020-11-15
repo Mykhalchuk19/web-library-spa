@@ -156,6 +156,12 @@ const SignUpForm: React.FC<SignUpProps> = () => {
           </div>
         </div>
       </form>
+      <NavLink
+        to="/auth/forgot-password"
+        className="signup__link signup__forgot-password"
+      >
+        {t('I don\'t remember password')}
+      </NavLink>
     </Paper>
   );
 };

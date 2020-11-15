@@ -2,6 +2,7 @@ import {
   call, put, fork, take,
 } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
+import { act } from 'react-dom/test-utils';
 import userTypes from './types';
 import { PushNotifications } from '../../utils/helpers';
 import {
@@ -9,6 +10,8 @@ import {
   userSignUpError,
   userAuthenticationSuccess,
   userAuthenticationError,
+  forgotPasswordSuccess,
+  forgotPasswordFailure,
   usersListSuccess,
   usersListFailure,
   userUpdateSuccess,
@@ -73,6 +76,24 @@ function* singIn() {
       yield put(push('/profile'));
     } catch (e) {
       yield put(userAuthenticationError());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
+function* forgotPassword() {
+  while (true) {
+    try {
+      const action = yield take(userTypes.FORGOT_PASSWORD_REQUEST);
+      const res = normalizeRequestData(yield call(
+        authenticationRequestHelpers.forgotPasswordRequest,
+        { ...action.payload },
+      ));
+      yield put(forgotPasswordSuccess());
+      PushNotifications.success({ content: res.success });
+      yield put(push('/signin'));
+    } catch (e) {
+      yield put(forgotPasswordFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }
@@ -164,6 +185,7 @@ export default function* (): Generator {
   yield fork(singUp);
   yield fork(activateAccount);
   yield fork(singIn);
+  yield fork(forgotPassword);
   yield fork(getListUsers);
   yield fork(updateUser);
   yield fork(deleteUser);
