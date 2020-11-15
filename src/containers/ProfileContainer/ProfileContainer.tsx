@@ -78,6 +78,7 @@ const ProfileContainer: React.FC = () => {
                 id="email"
                 label="Email"
                 error={errors.email || ''}
+                readOnly
                 inputProps={{
                   name: 'email',
                   disabled: isSubmitting,
