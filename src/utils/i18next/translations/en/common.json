@@ -44,5 +44,9 @@
   "Author": "Author",
   "None": "None",
   "N/A": "N/A",
-  "Activate account": "Activate account"
+  "Activate account": "Activate account",
+  "Status": "Status",
+  "Pending": "Pending",
+  "Active": "Active",
+  "Inactive": "Inactive"
 }

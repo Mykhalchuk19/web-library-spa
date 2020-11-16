@@ -8,7 +8,8 @@ import {
   TablePagination,
   TableRow,
 } from '@material-ui/core';
-import { USER_FIELDS } from '../../../../constants';
+import { isEmpty } from 'ramda';
+import { USER_FIELDS } from '../../../../constants/user';
 import { Form } from '../../../../components';
 import { UsersPagination } from '../index';
 import { TUsersTable } from '../../../../interfaces/userInterfaces';
@@ -49,10 +50,12 @@ const UsersTable: React.FC<TUsersTable> = ({
           </TableCell>
         </TableRow>
       </TableHead>
-      <TableBody>
-        {
+      { !isEmpty(usersForShow) && (
+      <>
+        <TableBody>
+          {
         usersForShow.map(({
-          id, username, firstname, lastname, email,
+          id, username, firstname, lastname, email, status,
         }) => (
           <UsersItem
             key={id}
@@ -61,26 +64,30 @@ const UsersTable: React.FC<TUsersTable> = ({
             lastname={lastname}
             firstname={firstname}
             email={email}
+            status={status}
             handleEditUser={handleEditUser}
             handleDeleteUser={handleDeleteUser}
+            t={t}
           />
         ))
 }
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TablePagination
-            count={count}
-            rowsPerPage={limit}
-            labelRowsPerPage={t('Rows per page')}
-            page={page}
-            onChangePage={changePage}
-            onChangeRowsPerPage={changeRowsPerPage}
-            colSpan={7}
-            ActionsComponent={UsersPagination}
-          />
-        </TableRow>
-      </TableFooter>
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              count={count}
+              rowsPerPage={limit}
+              labelRowsPerPage={t('Rows per page')}
+              page={page}
+              onChangePage={changePage}
+              onChangeRowsPerPage={changeRowsPerPage}
+              colSpan={7}
+              ActionsComponent={UsersPagination}
+            />
+          </TableRow>
+        </TableFooter>
+      </>
+      )}
     </Table>
   </TableContainer>
 );

@@ -8,6 +8,7 @@ import {
   TablePagination,
   TableRow,
 } from '@material-ui/core';
+import { isEmpty } from 'ramda';
 import { CATEGORIES_FIELDS } from '../../../../constants';
 import { Form } from '../../../../components';
 import { TCategoriesTable } from '../../../../interfaces/categoriesInterfaces';
@@ -49,8 +50,10 @@ const CategoriesTable: React.FC<TCategoriesTable> = ({
           </TableCell>
         </TableRow>
       </TableHead>
-      <TableBody>
-        {
+      { !isEmpty(categoriesForShow) && (
+      <>
+        <TableBody>
+          {
           categoriesForShow.map(({
             id, title, shortDescription, description, author,
           }) => (
@@ -66,21 +69,23 @@ const CategoriesTable: React.FC<TCategoriesTable> = ({
             />
           ))
         }
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TablePagination
-            count={count}
-            rowsPerPage={limit}
-            labelRowsPerPage={t('Rows per page')}
-            page={page}
-            onChangePage={changePage}
-            onChangeRowsPerPage={changeRowsPerPage}
-            colSpan={7}
-            ActionsComponent={CategoriesPagination}
-          />
-        </TableRow>
-      </TableFooter>
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              count={count}
+              rowsPerPage={limit}
+              labelRowsPerPage={t('Rows per page')}
+              page={page}
+              onChangePage={changePage}
+              onChangeRowsPerPage={changeRowsPerPage}
+              colSpan={7}
+              ActionsComponent={CategoriesPagination}
+            />
+          </TableRow>
+        </TableFooter>
+      </>
+      )}
     </Table>
   </TableContainer>
 );

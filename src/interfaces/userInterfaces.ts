@@ -9,6 +9,7 @@ export type UserItem = {
     lastname: string,
     email: string,
     type: number,
+    status: 1 | 2 | 3,
 }
 
 // export type UserItem = Partial<UserInitialValues>
@@ -98,13 +99,15 @@ export type TUsersTable = {
 }
 
 export type UsersItemTable = {
-    id: number | undefined,
-    username: string | undefined,
-    firstname: string | undefined,
-    lastname: string | undefined,
-    email: string | undefined,
+    id?: number,
+    username?: string,
+    firstname?: string,
+    lastname?: string,
+    email?: string,
+    status: 1 | 2 | 3,
     handleEditUser: (id?: number) => void,
     handleDeleteUser: (id?: number) => void,
+    t: TFunction
 }
 
 export type TEditUserModal = {

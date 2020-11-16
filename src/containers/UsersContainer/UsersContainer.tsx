@@ -1,5 +1,4 @@
 import React from 'react';
-import { isEmpty } from 'ramda';
 import Layout from '../Layout/Layout';
 import { UsersTable } from './components';
 import { EditUserModal, DeleteUserModal } from './modals';
@@ -34,7 +33,6 @@ const UsersContainer: React.FC = () => {
       <Layout>
         <div className="users__wrapper">
           <h2 className="users__title">{t('Users')}</h2>
-          { !isEmpty(usersForShow) && (
           <UsersTable
             usersForShow={usersForShow}
             handleEditUser={handleEditUser}
@@ -47,7 +45,6 @@ const UsersContainer: React.FC = () => {
             changeRowsPerPage={changeRowsPerPage}
             onUsersSearch={onSearch}
           />
-          )}
         </div>
       </Layout>
       <EditUserModal

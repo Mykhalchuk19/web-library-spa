@@ -1,5 +1,4 @@
 import React from 'react';
-import { isEmpty } from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../Layout/Layout';
 import { CustomButton } from '../../components';
@@ -55,7 +54,6 @@ const CategoriesContainer: React.FC = () => {
               onClick={openCreateCategoryModalHandler}
             />
           </div>
-          { !isEmpty(categoriesForShow) && (
           <CategoriesTable
             categoriesForShow={categoriesForShow}
             handleEditCategory={handleEditCategory}
@@ -68,7 +66,6 @@ const CategoriesContainer: React.FC = () => {
             changeRowsPerPage={changeRowsPerPage}
             onCategoriesSearch={onSearch}
           />
-          )}
         </div>
       </Layout>
       <CreateCategoryModal

@@ -44,5 +44,9 @@
   "Author": "Автор",
   "None": "Жодна",
   "N/A": "Н/А",
-  "Activate account": "Активувати аккаунт"
+  "Activate account": "Активувати аккаунт",
+  "Status": "Статус",
+  "Pending": "Очікується",
+  "Active": "Активний",
+  "Inactive": "Неактивний"
 }
