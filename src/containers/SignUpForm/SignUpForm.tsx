@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Form, CustomButton } from '../../components';
-import { userActions, userSelectors } from '../../state/user';
 import { SignUpProps, SignUpValues } from '../../interfaces/authInterfaces';
 import rules from './rules';
+import { authActions, authSelectors } from '../../state/auth';
 
 const useStyles = makeStyles({
   signup__wrapper: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 const SignUpForm: React.FC<SignUpProps> = () => {
   const dispatch = useDispatch();
-  const isPending = useSelector(userSelectors.getPending);
+  const isPending = useSelector(authSelectors.getPending);
   const { t } = useTranslation(['auth']);
   const {
     handleSubmit,
@@ -45,7 +45,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(userActions.userSignUpRequest(formValues));
+      dispatch(authActions.userSignUpRequest(formValues));
       setSubmitting(isPending);
     },
   });

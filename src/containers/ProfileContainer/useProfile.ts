@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { find, propEq } from 'ramda';
-import { userActions, userSelectors } from '../../state/user';
+import { authActions, authSelectors } from '../../state/auth';
 import { TUserValues, TUseProfile } from '../../interfaces/userInterfaces';
 import rules from './rules';
 import { ROLES_LIST } from '../../constants/permissions';
@@ -11,8 +11,8 @@ import { ROLES_LIST } from '../../constants/permissions';
 const useProfile = (): TUseProfile => {
   const dispatch = useDispatch();
   const { t } = useTranslation(['common']);
-  const user = useSelector(userSelectors.getUserData);
-  const isPending = useSelector(userSelectors.getPending);
+  const user = useSelector(authSelectors.getUserData);
+  const isPending = useSelector(authSelectors.getPending);
   const {
     handleSubmit,
     values,
@@ -32,12 +32,12 @@ const useProfile = (): TUseProfile => {
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(userActions.profileUpdateRequest({ ...formValues, id: user.id }));
+      dispatch(authActions.profileUpdateRequest({ ...formValues, id: user.id }));
       setSubmitting(isPending);
     },
   });
   useEffect(() => {
-    dispatch(userActions.getCurrentUserRequest());
+    dispatch(authActions.getCurrentUserRequest());
   }, [dispatch]);
 
   const labelForRole = useMemo(() => {

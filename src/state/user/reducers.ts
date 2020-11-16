@@ -3,7 +3,6 @@ import { TAction, UserState, UserItem } from '../../interfaces/userInterfaces';
 import userTypes from './types';
 
 const initialState: UserState = {
-  userData: { },
   pending: false,
   list: {
     users: [],
@@ -14,52 +13,6 @@ const initialState: UserState = {
 };
 
 const userReducer = handleActions<UserState, string>({
-  [userTypes.USER_SIGN_IN_REQUEST]: (state) => ({
-    ...state,
-    pending: true,
-  }),
-  [userTypes.USER_SIGN_UP_REQUEST]: (state) => ({
-    ...state,
-    pending: true,
-  }),
-  [userTypes.USER_SIGN_UP_SUCCESS]: (state) => ({
-    ...state,
-    pending: false,
-  }),
-  [userTypes.USER_SIGN_UP_ERROR]: (state) => ({
-    ...state,
-    pending: false,
-  }),
-  [userTypes.USER_AUTHENTICATION_REQUEST]: (state) => ({
-    ...state,
-    pending: false,
-  }),
-  [userTypes.USER_AUTHENTICATION_SUCCESS]: (state, action: TAction) => ({
-    ...state,
-    userData: action.payload.userData,
-    pending: false,
-  }),
-  [userTypes.USER_AUTHENTICATION_ERROR]: (state) => ({
-    ...state,
-    pending: false,
-  }),
-  [userTypes.USER_LOG_OUT]: (state) => ({
-    ...state,
-    userData: {},
-  }),
-  [userTypes.PROFILE_UPDATE_REQUEST]: (state) => ({
-    ...state,
-    pending: true,
-  }),
-  [userTypes.PROFILE_UPDATE_SUCCESS]: (state, action: TAction) => ({
-    ...state,
-    userData: action.payload.userData,
-    pending: false,
-  }),
-  [userTypes.PROFILE_UPDATE_FAILURE]: (state) => ({
-    ...state,
-    pending: false,
-  }),
   [userTypes.USERS_LIST_REQUEST]: (state) => ({
     ...state,
     pending: true,
@@ -111,19 +64,6 @@ const userReducer = handleActions<UserState, string>({
     },
   }),
   [userTypes.USER_DELETE_FAILURE]: (state) => ({
-    ...state,
-    pending: false,
-  }),
-  [userTypes.GET_CURRENT_USER_REQUEST]: (state) => ({
-    ...state,
-    pending: true,
-  }),
-  [userTypes.GET_CURRENT_USER_SUCCESS]: (state, action: TAction) => ({
-    ...state,
-    userData: action.payload.userData,
-    pending: false,
-  }),
-  [userTypes.GET_CURRENT_USER_FAILURE]: (state) => ({
     ...state,
     pending: false,
   }),

@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { CustomButton, Form } from '../../components';
 import { TForgotPasswordValues } from '../../interfaces/authInterfaces';
 import rules from './rules';
-import { userActions } from '../../state/user';
+import { authActions } from '../../state/auth';
 
 const useStyles = makeStyles({
   forgot_password__wrapper: {
@@ -42,7 +42,7 @@ const ForgotPassword: React.FC = () => {
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(userActions.forgotPasswordRequest(formValues));
+      dispatch(authActions.forgotPasswordRequest(formValues));
     },
   });
   return (

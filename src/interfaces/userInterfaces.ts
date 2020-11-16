@@ -3,22 +3,15 @@ import { TFunction } from 'i18next';
 import { FormikErrors } from 'formik';
 
 export type UserItem = {
-    id?: number,
-    username?: string,
-    firstname?: string,
-    lastname?: string,
-    email?: string,
-    type?: number | undefined,
-    permissions?: Array<PermissionItem>
+    id: number,
+    username: string,
+    firstname: string,
+    lastname: string,
+    email: string,
+    type: number,
 }
 
-export type PermissionItem = {
-    module: string,
-    read: string,
-    create: string,
-    update: string,
-    delete: string,
-}
+// export type UserItem = Partial<UserInitialValues>
 
 export type TUsersList = {
     users: Array<UserItem> | [],
@@ -52,7 +45,6 @@ export type TUser = {
 }
 
 export type UserState = {
-    userData?: UserItem,
     pending?: boolean,
     list: TUsersList
 }

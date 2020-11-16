@@ -1,20 +1,7 @@
 import { createSelector } from 'reselect';
 import { pathOr, identity } from 'ramda';
 import { TStore } from '../storeInterfaces';
-import { IUserData } from './interfaces';
-
-const getPending = createSelector(pathOr(false, ['user', 'pending']), identity);
-const getAuthError = createSelector(pathOr(null, ['user', 'error']), identity);
-const getUserData = createSelector(pathOr({
-  id: null,
-  username: '',
-  firstname: '',
-  lastname: '',
-  email: '',
-  type: undefined,
-}, ['user', 'userData']), identity);
-
-const getMyPermissions = createSelector(pathOr([], ['user', 'userData', 'permissions']), identity);
+import { UserItem } from '../../interfaces/userInterfaces';
 
 const getUsersList = createSelector(pathOr({
   users: [],
@@ -26,7 +13,7 @@ const getUsersList = createSelector(pathOr({
 const getUserById = createSelector(
   (state: TStore) => state.user.list.users,
   (_: TStore, userId: number | null) => userId,
-  (users, userId) => users.find((item: IUserData): boolean => item.id === userId) || {
+  (users, userId) => users.find((item: UserItem): boolean => item.id === userId) || {
     id: null,
     username: '',
     firstname: '',
@@ -36,11 +23,10 @@ const getUserById = createSelector(
   },
 );
 
+const getPending = createSelector(pathOr(false, ['auth', 'pending']), identity);
+
 export {
-  getPending,
-  getAuthError,
-  getUserData,
   getUsersList,
   getUserById,
-  getMyPermissions,
+  getPending,
 };

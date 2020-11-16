@@ -1,3 +1,31 @@
+export type TAction = {
+    type: string,
+    [key: string]: any,
+}
+
+export type AuthState = {
+    userData: UserData,
+    pending: boolean,
+}
+
+export type UserData = {
+    id?: number,
+    username?: string,
+    firstname?: string,
+    lastname?: string,
+    email?: string,
+    type?: number | undefined,
+    permissions?: Array<PermissionItem>
+}
+
+export type PermissionItem = {
+    module: string,
+    read: string,
+    create: string,
+    update: string,
+    delete: string,
+}
+
 export type SignInValues = {
     username: string;
     password: string;

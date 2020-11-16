@@ -4,6 +4,7 @@ import { connectRouter } from 'connected-react-router';
 
 import userReducer, { userSaga } from './user';
 import categoriesReducer, { categoriesSaga } from './categories';
+import authReducer, { authSaga } from './auth';
 import uiReducer from './ui';
 // import postsReducer, { postsSaga } from './posts';
 
@@ -16,10 +17,12 @@ const rootReducer = (history: IHistory): any => combineReducers({
   user: userReducer,
   ui: uiReducer,
   categories: categoriesReducer,
+  auth: authReducer,
 });
 
 export const rootSaga = function* () {
   yield all([
+    authSaga(),
     userSaga(),
     categoriesSaga(),
     // postsSaga(),

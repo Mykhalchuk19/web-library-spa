@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { isEmpty } from 'ramda';
 import { useSelector, useDispatch } from 'react-redux';
-import { userActions, userSelectors } from '../../state/user';
+import { authActions, authSelectors } from '../../state/auth';
 import { roleHelpers } from '../../utils/helpers';
 
 type TUsePermissionComponent = {
@@ -9,11 +9,11 @@ type TUsePermissionComponent = {
 }
 
 const usePermissionComponent = (module: string, action: string): TUsePermissionComponent => {
-  const user = useSelector(userSelectors.getUserData);
-  const myPermissions = useSelector(userSelectors.getMyPermissions);
+  const user = useSelector(authSelectors.getUserData);
+  const myPermissions = useSelector(authSelectors.getMyPermissions);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!user || isEmpty(user)) dispatch(userActions.getCurrentUserRequest());
+    if (!user || isEmpty(user)) dispatch(authActions.getCurrentUserRequest());
   }, [dispatch, user]);
   const havePermissions = useMemo(() => roleHelpers.getAccessByRole(module, action, myPermissions), [action, module, myPermissions]);
   return {

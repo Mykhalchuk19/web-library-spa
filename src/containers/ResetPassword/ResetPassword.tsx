@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CustomButton, Form } from '../../components';
 import { TResetPasswordValues } from '../../interfaces/authInterfaces';
-import { userActions } from '../../state/user';
+import { authActions } from '../../state/auth';
 import rules from './rules';
 
 const useStyles = makeStyles({
@@ -41,7 +41,7 @@ const ResetPassword: React.FC = () => {
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(userActions.resetPasswordRequest({ id, code, ...formValues }));
+      dispatch(authActions.resetPasswordRequest({ id, code, ...formValues }));
     },
   });
   return (
