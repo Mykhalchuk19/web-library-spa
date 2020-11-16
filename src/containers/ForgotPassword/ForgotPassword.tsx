@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { CustomButton, Form } from '../../components';
-import './style.sass';
 import { TForgotPasswordValues } from '../../interfaces/authInterfaces';
 import rules from './rules';
 import { userActions } from '../../state/user';
@@ -51,12 +50,12 @@ const ForgotPassword: React.FC = () => {
       elevation={3}
       className={classes.forgot_password__wrapper}
     >
-      <form className="forgot-password__form" onSubmit={handleSubmit}>
-        <div className="forgot-password__header">
-          <h2 className="forgot-password__title">{t('I don\'t remember password')}</h2>
+      <form className="auth__form" onSubmit={handleSubmit}>
+        <div className="auth__header">
+          <h2 className="auth__title">{t('I don\'t remember password')}</h2>
         </div>
-        <div className="forgot-password__body">
-          <div className="forgot-password__row">
+        <div className="auth__body">
+          <div className="auth__row">
             <Form.CustomInput
               id="Email"
               label={t('Email')}
@@ -69,7 +68,7 @@ const ForgotPassword: React.FC = () => {
               }}
             />
           </div>
-          <div className="forgot-password__row">
+          <div className="auth__row">
             <CustomButton
               type="submit"
               className={classes.forgot_password__btn}
@@ -77,7 +76,7 @@ const ForgotPassword: React.FC = () => {
             />
             <NavLink
               to="/auth/signin"
-              className="signin__link"
+              className="auth__link"
             >
               {t('Sign In')}
             </NavLink>

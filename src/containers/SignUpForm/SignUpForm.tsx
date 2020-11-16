@@ -9,7 +9,6 @@ import { Form, CustomButton } from '../../components';
 import { userActions, userSelectors } from '../../state/user';
 import { SignUpProps, SignUpValues } from '../../interfaces/authInterfaces';
 import rules from './rules';
-import './style.sass';
 
 const useStyles = makeStyles({
   signup__wrapper: {
@@ -56,12 +55,12 @@ const SignUpForm: React.FC<SignUpProps> = () => {
       elevation={3}
       className={classes.signup__wrapper}
     >
-      <form className="signup__form" onSubmit={handleSubmit}>
-        <div className="signup__header">
-          <h2 className="signup__title">{t('Sign Up')}</h2>
+      <form className="auth__form" onSubmit={handleSubmit}>
+        <div className="auth__header">
+          <h2 className="auth__title">{t('Sign Up')}</h2>
         </div>
-        <div className="signup__body">
-          <div className="signup__row">
+        <div className="auth__body">
+          <div className="auth__row">
             <Form.CustomInput
               id="username"
               label="Username"
@@ -74,7 +73,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
               }}
             />
           </div>
-          <div className="signup__row">
+          <div className="auth__row">
             <Form.CustomInput
               id="firstname"
               label="First name"
@@ -87,7 +86,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
               }}
             />
           </div>
-          <div className="signup__row">
+          <div className="auth__row">
             <Form.CustomInput
               id="lastname"
               label="Last name"
@@ -100,7 +99,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
               }}
             />
           </div>
-          <div className="signup__row">
+          <div className="auth__row">
             <Form.CustomInput
               id="email"
               label="Email"
@@ -113,7 +112,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
               }}
             />
           </div>
-          <div className="signup__row">
+          <div className="auth__row">
             <Form.CustomInput
               id="password"
               label="Password"
@@ -127,7 +126,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
               }}
             />
           </div>
-          <div className="signup__row">
+          <div className="auth__row">
             <Form.CustomInput
               id="confirm_password"
               label="Confirm password"
@@ -141,7 +140,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
               }}
             />
           </div>
-          <div className="signup__row">
+          <div className="auth__row">
             <CustomButton
               type="submit"
               className={classes.signup__btn}
@@ -149,7 +148,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
             />
             <NavLink
               to="/auth/signin"
-              className="signup__link"
+              className="auth__link"
             >
               {t('I already sign in')}
             </NavLink>
@@ -158,7 +157,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
       </form>
       <NavLink
         to="/auth/forgot-password"
-        className="signup__link signup__forgot-password"
+        className="auth__link auth__forgot-password"
       >
         {t('I don\'t remember password')}
       </NavLink>

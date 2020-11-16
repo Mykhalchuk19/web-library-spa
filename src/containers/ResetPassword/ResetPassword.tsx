@@ -9,7 +9,6 @@ import { CustomButton, Form } from '../../components';
 import { TResetPasswordValues } from '../../interfaces/authInterfaces';
 import { userActions } from '../../state/user';
 import rules from './rules';
-import './style.sass';
 
 const useStyles = makeStyles({
   reset_password__wrapper: {
@@ -50,12 +49,12 @@ const ResetPassword: React.FC = () => {
       elevation={3}
       className={classes.reset_password__wrapper}
     >
-      <form className="reset-password__form" onSubmit={handleSubmit}>
-        <div className="reset-password__header">
-          <h2 className="reset-password__title">{t('Reset password')}</h2>
+      <form className="auth__form" onSubmit={handleSubmit}>
+        <div className="auth__header">
+          <h2 className="auth__title">{t('Reset password')}</h2>
         </div>
-        <div className="reset-password__body">
-          <div className="reset-password__row">
+        <div className="auth__body">
+          <div className="auth__row">
             <Form.CustomInput
               id="password"
               label="New password"
@@ -69,7 +68,7 @@ const ResetPassword: React.FC = () => {
               }}
             />
           </div>
-          <div className="reset-password__row">
+          <div className="auth__row">
             <Form.CustomInput
               id="confirm_password"
               label="Confirm password"
@@ -83,7 +82,7 @@ const ResetPassword: React.FC = () => {
               }}
             />
           </div>
-          <div className="reset-password__row">
+          <div className="auth__row">
             <CustomButton
               type="submit"
               className={classes.reset_password__btn}

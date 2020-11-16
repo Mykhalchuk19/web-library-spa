@@ -9,7 +9,6 @@ import { Form, CustomButton } from '../../components';
 import { userActions, userSelectors } from '../../state/user';
 import { SignInProps, SignInValues } from '../../interfaces/authInterfaces';
 import rules from './rules';
-import './style.sass';
 
 const useStyles = makeStyles({
   signin__wrapper: {
@@ -56,12 +55,12 @@ const SignUpForm: React.FC<SignInProps> = () => {
         elevation={3}
         className={classes.signin__wrapper}
       >
-        <form className="signin__form" onSubmit={handleSubmit}>
-          <div className="signin__header">
-            <h2 className="signin__title">{t('Sign In')}</h2>
+        <form className="auth__form" onSubmit={handleSubmit}>
+          <div className="auth__header">
+            <h2 className="auth__title">{t('Sign In')}</h2>
           </div>
-          <div className="signin__body">
-            <div className="signin__row">
+          <div className="auth__body">
+            <div className="auth__row">
               <Form.CustomInput
                 id="username"
                 label={t('Username')}
@@ -74,7 +73,7 @@ const SignUpForm: React.FC<SignInProps> = () => {
                 }}
               />
             </div>
-            <div className="signin__row">
+            <div className="auth__row">
               <Form.CustomInput
                 id="password"
                 label={t('Password')}
@@ -88,7 +87,7 @@ const SignUpForm: React.FC<SignInProps> = () => {
                 }}
               />
             </div>
-            <div className="signin__row">
+            <div className="auth__row">
               <CustomButton
                 type="submit"
                 className={classes.signin__btn}
@@ -96,7 +95,7 @@ const SignUpForm: React.FC<SignInProps> = () => {
               />
               <NavLink
                 to="/auth/signup"
-                className="signin__link"
+                className="auth__link"
               >
                 {t('I`m not signed up yet')}
               </NavLink>
@@ -106,7 +105,7 @@ const SignUpForm: React.FC<SignInProps> = () => {
       </Paper>
       <NavLink
         to="/auth/forgot-password"
-        className="signin__link signin__forgot-password"
+        className="auth__link auth__forgot-password"
       >
         {t('I don\'t remember password')}
       </NavLink>
