@@ -8,9 +8,7 @@ import {
   userSignUpSuccess,
   forgotPasswordSuccess,
   resetPasswordSuccess,
-  userAuthenticationSuccess,
-  profileUpdateSuccess,
-  getCurrentUserSuccess,
+  setUser,
 } from './actions';
 import { authenticationRequestHelpers, userRequestHelpers } from '../../utils/requestHelpers';
 import { PushNotifications } from '../../utils/helpers';
@@ -43,7 +41,7 @@ function* activateAccount() {
         { ...action.payload },
       ));
       if (res.token) {
-        yield put(userAuthenticationSuccess({ ...res }));
+        yield put(setUser({ ...res }));
         yield localStorage.setItem('authToken', res.token);
         yield put(push('/profile'));
       } else {
@@ -62,7 +60,7 @@ function* singIn() {
       const action = yield take(authTypes.USER_SIGN_IN_REQUEST);
       const res = normalizeRequestData(yield call(authenticationRequestHelpers.signInRequest,
         { ...action.payload }));
-      yield put(userAuthenticationSuccess({ ...res }));
+      yield put(setUser({ ...res }));
       yield localStorage.setItem('authToken', res.token);
       yield put(push('/profile'));
     } catch (e) {
@@ -121,7 +119,7 @@ function* updateProfile() {
       const action = yield take(authTypes.PROFILE_UPDATE_REQUEST);
       const res = normalizeRequestData(yield call(userRequestHelpers.updateProfile,
         { ...action.payload }));
-      yield put(profileUpdateSuccess({ ...res }));
+      yield put(setUser({ ...res }));
       PushNotifications.success({ content: SUCCESS_MESSAGES.PROFILE_SUCCESSFULLY_EDITED });
     } catch (e) {
       yield put(userAuthorizationError());
@@ -135,7 +133,7 @@ function* getCurrentUser() {
     try {
       yield take(authTypes.GET_CURRENT_USER_REQUEST);
       const res = normalizeRequestData(yield call(userRequestHelpers.getCurrentUser));
-      yield put((getCurrentUserSuccess({ ...res })));
+      yield put((setUser({ ...res })));
     } catch (e) {
       yield put(userAuthorizationError());
       PushNotifications.error({ content: e.response.data.error });

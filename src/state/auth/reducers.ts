@@ -28,11 +28,6 @@ const userReducer = handleActions<AuthState, string>({
     ...state,
     pending: false,
   }),
-  [authTypes.USER_AUTHENTICATION_SUCCESS]: (state, action: TAction) => ({
-    ...state,
-    userData: action.payload.userData,
-    pending: false,
-  }),
   [authTypes.USER_LOG_OUT]: (state) => ({
     ...state,
     userData: {},
@@ -41,18 +36,15 @@ const userReducer = handleActions<AuthState, string>({
     ...state,
     pending: true,
   }),
-  [authTypes.PROFILE_UPDATE_SUCCESS]: (state, action: TAction) => ({
-    ...state,
-    userData: action.payload.userData,
-    pending: false,
-  }),
   [authTypes.GET_CURRENT_USER_REQUEST]: (state) => ({
     ...state,
     pending: true,
   }),
-  [authTypes.GET_CURRENT_USER_SUCCESS]: (state, action: TAction) => ({
+  [authTypes.SET_USER]: (state, action: TAction) => ({
     ...state,
-    userData: action.payload.userData,
+    userData: {
+      ...action.payload.userData,
+    },
     pending: false,
   }),
 }, {
