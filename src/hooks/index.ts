@@ -1,5 +1,5 @@
 import usePagination from './usePagination/usePagination';
-import useGrid from './useSearch/useGrid';
+import useGrid from './useGrid/useGrid';
 
 export {
   usePagination,

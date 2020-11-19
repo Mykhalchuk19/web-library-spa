@@ -6,13 +6,26 @@ import { find, propEq } from 'ramda';
 import { authActions, authSelectors } from '../../state/auth';
 import { TUserValues, TUseProfile } from '../../interfaces/userInterfaces';
 import rules from './rules';
-import { ROLES_LIST } from '../../constants/permissions';
+import { permissions, SUCCESS_MESSAGES } from '../../constants';
+import { checkValuesBeforeRequest } from '../../utils/helpers/commonHelpers';
+import PushNotifications from '../../utils/helpers/pushNotifications';
+
+const { ROLES_LIST } = permissions;
 
 const useProfile = (): TUseProfile => {
   const dispatch = useDispatch();
   const { t } = useTranslation(['common']);
   const user = useSelector(authSelectors.getUserData);
   const isPending = useSelector(authSelectors.getPending);
+
+  const initialValues = {
+    username: user.username || '',
+    firstname: user.firstname || '',
+    lastname: user.lastname || '',
+    email: user.email || '',
+    type: user.type || 1,
+  };
+
   const {
     handleSubmit,
     values,
@@ -21,19 +34,17 @@ const useProfile = (): TUseProfile => {
     setSubmitting,
     isSubmitting,
   } = useFormik<TUserValues>({
-    initialValues: {
-      username: user.username || '',
-      firstname: user.firstname || '',
-      lastname: user.lastname || '',
-      email: user.email || '',
-      type: user.type || 1,
-    },
+    initialValues,
     validateOnChange: false,
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(authActions.profileUpdateRequest({ ...formValues, id: user.id }));
-      setSubmitting(isPending);
+      if (checkValuesBeforeRequest(initialValues, formValues)) {
+        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
+      } else {
+        dispatch(authActions.profileUpdateRequest({ ...formValues, id: user.id }));
+        setSubmitting(isPending);
+      }
     },
   });
   useEffect(() => {

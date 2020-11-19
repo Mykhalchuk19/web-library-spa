@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react';
-import {
-  ActionMeta, OptionsType, OptionTypeBase, ValueType,
-} from 'react-select';
+import { OptionsType, OptionTypeBase } from 'react-select';
 
 export type Button = {
     type?: 'submit' | 'reset' | 'button';
