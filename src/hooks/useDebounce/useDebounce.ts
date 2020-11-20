@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const useDebounce = (value: any, wait: number): any => {
+const useDebounce = (value: any, wait: number): any => {
   const [debounced, setDebounced] = useState(value);
 
   useEffect(() => {
@@ -11,6 +11,7 @@ export const useDebounce = (value: any, wait: number): any => {
     return () => clearTimeout(handler);
     // eslint-disable-next-line
   }, [value]);
-  console.log(debounced);
   return debounced;
 };
+
+export default useDebounce;

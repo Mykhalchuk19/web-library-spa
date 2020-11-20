@@ -1,11 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TUseGridProps, TUseGrid } from './interfaces';
-import { useDebounce } from '../useDebounce/useDebounce';
+import { debounce } from '../../utils/helpers/commonHelpers';
 
 const useGrid = ({ limit, getListRequest }: TUseGridProps): TUseGrid => {
   const [searchValue, setSearchValue] = useState('');
-  // const debouncedSearchValue = useDebounce(searchValue, 800);
   const dispatch = useDispatch();
   const changePage = useCallback((
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -29,6 +28,10 @@ const useGrid = ({ limit, getListRequest }: TUseGridProps): TUseGrid => {
   const onSearch = useCallback((event) => {
     setSearchValue(event.target.value);
   }, [setSearchValue]);
+
+  useEffect(() => {
+    debounce(() => { dispatch(getListRequest({ q: searchValue, limit })); }, 800, 'searchFunc');
+  }, [searchValue, limit, dispatch, getListRequest]);
 
   return {
     changePage,
