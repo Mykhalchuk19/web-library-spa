@@ -7,6 +7,7 @@ export type Button = {
     children?: React.ReactNode;
     className?: string,
     text: string,
+    pending?: boolean
 }
 
 export type ModalWindow = {

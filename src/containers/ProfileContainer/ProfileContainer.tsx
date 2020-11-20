@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import {
+  is,
   isEmpty,
 } from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,6 +25,7 @@ const ProfileContainer: React.FC = () => {
     user,
     t,
     labelForRole,
+    isPending,
   } = useProfile();
   const classes = useStyles();
   return (
@@ -106,6 +108,7 @@ const ProfileContainer: React.FC = () => {
                 type="submit"
                 className={classes.profile__btn}
                 text="Save"
+                pending={isPending}
               />
             </div>
           </div>
