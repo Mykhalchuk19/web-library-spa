@@ -16,6 +16,7 @@ const EditCategoryModal: React.FC<TCategoriesModalsProps> = ({
     handleSubmit,
     isSubmitting,
     setFieldValue,
+    onCloseHandler,
   } = useEditCategoryModal(id, onClose);
   return (
     <ModalView
@@ -25,7 +26,7 @@ const EditCategoryModal: React.FC<TCategoriesModalsProps> = ({
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={onCloseHandler}
       isSubmitting={isSubmitting}
       asyncRequest={categoriesRequestHelpers.autocompleteCategoriesRequest}
       setFieldValue={setFieldValue}

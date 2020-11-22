@@ -48,5 +48,6 @@
   "Status": "Status",
   "Pending": "Pending",
   "Active": "Active",
-  "Inactive": "Inactive"
+  "Inactive": "Inactive",
+  "Title is required": "Title is required"
 }

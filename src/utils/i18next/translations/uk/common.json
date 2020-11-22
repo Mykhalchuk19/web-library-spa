@@ -48,5 +48,7 @@
   "Status": "Статус",
   "Pending": "Очікується",
   "Active": "Активний",
-  "Inactive": "Неактивний"
+  "Inactive": "Неактивний",
+  "Title is required": "Назва обов'язкова"
+
 }

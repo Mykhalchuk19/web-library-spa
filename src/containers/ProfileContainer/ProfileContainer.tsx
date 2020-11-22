@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import {
-  is,
   isEmpty,
 } from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';

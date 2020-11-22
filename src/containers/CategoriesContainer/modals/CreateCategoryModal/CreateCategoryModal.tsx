@@ -15,6 +15,7 @@ const CreateCategoryModal: React.FC<TCategoriesModalsProps> = ({
     handleSubmit,
     isSubmitting,
     setFieldValue,
+    onCloseHandler,
   } = useCreateCategoryModal(onClose);
   return (
     <ModalView
@@ -24,7 +25,7 @@ const CreateCategoryModal: React.FC<TCategoriesModalsProps> = ({
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={onCloseHandler}
       isSubmitting={isSubmitting}
       asyncRequest={categoriesRequestHelpers.autocompleteCategoriesRequest}
       setFieldValue={setFieldValue}

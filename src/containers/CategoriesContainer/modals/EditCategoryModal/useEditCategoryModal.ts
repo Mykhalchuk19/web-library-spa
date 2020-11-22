@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
+import { useCallback } from 'react';
 import { TCategoriesValues, TCategoriesModalsHook } from '../../../../interfaces/categoriesInterfaces';
 import { categoriesActions, categoriesSelectors } from '../../../../state/categories';
 import rules from '../rules';
@@ -44,6 +45,12 @@ const useEditCategoryModal = (id: number | null | undefined, onClose: () => void
       }
     },
   });
+
+  const onCloseHandler = useCallback(() => {
+    onClose();
+    resetForm();
+  }, [onClose, resetForm]);
+
   return {
     handleSubmit,
     handleChange,
@@ -51,6 +58,7 @@ const useEditCategoryModal = (id: number | null | undefined, onClose: () => void
     errors,
     isSubmitting,
     setFieldValue,
+    onCloseHandler,
   };
 };
 

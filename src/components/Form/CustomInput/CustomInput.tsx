@@ -12,7 +12,9 @@ export const CustomInput: React.FC<InputProps> = ({
   const { t } = useTranslation(['common']);
   const [width, setWidth] = useState(0);
   const labelRef = useRef() as MutableRefObject<HTMLLabelElement>;
-  useEffect(() => setWidth(labelRef.current.offsetWidth), [labelRef]);
+  useEffect(() => {
+    setWidth(labelRef.current.offsetWidth);
+  }, [labelRef]);
   return (
     <div className="input__wrapper">
       <FormControl fullWidth variant="outlined">

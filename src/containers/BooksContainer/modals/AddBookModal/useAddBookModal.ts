@@ -1,11 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { useCallback } from 'react';
-import { TCategoriesValues, TCategoriesModalsHook } from '../../../../interfaces/categoriesInterfaces';
-import { categoriesActions } from '../../../../state/categories';
+import { TBookValues, TBooksModalsHook } from '../../../../interfaces/booksInterfaces';
+import { booksActions } from '../../../../state/books';
 import rules from '../rules';
+import { createFormData } from '../../../../utils/helpers/fileHelpers';
 
-const useCreateCategoryModal = (onClose: () => void): TCategoriesModalsHook => {
+const useAddBookModal = (onClose: () => void): TBooksModalsHook => {
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -15,22 +16,30 @@ const useCreateCategoryModal = (onClose: () => void): TCategoriesModalsHook => {
     isSubmitting,
     setFieldValue,
     resetForm,
-  } = useFormik<TCategoriesValues>({
+  } = useFormik<TBookValues>({
     initialValues: {
       title: '',
       short_description: '',
-      description: '',
-      parent_id: null,
+      city: '',
+      year: undefined,
+      publishing_house: '',
+      edition: '',
+      series: '',
+      category_id: null,
+      file: undefined,
     },
     validateOnChange: true,
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      dispatch(categoriesActions.categoryCreateRequest(formValues));
-      onClose();
+      const formData = createFormData(formValues);
+      console.log(formValues);
+      dispatch(booksActions.bookCreateRequest(formData));
       resetForm();
+      onClose();
     },
   });
+
   const onCloseHandler = useCallback(() => {
     onClose();
     resetForm();
@@ -46,4 +55,4 @@ const useCreateCategoryModal = (onClose: () => void): TCategoriesModalsHook => {
   };
 };
 
-export default useCreateCategoryModal;
+export default useAddBookModal;

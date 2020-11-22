@@ -23,6 +23,7 @@ function* createCategory() {
       yield put(categoryCreateSuccess({ ...res }));
       PushNotifications.success({ content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_CREATED });
     } catch (e) {
+      console.log(e);
       yield put(categoryRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
