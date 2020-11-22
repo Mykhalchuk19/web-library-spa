@@ -1,5 +1,9 @@
 import React from 'react';
 
+export type TUiState = {
+    isLeftSideBar: boolean
+}
+
 export type TUseLeftSideBar = {
     logOut: () => void,
     changeLanguage: (lng: string) => Promise<void>

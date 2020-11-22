@@ -12,6 +12,7 @@ const Profile = lazy(() => import('../../pages/Profile/Profile'));
 const ErrorPage = lazy(() => import('../../pages/ErrorPage/ErrorPage'));
 const Users = lazy(() => import('../../pages/Users/Users'));
 const Categories = lazy(() => import('../../pages/Categories/Categories'));
+const Books = lazy(() => import('../../pages/Books/Books'));
 
 const Routing: React.FC = () => {
   const location = useLocation();
@@ -21,6 +22,7 @@ const Routing: React.FC = () => {
       <Switch>
         <Route exact strict path="/:url" render={fixUrl} />
         <Route path="/auth/" component={Auth} />
+        <PrivateRoute exact path="/books" component={Books} />
         <PrivateRoute exact path="/categories" component={Categories} />
         <PrivateRoute exact path="/users" component={Users} />
         <PrivateRoute exact path="/profile" component={Profile} />

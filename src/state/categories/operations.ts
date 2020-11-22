@@ -4,13 +4,10 @@ import {
 import categoriesTypes from './types';
 import {
   categoryCreateSuccess,
-  categoryCreateFailure,
   categoriesGetSuccess,
-  categoriesGetFailure,
   categoryUpdateSuccess,
-  categoryUpdateFailure,
   categoryDeleteSuccess,
-  categoryDeleteFailure,
+  categoryRequestFailure,
 } from './actions';
 import { PushNotifications } from '../../utils/helpers';
 import { categoriesRequestHelpers } from '../../utils/requestHelpers';
@@ -26,7 +23,7 @@ function* createCategory() {
       yield put(categoryCreateSuccess({ ...res }));
       PushNotifications.success({ content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_CREATED });
     } catch (e) {
-      yield put(categoryCreateFailure());
+      yield put(categoryRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }
@@ -41,7 +38,7 @@ function* getCategoryList() {
       yield put(categoriesGetSuccess({ ...res }));
     } catch (e) {
       console.error(e);
-      yield put(categoriesGetFailure());
+      yield put(categoryRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }
@@ -56,7 +53,7 @@ function* updateCategory() {
       yield put(categoryUpdateSuccess({ ...res }));
       yield call(PushNotifications.success, { content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_EDITED });
     } catch (e) {
-      yield put(categoryUpdateFailure());
+      yield put(categoryRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }
@@ -71,7 +68,7 @@ function* deleteCategory() {
       yield put(categoryDeleteSuccess(({ ...res })));
       PushNotifications.success({ content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_DELETED });
     } catch (e) {
-      yield put(categoryDeleteFailure());
+      yield put(categoryRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }

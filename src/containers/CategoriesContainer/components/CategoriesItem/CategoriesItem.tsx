@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons';
 import { PermissionComponent } from '../../../../components';
@@ -50,4 +50,4 @@ const CategoriesItem: React.FC<CategoriesItemTable> = ({
   </TableRow>
 );
 
-export default CategoriesItem;
+export default memo(CategoriesItem);

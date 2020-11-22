@@ -8,8 +8,8 @@ import { categoriesSelectors, categoriesActions } from '../../state/categories';
 import { createFullName, convertEmptyValueForShow } from '../../utils/helpers/convertDataHelpers';
 
 const useCategories = (): TUseCategories => {
-  const dispatch = useDispatch();
   const { t } = useTranslation(['common']);
+  const dispatch = useDispatch();
   const categoriesList = useSelector(categoriesSelectors.getCategoriesList);
   const {
     categories, limit, page, count,

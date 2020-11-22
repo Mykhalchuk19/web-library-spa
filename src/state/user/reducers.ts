@@ -27,10 +27,6 @@ const userReducer = handleActions<UserState, string>({
     },
     pending: false,
   }),
-  [userTypes.USERS_LIST_FAILURE]: (state) => ({
-    ...state,
-    pending: false,
-  }),
   [userTypes.USER_UPDATE_REQUEST]: (state) => ({
     ...state,
     pending: true,
@@ -44,10 +40,6 @@ const userReducer = handleActions<UserState, string>({
       page: state.list.page,
       count: state.list.count,
     },
-  }),
-  [userTypes.USER_UPDATE_FAILURE]: (state) => ({
-    ...state,
-    pending: false,
   }),
   [userTypes.USER_DELETE_REQUEST]: (state) => ({
     ...state,
@@ -63,7 +55,7 @@ const userReducer = handleActions<UserState, string>({
       count: state.list.count,
     },
   }),
-  [userTypes.USER_DELETE_FAILURE]: (state) => ({
+  [userTypes.USER_REQUEST_FAILURE]: (state) => ({
     ...state,
     pending: false,
   }),

@@ -14,4 +14,9 @@ export const NAVIGATION = {
     title: 'Categories',
     icon: 'icon-categories',
   },
+  BOOKS: {
+    href: '/books',
+    title: 'Books',
+    icon: 'icon-books',
+  },
 };

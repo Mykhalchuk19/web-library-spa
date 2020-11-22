@@ -2,9 +2,9 @@ import React, { memo } from 'react';
 import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { isEmpty } from 'ramda';
+import { makeStyles } from '@material-ui/core/styles';
 import { Button as ButtonTypes } from '../../interfaces/componentInterfaces';
 import './style.sass';
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   custom__button: {

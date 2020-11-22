@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
   Table,
   TableBody,
@@ -90,4 +90,4 @@ const CategoriesTable: React.FC<TCategoriesTable> = ({
   </TableContainer>
 );
 
-export default CategoriesTable;
+export default memo(CategoriesTable);

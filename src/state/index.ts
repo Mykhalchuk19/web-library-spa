@@ -1,23 +1,26 @@
-import { combineReducers } from 'redux';
+import {
+  CombinedState, combineReducers, Reducer,
+} from 'redux';
 import { all } from 'redux-saga/effects';
-import { connectRouter } from 'connected-react-router';
+import { connectRouter, LocationChangeAction } from 'connected-react-router';
+import { History } from 'history';
 
 import userReducer, { userSaga } from './user';
 import categoriesReducer, { categoriesSaga } from './categories';
 import authReducer, { authSaga } from './auth';
 import uiReducer from './ui';
-// import postsReducer, { postsSaga } from './posts';
+import booksReducer from './books';
+import { TStore } from './storeInterfaces';
 
-interface IHistory {
-  history?: any,
-}
-
-const rootReducer = (history: IHistory): any => combineReducers({
-  router: connectRouter(history as any),
+const rootReducer = (
+  history: History,
+): Reducer<CombinedState<TStore>, LocationChangeAction> => combineReducers({
+  router: connectRouter(history as History),
   user: userReducer,
   ui: uiReducer,
   categories: categoriesReducer,
   auth: authReducer,
+  books: booksReducer,
 });
 
 export const rootSaga = function* () {

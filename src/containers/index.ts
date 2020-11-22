@@ -6,6 +6,7 @@ import ResetPassword from './ResetPassword/ResetPassword';
 import ProfileContainer from './ProfileContainer/ProfileContainer';
 import UsersContainer from './UsersContainer/UsersContainer';
 import CategoriesContainer from './CategoriesContainer/CategoriesContainer';
+import BooksContainer from './BooksContainer/BooksContainer';
 
 export {
   SignUpForm,
@@ -16,4 +17,5 @@ export {
   UsersContainer,
   CategoriesContainer,
   ActivateAccount,
+  BooksContainer,
 };

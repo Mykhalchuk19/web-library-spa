@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { IconButton } from '@material-ui/core';
 import {
   LastPage, FirstPage, KeyboardArrowLeft, KeyboardArrowRight,
@@ -52,4 +52,4 @@ const CategoriesPagination: React.FC<TPaginationProps> = (
   );
 };
 
-export default CategoriesPagination;
+export default memo(CategoriesPagination);

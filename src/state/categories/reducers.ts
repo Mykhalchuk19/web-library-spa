@@ -24,10 +24,6 @@ const userReducer = handleActions<TCategoriesState, string>({
       categories: [...state.list.categories, action.payload.category],
     },
   }),
-  [categoriesTypes.CATEGORY_CREATE_FAILURE]: (state) => ({
-    ...state,
-    pending: false,
-  }),
   [categoriesTypes.CATEGORIES_GET_REQUEST]: (state) => ({
     ...state,
     pending: true,
@@ -41,10 +37,6 @@ const userReducer = handleActions<TCategoriesState, string>({
       count: action.payload.count,
       page: action.payload.page,
     },
-  }),
-  [categoriesTypes.CATEGORIES_GET_FAILURE]: (state) => ({
-    ...state,
-    pending: false,
   }),
   [categoriesTypes.CATEGORY_UPDATE_REQUEST]: (state) => ({
     ...state,
@@ -60,10 +52,6 @@ const userReducer = handleActions<TCategoriesState, string>({
       count: state.list.count,
     },
   }),
-  [categoriesTypes.CATEGORY_UPDATE_FAILURE]: (state) => ({
-    ...state,
-    pending: false,
-  }),
   [categoriesTypes.CATEGORY_DELETE_REQUEST]: (state) => ({
     ...state,
     pending: true,
@@ -78,7 +66,7 @@ const userReducer = handleActions<TCategoriesState, string>({
       count: state.list.count,
     },
   }),
-  [categoriesTypes.CATEGORY_DELETE_FAILURE]: (state) => ({
+  [categoriesTypes.CATEGORY_REQUEST_FAILURE]: (state) => ({
     ...state,
     pending: false,
   }),

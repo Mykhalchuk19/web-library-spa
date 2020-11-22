@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ModalWindow, Form, CustomButton } from '../../../components';
 import { TCategoriesModalView } from '../../../interfaces/categoriesInterfaces';
@@ -43,7 +43,6 @@ const ModalView: React.FC<TCategoriesModalView> = ({
               value: values.title,
             }}
           />
-          {console.log(values)}
         </div>
         <div className="categories-modal__row">
           <Form.CustomInput
@@ -90,4 +89,4 @@ const ModalView: React.FC<TCategoriesModalView> = ({
   );
 };
 
-export default ModalView;
+export default memo(ModalView);

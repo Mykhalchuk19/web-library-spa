@@ -5,11 +5,9 @@ import userTypes from './types';
 import { PushNotifications } from '../../utils/helpers';
 import {
   usersListSuccess,
-  usersListFailure,
   userUpdateSuccess,
-  userUpdateFailure,
   userDeleteSuccess,
-  userDeleteFailure,
+  userRequestFailure,
 } from './actions';
 import { apiHelpers, userRequestHelpers } from '../../utils/requestHelpers';
 import { SUCCESS_MESSAGES } from '../../constants';
@@ -24,7 +22,7 @@ function* getListUsers() {
         { ...action.payload }));
       yield put(usersListSuccess({ ...res }));
     } catch (e) {
-      yield put(usersListFailure());
+      yield put(userRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }
@@ -39,7 +37,7 @@ function* updateUser() {
       yield put(userUpdateSuccess({ ...res }));
       yield call(PushNotifications.success, { content: SUCCESS_MESSAGES.USER_SUCCESSFULLY_EDITED });
     } catch (e) {
-      yield put(userUpdateFailure());
+      yield put(userRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }
@@ -54,7 +52,7 @@ function* deleteUser() {
       yield put(userDeleteSuccess(({ ...res })));
       PushNotifications.success({ content: SUCCESS_MESSAGES.USER_SUCCESSFULLY_DELETED });
     } catch (e) {
-      yield put(userDeleteFailure());
+      yield put(userRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
   }

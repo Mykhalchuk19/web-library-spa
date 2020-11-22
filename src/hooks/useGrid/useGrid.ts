@@ -5,6 +5,7 @@ import { debounce } from '../../utils/helpers/commonHelpers';
 
 const useGrid = ({ limit, getListRequest }: TUseGridProps): TUseGrid => {
   const [searchValue, setSearchValue] = useState('');
+  const [needSearch, setNeedSearch] = useState(false);
   const dispatch = useDispatch();
   const changePage = useCallback((
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -27,11 +28,16 @@ const useGrid = ({ limit, getListRequest }: TUseGridProps): TUseGrid => {
 
   const onSearch = useCallback((event) => {
     setSearchValue(event.target.value);
+    setNeedSearch(true);
   }, [setSearchValue]);
 
   useEffect(() => {
-    debounce(() => { dispatch(getListRequest({ q: searchValue, limit })); }, 800, 'searchFunc');
-  }, [searchValue, limit, dispatch, getListRequest]);
+    if (needSearch) {
+      debounce(() => {
+        dispatch(getListRequest({ q: searchValue, limit }));
+      }, 800, 'searchFunc', needSearch);
+    }
+  }, [searchValue, limit, dispatch, getListRequest, needSearch]);
 
   return {
     changePage,

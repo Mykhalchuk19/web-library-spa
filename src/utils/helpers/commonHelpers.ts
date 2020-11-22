@@ -15,7 +15,7 @@ const checkValuesBeforeRequest = (
   currentValues: TObject,
 ): boolean => equals(initialValues, currentValues);
 
-const debounce = (func: any, time: number, n: string): any => {
+const debounce = (func: () => void, time: number, n: string, needSearch: boolean): void => {
   const name = n || func.name;
   const waiterFunc = () => {
     window.debounceState[name] = setTimeout(() => {
@@ -24,14 +24,13 @@ const debounce = (func: any, time: number, n: string): any => {
     }, time);
   };
   window.debounceState = window.debounceState || {};
-  if (window.debounceState[name] === undefined) {
-    func();
-  }
   if (window.debounceState[name]) {
     clearTimeout(window.debounceState[name]);
     waiterFunc();
   }
-  if (!window.debounceState[name]) waiterFunc();
+  if (!window.debounceState[name] && needSearch) {
+    waiterFunc();
+  }
 };
 
 export {

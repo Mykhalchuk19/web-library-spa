@@ -1,11 +1,15 @@
 import { UserState } from '../interfaces/userInterfaces';
 import { TCategoriesState } from '../interfaces/categoriesInterfaces';
 import { AuthState } from '../interfaces/authInterfaces';
+import { TUiState } from '../interfaces/uiInterfaces';
+import { TBooksState } from '../interfaces/booksInterfaces';
 
 export type TStore = {
-  _persist: any,
+  // _persist: any,
   router: any,
   user: UserState,
   categories: TCategoriesState,
-  auth: AuthState
+  auth: AuthState,
+  ui: TUiState,
+  books: TBooksState
 }
