@@ -21,7 +21,7 @@ const useAddBookModal = (onClose: () => void): TBooksModalsHook => {
       title: '',
       short_description: '',
       city: '',
-      year: undefined,
+      year: '',
       publishing_house: '',
       edition: '',
       series: '',
@@ -33,10 +33,9 @@ const useAddBookModal = (onClose: () => void): TBooksModalsHook => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       const formData = createFormData(formValues);
-      console.log(formValues);
       dispatch(booksActions.bookCreateRequest(formData));
-      resetForm();
       onClose();
+      resetForm();
     },
   });
 

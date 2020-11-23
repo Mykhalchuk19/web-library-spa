@@ -49,5 +49,14 @@
   "Pending": "Pending",
   "Active": "Active",
   "Inactive": "Inactive",
-  "Title is required": "Title is required"
+  "Title is required": "Title is required",
+  "Books": "Books",
+  "Add book": "Add book",
+  "Edit book": "Edit book",
+  "Delete book": "Delete book",
+  "Download": "Download",
+  "Year": "Year",
+  "City": "City",
+  "Category": "Category",
+  "Link": "Link"
 }

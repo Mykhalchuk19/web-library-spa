@@ -7,5 +7,9 @@ export const SUCCESS_MESSAGES = {
   CATEGORY_SUCCESSFULLY_EDITED: 'Category successfully edited',
   CATEGORY_SUCCESSFULLY_DELETED: 'Category successfully deleted',
 
+  BOOK_SUCCESSFULLY_ADDED: 'Book successfully added',
+  BOOK_SUCCESSFULLY_EDITED: 'Book successfully edited',
+  BOOK_SUCCESSFULLY_DELETED: 'Book successfully deleted',
+
   VALUES_ARE_IDENTICAL: 'Values are identical',
 };

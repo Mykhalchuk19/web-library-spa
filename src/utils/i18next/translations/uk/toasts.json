@@ -26,5 +26,11 @@
   "Category successfully created": "Категорія успішно створена",
   "Category successfully edited": "Категорія успішно редагована",
   "Category successfully deleted": "Категорія успішно видалена",
-  "Values are identical": "Значення однакові"
+  "Values are identical": "Значення однакові",
+  "File was not uploaded": "Файл не був завантажений",
+  "Book successfully created": "Книга успішно створена",
+  "Book successfully edited": "Книга успішно редагована",
+  "Book successfully deleted": "Книга успішно видалена",
+  "File is not exists": "Файла не існує",
+  "Such book is not exists": "Такої книги не існує"
 }

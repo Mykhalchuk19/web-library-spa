@@ -38,6 +38,7 @@ const ACTIONS = {
 const MODULES = {
   USERS: 'users',
   CATEGORIES: 'categories',
+  BOOKS: 'books',
 };
 
 export {

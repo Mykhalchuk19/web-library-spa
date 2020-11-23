@@ -26,5 +26,11 @@
   "Category successfully created": "Category successfully created",
   "Category successfully edited": "Category successfully edited",
   "Category successfully deleted": "Category successfully deleted",
-  "Values are identical": "Values are identical"
+  "Values are identical": "Values are identical",
+  "File was not uploaded": "File was not uploaded",
+  "Book successfully created": "Book successfully created",
+  "Book successfully edited": "Book successfully edited",
+  "Book successfully deleted": "Book successfully deleted",
+  "File is not exists": "File is not exists",
+  "Such book is not exists": "Such book is not exists"
 }

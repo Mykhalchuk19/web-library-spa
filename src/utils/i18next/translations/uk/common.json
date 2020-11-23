@@ -49,6 +49,14 @@
   "Pending": "Очікується",
   "Active": "Активний",
   "Inactive": "Неактивний",
-  "Title is required": "Назва обов'язкова"
-
+  "Title is required": "Назва обов'язкова",
+  "Books": "Книги",
+  "Add book": "Додати книгу",
+  "Edit book": "Редагувати книгу",
+  "Delete book": "Видалити книгу",
+  "Download": "Завантажити",
+  "Year": "Рік",
+  "City": "Місто",
+  "Category": "Категорія",
+  "Link": "Посилання"
 }

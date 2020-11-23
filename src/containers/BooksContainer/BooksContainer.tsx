@@ -1,17 +1,36 @@
 import React from 'react';
 import Layout from '../Layout/Layout';
 import { CustomButton } from '../../components';
-import { AddBookModal } from './modals';
+import { AddBookModal, EditBookModal, DeleteBookModal } from './modals';
 import './style.sass';
 import useBooks from './useBooks';
+import { useGrid } from '../../hooks';
+import { booksActions } from '../../state/books';
+import BooksTable from './components/BooksTable/BooksTable';
 
 const BooksContainer: React.FC = () => {
   const {
     isOpenAddBookModal,
-    closeAddBookModalHandler,
     openAddBookModalHandler,
+    closeAddBookModalHandler,
     t,
+    booksForShow,
+    limit,
+    count, page,
+    handleEditBook,
+    handleDeleteBook,
+    isOpenEditBookModal,
+    closeEditBookModal,
+    isOpenDeleteBookModal,
+    closeDeleteBookModal,
+    bookId,
   } = useBooks();
+
+  const {
+    onSearch,
+    changeRowsPerPage,
+    changePage,
+  } = useGrid({ limit: 10, getListRequest: booksActions.booksGetRequest });
   return (
     <>
       <Layout>
@@ -26,11 +45,33 @@ const BooksContainer: React.FC = () => {
               onClick={openAddBookModalHandler}
             />
           </div>
+          <BooksTable
+            booksForShow={booksForShow}
+            handleEditBook={handleEditBook}
+            handleDeleteBook={handleDeleteBook}
+            t={t}
+            limit={limit}
+            count={count}
+            page={page}
+            changePage={changePage}
+            changeRowsPerPage={changeRowsPerPage}
+            onBooksSearch={onSearch}
+          />
         </div>
       </Layout>
       <AddBookModal
         isOpen={isOpenAddBookModal}
         onClose={closeAddBookModalHandler}
+      />
+      <EditBookModal
+        id={bookId}
+        isOpen={isOpenEditBookModal}
+        onClose={closeEditBookModal}
+      />
+      <DeleteBookModal
+        isOpen={isOpenDeleteBookModal}
+        onClose={closeDeleteBookModal}
+        id={bookId}
       />
     </>
   );

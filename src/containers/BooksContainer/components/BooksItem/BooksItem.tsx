@@ -3,12 +3,15 @@ import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons';
 import { PermissionComponent } from '../../../../components';
 import { ACTIONS, MODULES } from '../../../../constants/permissions';
-import { CategoriesItemTable } from '../../../../interfaces/categoriesInterfaces';
+import { BooksItemTable } from '../../../../interfaces/booksInterfaces';
+import { fileHelpers, translateHelpers } from '../../../../utils/helpers';
 
-const CategoriesItem: React.FC<CategoriesItemTable> = ({
-  id, title, shortDescription, description, author,
-  handleEditCategory, handleDeleteCategory,
-}: CategoriesItemTable) => (
+const DOWNLOAD_LINK_TEXT = 'Download';
+
+const BooksItem: React.FC<BooksItemTable> = ({
+  id, title, shortDescription, year, city, file, category,
+  handleEditBook, handleDeleteBook,
+}: BooksItemTable) => (
   <TableRow key={id}>
     <TableCell component="td">
       {id}
@@ -20,15 +23,27 @@ const CategoriesItem: React.FC<CategoriesItemTable> = ({
       {shortDescription}
     </TableCell>
     <TableCell component="td">
-      {description}
+      {year}
     </TableCell>
     <TableCell component="td">
-      {author}
+      {city}
+    </TableCell>
+    <TableCell component="td">
+      {category}
+    </TableCell>
+    <TableCell component="td">
+      <a
+        className="download__link"
+        href={fileHelpers.getLinkForDownloadBook(file)}
+        download
+      >
+        {translateHelpers.t(`${DOWNLOAD_LINK_TEXT}`, 'common')}
+      </a>
     </TableCell>
     <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.CATEGORIES}>
+      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.BOOKS}>
         <IconButton
-          onClick={() => handleEditCategory(id)}
+          onClick={() => handleEditBook(id)}
           type="button"
           aria-label="edit"
         >
@@ -37,9 +52,9 @@ const CategoriesItem: React.FC<CategoriesItemTable> = ({
       </PermissionComponent>
     </TableCell>
     <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.CATEGORIES}>
+      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.BOOKS}>
         <IconButton
-          onClick={() => handleDeleteCategory(id)}
+          onClick={() => handleDeleteBook(id)}
           type="button"
           aria-label="delete"
         >
@@ -50,4 +65,4 @@ const CategoriesItem: React.FC<CategoriesItemTable> = ({
   </TableRow>
 );
 
-export default memo(CategoriesItem);
+export default memo(BooksItem);

@@ -5,6 +5,7 @@ import { LANGUAGES } from './languages';
 import { SUCCESS_MESSAGES } from './notifications';
 import { CATEGORIES_FIELDS } from './categories';
 import * as permissions from './permissions';
+import { BOOKS_FIELDS } from './books';
 
 export {
   baseUrlApi,
@@ -14,4 +15,5 @@ export {
   SUCCESS_MESSAGES,
   permissions,
   CATEGORIES_FIELDS,
+  BOOKS_FIELDS,
 };
