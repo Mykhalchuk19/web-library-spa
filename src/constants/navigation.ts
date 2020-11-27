@@ -19,4 +19,9 @@ export const NAVIGATION = {
     title: 'Books',
     icon: 'icon-books',
   },
+  AUTHORS: {
+    href: '/authors',
+    title: 'Authors',
+    icon: 'icon-authors',
+  },
 };

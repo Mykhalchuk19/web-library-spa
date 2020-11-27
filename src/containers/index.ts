@@ -7,6 +7,7 @@ import ProfileContainer from './ProfileContainer/ProfileContainer';
 import UsersContainer from './UsersContainer/UsersContainer';
 import CategoriesContainer from './CategoriesContainer/CategoriesContainer';
 import BooksContainer from './BooksContainer/BooksContainer';
+import AuthorsContainer from './AuthorsContainer/AuthorsContainer';
 
 export {
   SignUpForm,
@@ -18,4 +19,5 @@ export {
   CategoriesContainer,
   ActivateAccount,
   BooksContainer,
+  AuthorsContainer,
 };
