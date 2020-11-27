@@ -3,6 +3,7 @@ import { TCategoriesState } from '../interfaces/categoriesInterfaces';
 import { AuthState } from '../interfaces/authInterfaces';
 import { TUiState } from '../interfaces/uiInterfaces';
 import { TBooksState } from '../interfaces/booksInterfaces';
+import { TAuthorsState } from '../interfaces/authorsInterfaces';
 
 export type TStore = {
   // _persist: any,
@@ -11,5 +12,6 @@ export type TStore = {
   categories: TCategoriesState,
   auth: AuthState,
   ui: TUiState,
-  books: TBooksState
+  books: TBooksState,
+  authors: TAuthorsState
 }

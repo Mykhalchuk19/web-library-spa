@@ -11,5 +11,9 @@ export const SUCCESS_MESSAGES = {
   BOOK_SUCCESSFULLY_EDITED: 'Book successfully edited',
   BOOK_SUCCESSFULLY_DELETED: 'Book successfully deleted',
 
+  AUTHOR_SUCCESSFULLY_CREATED: 'Author successfully created',
+  AUTHOR_SUCCESSFULLY_EDITED: 'Author successfully edited',
+  AUTHOR_SUCCESSFULLY_DELETED: 'Author successfully deleted',
+
   VALUES_ARE_IDENTICAL: 'Values are identical',
 };

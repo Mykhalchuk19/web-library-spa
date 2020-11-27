@@ -3,6 +3,7 @@ import * as authenticationRequestHelpers from './authenticationRequestHelpers';
 import * as userRequestHelpers from './userRequestHelpers';
 import * as categoriesRequestHelpers from './categoriesRequestHelpers';
 import * as booksRequestHelpers from './booksRequestHelpers';
+import * as authorsRequestHelpers from './authorsRequestHelpers';
 
 export {
   apiHelpers,
@@ -10,4 +11,5 @@ export {
   userRequestHelpers,
   categoriesRequestHelpers,
   booksRequestHelpers,
+  authorsRequestHelpers,
 };

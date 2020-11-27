@@ -4,6 +4,7 @@ import * as componentInterfaces from './componentInterfaces';
 import * as uiInterfaces from './uiInterfaces';
 import * as authInterfaces from './authInterfaces';
 import * as categoriesInterfaces from './categoriesInterfaces';
+import * as authorsInterfaces from './authorsInterfaces';
 
 export {
   userInterfaces,
@@ -12,4 +13,5 @@ export {
   uiInterfaces,
   authInterfaces,
   categoriesInterfaces,
+  authorsInterfaces,
 };

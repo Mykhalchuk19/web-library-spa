@@ -10,6 +10,7 @@ import categoriesReducer, { categoriesSaga } from './categories';
 import authReducer, { authSaga } from './auth';
 import uiReducer from './ui';
 import booksReducer, { booksSaga } from './books';
+import authorsReducer, { authorsSaga } from './authors';
 import { TStore } from './storeInterfaces';
 
 const rootReducer = (
@@ -21,6 +22,7 @@ const rootReducer = (
   categories: categoriesReducer,
   auth: authReducer,
   books: booksReducer,
+  authors: authorsReducer,
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,func-names
@@ -30,6 +32,7 @@ export const rootSaga = function* () {
     userSaga(),
     categoriesSaga(),
     booksSaga(),
+    authorsSaga(),
   ]);
 };
 
