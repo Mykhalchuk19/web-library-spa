@@ -27,6 +27,7 @@ const useAddBookModal = (onClose: () => void): TBooksModalsHook => {
       series: '',
       category_id: null,
       file: undefined,
+      authors: [],
     },
     validateOnChange: true,
     validationSchema: rules,

@@ -1,6 +1,8 @@
 import { FormikErrors } from 'formik';
 import React from 'react';
 import { TFunction } from 'i18next';
+import { TAuthorItem } from './authorsInterfaces';
+import { TAsyncOption } from './componentInterfaces';
 
 export type TAction = {
     type: string,
@@ -31,8 +33,9 @@ export type TBookItem = {
     created_by: number,
     file: TFile,
     category: TCategory,
-    category_id: null | number | string
+    category_id: null | number | string,
     file_id: null | number | string
+    authors: Array<TAuthorItem> | []
 }
 
 export type TFile = {
@@ -81,11 +84,13 @@ export type TBooksModalView = {
     isSubmitting: boolean,
     handleChange: (e: React.ChangeEvent<any>) => void,
     asyncRequest: any,
+    authorsAutocomplete: any,
     setFieldValue: (
         field: string,
         value: null | number,
         shouldValidate?: (boolean | undefined)
-    ) => null | number
+    ) => null | number,
+    defaultValueForAuthors?: Array<TAsyncOption>
 }
 
 export type TBookValues = {
@@ -101,6 +106,7 @@ export type TBookValues = {
     // eslint-disable-next-line camelcase
     category_id: null | string | number,
     file?: null | File,
+    authors: Array<any>
 }
 
 export type TBookEditValues = TBookValues & {
@@ -120,6 +126,7 @@ export type TBooksModalsHook = {
     handleChange: (e: React.ChangeEvent<any>) => void,
     setFieldValue: (field: string, value: null | number, shouldValidate?: (boolean | undefined)) => null | number
     onCloseHandler: () => void,
+    defaultAuthors?: Array<TAsyncOption>
 }
 
 export type TBooksTable = {

@@ -26,6 +26,7 @@ const getBookById = createSelector(
     file: null,
     category_id: null,
     file_id: null,
+    authors: [],
   },
 );
 

@@ -2,14 +2,20 @@ import { OptionsType, OptionTypeBase } from 'react-select';
 import {
   useCallback, useEffect, useState,
 } from 'react';
+import { isEmpty } from 'ramda';
 import { TAsyncSelectHook, TAsyncSelectHookProps } from '../../../interfaces/componentInterfaces';
 import { translateHelpers } from '../../../utils/helpers';
 
 const defaultObj = { label: translateHelpers.t('None', 'common'), value: null };
 
-const useCustomAsyncSelect = ({ value, asyncRequest }: TAsyncSelectHookProps): TAsyncSelectHook => {
-  const [defaultValue, setDefaultValue] = useState(defaultObj);
-  const [defaultOptions, setDefaultOptions] = useState([defaultValue]);
+// eslint-disable-next-line max-len
+const useCustomAsyncSelect = ({ value, asyncRequest, defaultValueFromProps }: TAsyncSelectHookProps): TAsyncSelectHook => {
+  const correctDefaultValue = defaultValueFromProps || [];
+  // eslint-disable-next-line max-len
+  const [defaultValue, setDefaultValue] = useState(!isEmpty(correctDefaultValue) ? correctDefaultValue : defaultObj);
+  // eslint-disable-next-line max-len
+  console.log(defaultValue);
+  const [defaultOptions, setDefaultOptions] = useState(Array(defaultValue) ? defaultValue : [defaultValue]);
   const autoCompleteRequest = useCallback(
     async (
       inputValue: string,
@@ -33,11 +39,12 @@ const useCustomAsyncSelect = ({ value, asyncRequest }: TAsyncSelectHookProps): T
     inputValue: string,
     callback: (options: OptionsType<OptionTypeBase>) => void,
   ) => {
+    console.log(inputValue);
     await callback(await autoCompleteRequest(inputValue));
   };
 
   const getDefaultValue = useCallback(async () => {
-    if (value) {
+    if (value && !Array(value)) {
       const options = await autoCompleteRequest('', value);
       setDefaultValue(options[0]);
     }
@@ -55,6 +62,7 @@ const useCustomAsyncSelect = ({ value, asyncRequest }: TAsyncSelectHookProps): T
   return {
     loadOptions,
     defaultValue,
+    // @ts-ignore
     defaultOptions,
   };
 };

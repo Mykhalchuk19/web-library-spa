@@ -2,7 +2,7 @@ import React from 'react';
 import ModalView from '../ModalView';
 import useAddBookModal from './useAddBookModal';
 import { TBooksModalsProps } from '../../../../interfaces/booksInterfaces';
-import { categoriesRequestHelpers } from '../../../../utils/requestHelpers';
+import { authorsRequestHelpers, categoriesRequestHelpers } from '../../../../utils/requestHelpers';
 
 const AddBookModal:React.FC<TBooksModalsProps> = ({ isOpen, onClose }: TBooksModalsProps) => {
   const {
@@ -26,6 +26,7 @@ const AddBookModal:React.FC<TBooksModalsProps> = ({ isOpen, onClose }: TBooksMod
       handleSubmit={handleSubmit}
       setFieldValue={setFieldValue}
       asyncRequest={categoriesRequestHelpers.autocompleteCategoriesRequest}
+      authorsAutocomplete={authorsRequestHelpers.autocompleteAuthorsRequest}
     />
   );
 };

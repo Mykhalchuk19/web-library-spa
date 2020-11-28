@@ -4,6 +4,7 @@ import { CustomButton, Form, ModalWindow } from '../../../components';
 import { TAsyncOption } from '../../../interfaces/componentInterfaces';
 import { TBooksModalView } from '../../../interfaces/booksInterfaces';
 import './style.sass';
+import { asyncMultiSelectHelper } from '../../../utils/helpers/convertDataHelpers';
 
 const useStyles = makeStyles({
   books_modal__btn: {
@@ -22,6 +23,8 @@ const ModalView:React.FC<TBooksModalView> = ({
   isSubmitting,
   setFieldValue,
   asyncRequest,
+  authorsAutocomplete,
+  defaultValueForAuthors,
 }: TBooksModalView) => {
   const classes = useStyles();
   return (
@@ -118,11 +121,27 @@ const ModalView:React.FC<TBooksModalView> = ({
         </div>
         <div className="books-modal__row">
           <Form.CustomAsyncSelect
+            label="Category"
             id="category_id"
             onChange={(option: TAsyncOption) => setFieldValue('category_id', option.value)}
             value={values.category_id}
             asyncRequest={asyncRequest}
             handleChange={handleChange}
+          />
+        </div>
+        <div className="books-modal__row">
+          <Form.CustomAsyncSelect
+            label="Authors"
+            id="authors"
+            // @ts-ignore
+            onChange={(option, actionInfo) => console.log(option, actionInfo) || setFieldValue('authors', [...asyncMultiSelectHelper(option, actionInfo)])}
+            // @ts-ignore
+            value={values.authors}
+            defaultValue={defaultValueForAuthors}
+            asyncRequest={authorsAutocomplete}
+            handleChange={handleChange}
+            isMulti
+            isClearable
           />
         </div>
         <div className="books-modal__row">

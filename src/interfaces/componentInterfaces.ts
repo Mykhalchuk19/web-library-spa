@@ -32,6 +32,7 @@ export type TPrivateRoute = {
 export type TAsyncSelectHookProps = {
     value: number | null | string,
     asyncRequest: ({ q, id }: { q: string, id?: number | string | null }) => Promise<any>
+    defaultValueFromProps?: Array<TAsyncOption>
 }
 
 export type TAsyncSelectHook = {
@@ -40,17 +41,21 @@ export type TAsyncSelectHook = {
         callback: (
             options: OptionsType<OptionTypeBase>
         ) => void) => void | Promise<any>,
-    defaultValue: TAsyncOption,
+    defaultValue: TAsyncOption | Array<TAsyncOption>,
     defaultOptions: Array<TAsyncOption>
 }
 
 export type TAsyncSelect = {
+    label: string
     handleChange: (e: React.ChangeEvent<any>) => void,
     className?: string,
     value: null | number | string,
     id: string,
-    onChange: (option: any) => number | null | string,
-    asyncRequest: any;
+    onChange: (option: any) => number | null | string | any[],
+    asyncRequest: any,
+    isMulti?: boolean,
+    isClearable?: boolean,
+    defaultValue?: Array<TAsyncOption>
 }
 
 export type TAsyncOption = {

@@ -70,6 +70,7 @@ const ModalView: React.FC<TCategoriesModalView> = ({
         </div>
         <div className="categories-modal__row">
           <Form.CustomAsyncSelect
+            label="Parent category"
             id="parent_id"
             onChange={(option: TAsyncOption) => setFieldValue('parent_id', option.value)}
             value={values.parent_id}

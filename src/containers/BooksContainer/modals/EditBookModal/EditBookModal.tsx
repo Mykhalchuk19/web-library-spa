@@ -2,7 +2,7 @@ import React from 'react';
 import ModalView from '../ModalView';
 import useEditBookModal from './useEditBookModal';
 import { TBooksModalsProps } from '../../../../interfaces/booksInterfaces';
-import { categoriesRequestHelpers } from '../../../../utils/requestHelpers';
+import { authorsRequestHelpers, categoriesRequestHelpers } from '../../../../utils/requestHelpers';
 
 const EditBookModal:React.FC<TBooksModalsProps> = ({ id, isOpen, onClose }: TBooksModalsProps) => {
   const {
@@ -13,6 +13,7 @@ const EditBookModal:React.FC<TBooksModalsProps> = ({ id, isOpen, onClose }: TBoo
     errors,
     isSubmitting,
     onCloseHandler,
+    defaultAuthors,
   } = useEditBookModal(id, onClose);
   return (
     <ModalView
@@ -26,6 +27,8 @@ const EditBookModal:React.FC<TBooksModalsProps> = ({ id, isOpen, onClose }: TBoo
       handleSubmit={handleSubmit}
       setFieldValue={setFieldValue}
       asyncRequest={categoriesRequestHelpers.autocompleteCategoriesRequest}
+      authorsAutocomplete={authorsRequestHelpers.autocompleteAuthorsRequest}
+      defaultValueForAuthors={defaultAuthors}
     />
   );
 };

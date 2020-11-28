@@ -7,7 +7,8 @@ declare global {
 window.debounceState = window.debounceState || { };
 
 type TObject = {
-    [key: string]: number | string | boolean | null | undefined,
+  // eslint-disable-next-line max-len
+    [key: string]: any,
 }
 
 const checkValuesBeforeRequest = (
