@@ -36,6 +36,7 @@ const useEditAuthorModal = (id: number | null | undefined, onClose: () => void):
         PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
         setSubmitting(false);
       } else {
+        console.log(formValues);
         dispatch(authorsActions.authorUpdateRequest({ ...formValues, id: author.id }));
         resetForm();
         onClose();

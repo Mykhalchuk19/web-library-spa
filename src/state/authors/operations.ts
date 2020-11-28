@@ -51,7 +51,7 @@ function* updateAuthor() {
     try {
       const action = yield take(bookTypes.AUTHOR_UPDATE_REQUEST);
       const res = normalizeRequestData(yield call(authorsRequestHelpers.updateAuthorRequest,
-        action.payload.formData, { id: action.payload.id }));
+        { ...action.payload }, { id: action.payload.id }));
       yield put(authorUpdateSuccess({ ...res }));
       yield call(PushNotifications.success, { content: SUCCESS_MESSAGES.AUTHOR_SUCCESSFULLY_EDITED });
     } catch (e) {
