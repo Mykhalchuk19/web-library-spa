@@ -39,6 +39,7 @@ const MODULES = {
   USERS: 'users',
   CATEGORIES: 'categories',
   BOOKS: 'books',
+  AUTHORS: 'authors',
 };
 
 export {
