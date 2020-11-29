@@ -15,13 +15,19 @@ import { SUCCESS_MESSAGES } from '../../../../constants';
 import { TAuthorItem } from '../../../../interfaces/authorsInterfaces';
 import { TAsyncOption } from '../../../../interfaces/componentInterfaces';
 
-const useEditBookModal = (id: number | null | undefined, onClose: () => void): TBooksModalsHook => {
+const useEditBookModal = (
+  id: number | null | undefined,
+  onClose: () => void,
+): TBooksModalsHook => {
   const dispatch = useDispatch();
+
   const book = useSelector((state: TStore) => booksSelectors.getBookById(state, id));
-  const [defaultAuthors, setDefaultAuthors] = useState(useMemo(() => (!isEmpty(book.authors) ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => ({
-    label: `${author.firstname} ${author.lastname}`,
-    value: author.id,
-  })) : [{ label: 'None', value: null }]), [book.authors]));
+
+  const [defaultAuthors, setDefaultAuthors] = useState(useMemo(() => (!isEmpty(book.authors)
+    ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => ({
+      label: `${author.firstname} ${author.lastname}`,
+      value: author.id,
+    })) : [{ label: 'None', value: null }]), [book.authors]));
 
   const initialValues = {
     title: book.title || '',
@@ -34,7 +40,8 @@ const useEditBookModal = (id: number | null | undefined, onClose: () => void): T
     category_id: book.category_id,
     file_id: book.file_id,
     file: undefined,
-    authors: !isEmpty(defaultAuthors) ? (defaultAuthors as Array<TAsyncOption>).map((option: TAsyncOption) => option.value) : [],
+    authors: !isEmpty(defaultAuthors)
+      ? (defaultAuthors as Array<TAsyncOption>).map((option: TAsyncOption) => option.value) : [],
   };
 
   const {
@@ -73,10 +80,11 @@ const useEditBookModal = (id: number | null | undefined, onClose: () => void): T
   }, [onClose, resetForm]);
 
   useEffect(() => {
-    setDefaultAuthors(!isEmpty(book.authors) ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => ({
-      label: `${author.firstname} ${author.lastname}`,
-      value: author.id,
-    })) : [{ label: 'None', value: null }]);
+    setDefaultAuthors(!isEmpty(book.authors)
+      ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => ({
+        label: `${author.firstname} ${author.lastname}`,
+        value: author.id,
+      })) : [{ label: 'None', value: null }]);
   }, [book.authors]);
   return {
     handleSubmit,

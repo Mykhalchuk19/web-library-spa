@@ -13,7 +13,10 @@ const getCategoriesList = createSelector(pathOr({
 const getCategoryById = createSelector(
   (state: TStore) => state.categories.list.categories,
   (_: TStore, categoryId: number | null | undefined) => categoryId,
-  (categories, categoryId) => categories.find((item: TCategoryItem): boolean => item.id === categoryId) || {
+  (
+    categories,
+    categoryId,
+  ) => categories.find((item: TCategoryItem): boolean => item.id === categoryId) || {
     id: null,
     title: '',
     short_description: '',

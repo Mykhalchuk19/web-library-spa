@@ -46,7 +46,10 @@ const userReducer = handleActions<TCategoriesState, string>({
     ...state,
     pending: false,
     list: {
-      categories: [...(state.list.categories as Array<TCategoryItem>).map((item: TCategoryItem): Array<TCategoryItem> => (item.id === action.payload.category.id ? action.payload.category : item))],
+      categories: [...(state.list.categories as Array<TCategoryItem>).map((
+        item: TCategoryItem,
+      ): Array<TCategoryItem> => (item.id === action.payload.category.id
+        ? action.payload.category : item))],
       limit: state.list.limit,
       page: state.list.page,
       count: state.list.count,

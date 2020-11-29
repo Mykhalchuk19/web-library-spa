@@ -37,7 +37,15 @@ const LeftSideBar: React.FC = () => {
             type="button"
             className={classes.leftsidebar_toggle_btn}
           >
-            {!isLeftSideBar ? <ArrowForwardIos className={classes.leftsidebar_toggle_btn_icon} /> : <ArrowBackIos className={classes.leftsidebar_toggle_btn_icon} />}
+            {!isLeftSideBar ? (
+              <ArrowForwardIos
+                className={classes.leftsidebar_toggle_btn_icon}
+              />
+            ) : (
+              <ArrowBackIos
+                className={classes.leftsidebar_toggle_btn_icon}
+              />
+            )}
           </IconButton>
           <Navigation isLeftSideBar={!isLeftSideBar} />
           <div className="left-sidebar__log-out">

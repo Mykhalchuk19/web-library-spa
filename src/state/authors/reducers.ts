@@ -46,7 +46,10 @@ const reducer = handleActions({
     ...state,
     pending: false,
     list: {
-      authors: [...(state.list.authors as Array<TAuthorItem>).map((item: TAuthorItem): Array<TAuthorItem> => (item.id === action.payload.author.id ? action.payload.author : item))],
+      authors: [...(state.list.authors as Array<TAuthorItem>).map((
+        item: TAuthorItem,
+      ): Array<TAuthorItem> => (item.id === action.payload.author.id
+        ? action.payload.author : item))],
       limit: state.list.limit,
       page: state.list.page,
       count: state.list.count,

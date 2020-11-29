@@ -19,7 +19,11 @@ const useStyles = makeStyles({
   },
 });
 
-const DeleteUserModal: React.FC<TDeleteUserModal> = ({ userId, closeDeleteModal, isOpen }: TDeleteUserModal) => {
+const DeleteUserModal: React.FC<TDeleteUserModal> = ({
+  userId,
+  closeDeleteModal,
+  isOpen,
+}: TDeleteUserModal) => {
   const { onDeleteUser } = useDeleteUserModal(userId, closeDeleteModal);
   const classes = useStyles();
   return (

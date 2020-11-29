@@ -6,7 +6,10 @@ type TUseDeleteUserModal = {
   onDeleteAuthor: () => void,
 }
 
-const useDeleteAuthorModal = (id: number | null | undefined, onClose: () => void): TUseDeleteUserModal => {
+const useDeleteAuthorModal = (
+  id: number | null | undefined,
+  onClose: () => void,
+): TUseDeleteUserModal => {
   const dispatch = useDispatch();
 
   const onDeleteAuthor = useCallback(() => {

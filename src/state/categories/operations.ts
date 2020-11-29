@@ -52,7 +52,8 @@ function* updateCategory() {
       const res = normalizeRequestData(yield call(categoriesRequestHelpers.updateCategoryRequest,
         { ...action.payload }, { id: action.payload.id }));
       yield put(categoryUpdateSuccess({ ...res }));
-      yield call(PushNotifications.success, { content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_EDITED });
+      yield call(PushNotifications.success,
+        { content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_EDITED });
     } catch (e) {
       yield put(categoryRequestFailure());
       PushNotifications.error({ content: e.response.data.error });

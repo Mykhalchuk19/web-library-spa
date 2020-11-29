@@ -35,7 +35,10 @@ const userReducer = handleActions<UserState, string>({
     ...state,
     pending: false,
     list: {
-      users: [...(state.list.users as Array<UserItem>).map((item: UserItem): Array<UserItem> => (item.id === action.payload.userData.id ? action.payload.userData : item))],
+      users: [...(state.list.users as Array<UserItem>).map((
+        item: UserItem,
+      ): Array<UserItem> => (item.id === action.payload.userData.id
+        ? action.payload.userData : item))],
       limit: state.list.limit,
       page: state.list.page,
       count: state.list.count,

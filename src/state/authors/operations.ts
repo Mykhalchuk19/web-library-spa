@@ -53,7 +53,8 @@ function* updateAuthor() {
       const res = normalizeRequestData(yield call(authorsRequestHelpers.updateAuthorRequest,
         { ...action.payload }, { id: action.payload.id }));
       yield put(authorUpdateSuccess({ ...res }));
-      yield call(PushNotifications.success, { content: SUCCESS_MESSAGES.AUTHOR_SUCCESSFULLY_EDITED });
+      yield call(PushNotifications.success,
+        { content: SUCCESS_MESSAGES.AUTHOR_SUCCESSFULLY_EDITED });
     } catch (e) {
       yield put(authorRequestFailure());
       PushNotifications.error({ content: e.response.data.error });

@@ -19,7 +19,11 @@ const useStyles = makeStyles({
   },
 });
 
-const DeleteAuthorModal: React.FC<TAuthorsModalsProps> = ({ id, onClose, isOpen }: TAuthorsModalsProps) => {
+const DeleteAuthorModal: React.FC<TAuthorsModalsProps> = ({
+  id,
+  onClose,
+  isOpen,
+}: TAuthorsModalsProps) => {
   const { onDeleteAuthor } = useDeleteAuthorModal(id, onClose);
   const classes = useStyles();
   return (

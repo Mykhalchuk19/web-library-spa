@@ -23,6 +23,10 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-console": "off",
+    "camelcase": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

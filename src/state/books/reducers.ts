@@ -58,7 +58,9 @@ const reducer = handleActions({
     ...state,
     pending: false,
     list: {
-      books: [...(state.list.books as Array<TBookItem>).map((item: TBookItem): Array<TBookItem> => (item.id === action.payload.book.id ? action.payload.book : item))],
+      books: [...(state.list.books as Array<TBookItem>).map((
+        item: TBookItem,
+      ): Array<TBookItem> => (item.id === action.payload.book.id ? action.payload.book : item))],
       limit: state.list.limit,
       page: state.list.page,
       count: state.list.count,

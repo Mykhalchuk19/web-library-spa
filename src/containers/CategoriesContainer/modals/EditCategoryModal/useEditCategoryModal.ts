@@ -9,7 +9,10 @@ import { checkValuesBeforeRequest } from '../../../../utils/helpers/commonHelper
 import PushNotifications from '../../../../utils/helpers/pushNotifications';
 import { SUCCESS_MESSAGES } from '../../../../constants';
 
-const useEditCategoryModal = (id: number | null | undefined, onClose: () => void): TCategoriesModalsHook => {
+const useEditCategoryModal = (
+  id: number | null | undefined,
+  onClose: () => void,
+): TCategoriesModalsHook => {
   const dispatch = useDispatch();
   const category = useSelector((state: TStore) => categoriesSelectors.getCategoryById(state, id));
 

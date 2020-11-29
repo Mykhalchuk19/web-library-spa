@@ -1,8 +1,6 @@
 import React from 'react';
 import { FormikErrors } from 'formik';
 import { TFunction } from 'i18next';
-import { FormikState } from 'formik/dist/types';
-import { TBookValues } from './booksInterfaces';
 
 export type TCategoriesState = {
    pending: boolean,
@@ -55,7 +53,11 @@ export type TCategoriesModalView = {
     isSubmitting: boolean,
     handleChange: (e: React.ChangeEvent<any>) => void,
     asyncRequest: any,
-    setFieldValue: (field: string, value: null | number, shouldValidate?: (boolean | undefined)) => null | number
+    setFieldValue: (
+      field: string,
+      value: null | number,
+      shouldValidate?: (boolean | undefined)
+    ) => null | number
 }
 
 export type TCategoriesModalViewRules = {
@@ -74,7 +76,11 @@ export type TCategoriesModalsHook = {
     values: TCategoriesValues,
     isSubmitting: boolean,
     handleChange: (e: React.ChangeEvent<any>) => void,
-    setFieldValue: (field: string, value: null | number, shouldValidate?: (boolean | undefined)) => null | number
+    setFieldValue: (
+      field: string,
+      value: null | number,
+      shouldValidate?: (boolean | undefined)
+    ) => null | number
     onCloseHandler: () => void,
 
 }

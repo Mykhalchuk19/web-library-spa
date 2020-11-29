@@ -6,7 +6,10 @@ type TUseDeleteUserModal = {
   onDeleteCategory: () => void,
 }
 
-const useDeleteCategoryModal = (id: number | null | undefined, onClose: () => void): TUseDeleteUserModal => {
+const useDeleteCategoryModal = (
+  id: number | null | undefined,
+  onClose: () => void,
+): TUseDeleteUserModal => {
   const dispatch = useDispatch();
 
   const onDeleteCategory = useCallback(() => {

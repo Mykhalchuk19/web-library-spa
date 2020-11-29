@@ -9,7 +9,10 @@ import { checkValuesBeforeRequest } from '../../../../utils/helpers/commonHelper
 import PushNotifications from '../../../../utils/helpers/pushNotifications';
 import { SUCCESS_MESSAGES } from '../../../../constants';
 
-const useEditAuthorModal = (id: number | null | undefined, onClose: () => void): TAuthorsModalsHook => {
+const useEditAuthorModal = (
+  id: number | null | undefined,
+  onClose: () => void,
+): TAuthorsModalsHook => {
   const dispatch = useDispatch();
   const author = useSelector((state: TStore) => authorsSelectors.getAuthorById(state, id));
 

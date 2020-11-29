@@ -15,6 +15,7 @@ const Categories = lazy(() => import('../../pages/Categories/Categories'));
 const Books = lazy(() => import('../../pages/Books/Books'));
 const Authors = lazy(() => import('../../pages/Authors/Authors'));
 const InfoOfBook = lazy(() => import('../../pages/InfoOfBook/InfoOfBook'));
+const Guide = lazy(() => import('../../pages/Guide/Guide'));
 
 const Routing: React.FC = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const Routing: React.FC = () => {
       <Switch>
         <Route exact strict path="/:url" render={fixUrl} />
         <Route path="/auth/" component={Auth} />
+        <PrivateRoute exact path="/guide" component={Guide} />
         <PrivateRoute exact path="/authors" component={Authors} />
         <PrivateRoute exact path="/books" component={Books} />
         <PrivateRoute exact path="/books/:id" component={InfoOfBook} />

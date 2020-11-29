@@ -1,10 +1,10 @@
 import React from 'react';
+import { isEmpty } from 'ramda';
 import Layout from '../Layout/Layout';
 import useInfoOfBook from './useInfoOfBook';
 import { fileHelpers, translateHelpers, convertDataHelpers } from '../../utils/helpers';
 import { TAuthorItem } from '../../interfaces/authorsInterfaces';
 import './style.sass';
-import { isEmpty } from 'ramda';
 
 const { convertEmptyValueForShow } = convertDataHelpers;
 
@@ -64,8 +64,15 @@ const InfoOfBookContainer: React.FC = () => {
               {t('Authors')}
               :
             </span>
-            { !isEmpty(book.authors) ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => (
-              <li className="book__item-authors" key={author.id}>{`${author.firstname} ${author.lastname}`}</li>
+            { !isEmpty(book.authors) ? (book.authors as Array<TAuthorItem>).map((
+              author: TAuthorItem,
+            ) => (
+              <li
+                className="book__item-authors"
+                key={author.id}
+              >
+                {`${author.firstname} ${author.lastname}`}
+              </li>
             )) : t('No authors have been added to this book yet')}
           </ul>
           <a

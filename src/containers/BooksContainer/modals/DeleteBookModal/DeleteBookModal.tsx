@@ -19,7 +19,11 @@ const useStyles = makeStyles({
   },
 });
 
-const DeleteBookModal: React.FC<TBooksModalsProps> = ({ id, onClose, isOpen }: TBooksModalsProps) => {
+const DeleteBookModal: React.FC<TBooksModalsProps> = ({
+  id,
+  onClose,
+  isOpen,
+}: TBooksModalsProps) => {
   const { onDeleteBook } = useDeleteBookModal(id, onClose);
   const classes = useStyles();
   return (

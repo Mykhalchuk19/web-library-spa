@@ -19,7 +19,11 @@ const useStyles = makeStyles({
   },
 });
 
-const DeleteCategoryModal: React.FC<TCategoriesModalsProps> = ({ id, onClose, isOpen }: TCategoriesModalsProps) => {
+const DeleteCategoryModal: React.FC<TCategoriesModalsProps> = ({
+  id,
+  onClose,
+  isOpen,
+}: TCategoriesModalsProps) => {
   const { onDeleteCategory } = useDeleteCategoryModal(id, onClose);
   const classes = useStyles();
   return (
