@@ -79,13 +79,23 @@ export type TAuthorsItemTable = {
   id?: number,
   firstname?: string,
   lastname?: string,
+  books: Array<TBookItem>,
   handleEditAuthor: (id?: number) => void,
   handleDeleteAuthor: (id?: number) => void,
 }
 
-export type TAuthorForMapItem = Pick<TAuthorItem, 'id' | 'firstname' | 'lastname'>
+export type TBookItem = {
+  id: number,
+  title: string
+}
 
-export type TAuthorForShowItem = Pick<TAuthorItem, 'id' | 'firstname' | 'lastname'>
+export type TAuthorForMapItem = Pick<TAuthorItem, 'id' | 'firstname' | 'lastname'> & {
+  books: Array<TBookItem>
+}
+
+export type TAuthorForShowItem = Pick<TAuthorItem, 'id' | 'firstname' | 'lastname'> & {
+  books: Array<TBookItem>
+}
 
 export type TUseAuthors = {
   isOpenCreateAuthorModal: boolean,

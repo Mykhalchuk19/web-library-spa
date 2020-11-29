@@ -23,10 +23,12 @@ const useAuthors = (): TUseAuthors => {
         id,
         firstname,
         lastname,
+        books,
       }: TAuthorForMapItem) => ({
         id: convertEmptyValueForShow(id),
         firstname: convertEmptyValueForShow(firstname),
         lastname: convertEmptyValueForShow(lastname),
+        books: books || [],
       }))
       .slice(page * limit, page * limit + limit),
     [authors, limit, page],

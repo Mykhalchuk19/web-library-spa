@@ -8,6 +8,7 @@ import UsersContainer from './UsersContainer/UsersContainer';
 import CategoriesContainer from './CategoriesContainer/CategoriesContainer';
 import BooksContainer from './BooksContainer/BooksContainer';
 import AuthorsContainer from './AuthorsContainer/AuthorsContainer';
+import InfoOfBookContainer from './InfoOfBookContainer/InfoOfBookContainer';
 
 export {
   SignUpForm,
@@ -20,4 +21,5 @@ export {
   ActivateAccount,
   BooksContainer,
   AuthorsContainer,
+  InfoOfBookContainer,
 };

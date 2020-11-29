@@ -30,6 +30,7 @@ const useBooks = (): TUseBooks => {
         edition,
         file,
         category,
+        authors,
       }: TBookForMap) => ({
         id: convertEmptyValueForShow(id),
         title: convertEmptyValueForShow(title),
@@ -39,6 +40,7 @@ const useBooks = (): TUseBooks => {
         edition: convertEmptyValueForShow(edition),
         file: file.filename,
         category: category ? category.title : convertEmptyValueForShow(' '),
+        authors: authors.map((author) => `${author.firstname} ${author.lastname}`),
       }))
       .slice(page * limit, page * limit + limit),
     [books, limit, page],

@@ -19,10 +19,11 @@ export const CustomAsyncSelect: React.FC<TAsyncSelect> = ({
     loadOptions,
     defaultValue,
     defaultOptions,
+    t,
   } = useCustomAsyncSelect({ value, asyncRequest, defaultValueFromProps });
   return (
     <div>
-      <label className="async-select__label" htmlFor={id}>{label}</label>
+      <label className="async-select__label" htmlFor={id}>{t(label)}</label>
       <AsyncReactSelect
         id={id}
         loadOptions={loadOptions}

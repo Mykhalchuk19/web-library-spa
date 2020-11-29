@@ -25,6 +25,10 @@ export const BOOKS_FIELDS = [
   },
   {
     id: 7,
+    field: 'Authors',
+  },
+  {
+    id: 8,
     field: 'Link',
   },
 ];

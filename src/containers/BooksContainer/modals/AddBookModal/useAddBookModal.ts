@@ -5,11 +5,14 @@ import { TBookValues, TBooksModalsHook } from '../../../../interfaces/booksInter
 import { booksActions } from '../../../../state/books';
 import rules from '../rules';
 import { createFormData } from '../../../../utils/helpers/fileHelpers';
+import { translateHelpers } from '../../../../utils/helpers';
+
+const NONE = translateHelpers.t('None', 'common');
 
 const useAddBookModal = (onClose: () => void): TBooksModalsHook => {
   const dispatch = useDispatch();
 
-  const [defaultAuthors, setDefaultAuthors] = useState([{ label: 'None', value: null }]);
+  const [defaultAuthors, setDefaultAuthors] = useState([{ label: NONE, value: null }]);
   const {
     handleSubmit,
     values,

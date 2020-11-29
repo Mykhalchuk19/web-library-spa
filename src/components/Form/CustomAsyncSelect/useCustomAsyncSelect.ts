@@ -3,6 +3,7 @@ import {
   useCallback, useEffect, useState,
 } from 'react';
 import { isEmpty } from 'ramda';
+import { useTranslation } from 'react-i18next';
 import { TAsyncSelectHook, TAsyncSelectHookProps } from '../../../interfaces/componentInterfaces';
 import { translateHelpers } from '../../../utils/helpers';
 
@@ -13,6 +14,7 @@ const useCustomAsyncSelect = ({
   asyncRequest,
   defaultValueFromProps,
 }: TAsyncSelectHookProps): TAsyncSelectHook => {
+  const { t } = useTranslation('common');
   const correctDefaultValue = defaultValueFromProps || [];
 
   const [defaultValue, setDefaultValue] = useState(!isEmpty(correctDefaultValue)
@@ -67,6 +69,7 @@ const useCustomAsyncSelect = ({
     loadOptions,
     defaultValue,
     defaultOptions,
+    t,
   };
 };
 

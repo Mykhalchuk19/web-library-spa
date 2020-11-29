@@ -38,6 +38,18 @@ const reducer = handleActions({
       page: action.payload.page,
     },
   }),
+  [bookTypes.BOOK_GET_REQUEST]: (state) => ({
+    ...state,
+    pending: true,
+  }),
+  [bookTypes.BOOK_GET_SUCCESS]: (state, action: TAction) => ({
+    ...state,
+    pending: false,
+    list: {
+      ...state.list,
+      books: [action.payload.book],
+    },
+  }),
   [bookTypes.BOOK_UPDATE_REQUEST]: (state) => ({
     ...state,
     pending: true,

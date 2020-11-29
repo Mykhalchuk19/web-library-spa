@@ -4,6 +4,8 @@ import bookTypes from './types';
 export const {
   bookCreateRequest,
   bookCreateSuccess,
+  bookGetRequest,
+  bookGetSuccess,
   booksGetRequest,
   booksGetSuccess,
   bookUpdateRequest,
@@ -14,6 +16,8 @@ export const {
 } = createActions(
   bookTypes.BOOK_CREATE_REQUEST,
   bookTypes.BOOK_CREATE_SUCCESS,
+  bookTypes.BOOK_GET_REQUEST,
+  bookTypes.BOOK_GET_SUCCESS,
   bookTypes.BOOKS_GET_REQUEST,
   bookTypes.BOOKS_GET_SUCCESS,
   bookTypes.BOOK_UPDATE_REQUEST,

@@ -9,6 +9,7 @@ import {
   booksGetSuccess,
   bookDeleteSuccess,
   bookUpdateSuccess,
+  bookGetSuccess,
 } from './actions';
 import { normalizeRequestData } from '../../utils/requestHelpers/api';
 import { booksRequestHelpers } from '../../utils/requestHelpers';
@@ -28,6 +29,18 @@ function* addBook() {
       yield put(bookRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }
+  }
+}
+
+function* getBook() {
+  try {
+    const action = yield take(bookTypes.BOOK_GET_REQUEST);
+    const res = normalizeRequestData(yield call(booksRequestHelpers.getBook,
+      {}, { id: action.payload.id }));
+    yield put(bookGetSuccess({ ...res }));
+  } catch (e) {
+    yield put(bookRequestFailure());
+    PushNotifications.error({ content: e.response.data.error });
   }
 }
 
@@ -80,6 +93,7 @@ function* deleteBook() {
 export default function* (): Generator {
   yield fork(addBook);
   yield fork(getBooks);
+  yield fork(getBook);
   yield fork(deleteBook);
   yield fork(editBook);
 }

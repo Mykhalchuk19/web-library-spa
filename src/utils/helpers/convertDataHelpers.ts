@@ -2,13 +2,15 @@ import { isEmpty, isNil } from 'ramda';
 import { t } from './translate';
 import { TAsyncOption } from '../../interfaces/componentInterfaces';
 
+const NONE = t('None', 'common');
+
 export const createFullName = (
   firstname: string,
   lastname: string,
 ): string => `${firstname} ${lastname}`;
 
 export const convertEmptyValueForShow = (
-  value: string | number | null,
+  value?: string | number | null,
 ): any => {
   if (typeof value === 'string' && isEmpty(value.trim())) return t('N/A', 'common');
   if (isEmpty(value) || isNil(value)) return t('N/A', 'common');
@@ -53,15 +55,15 @@ export const asyncMultiSelectHelper = (
   actionInfo: TActionInfo,
 ): Array<TAsyncOption> => {
   if (actionInfo.action === selectActions.CLEAR) {
-    return [{ label: 'None', value: null }];
+    return [{ label: NONE, value: null }];
   }
   if (actionInfo
     && actionInfo.action === selectActions.SELECT_OPTION
     && actionInfo.option
     && actionInfo.option.value == null) {
-    return [{ label: 'None', value: null }];
+    return [{ label: NONE, value: null }];
   }
-  if (option === null) return [{ label: 'None', value: null }];
+  if (option === null) return [{ label: NONE, value: null }];
 
   return [...option.filter((opt: TAsyncOption) => opt.value !== null)];
 };

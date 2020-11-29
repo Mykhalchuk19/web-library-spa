@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { OptionsType, OptionTypeBase } from 'react-select';
+import { TFunction } from 'i18next';
 
 export type Button = {
     type?: 'submit' | 'reset' | 'button';
@@ -42,7 +43,8 @@ export type TAsyncSelectHook = {
             options: OptionsType<OptionTypeBase>
         ) => void) => void | Promise<any>,
     defaultValue: any,
-    defaultOptions: any
+    defaultOptions: any,
+    t: TFunction
 }
 
 export type TAsyncSelect = {

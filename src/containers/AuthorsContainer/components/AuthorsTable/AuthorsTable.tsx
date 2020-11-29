@@ -55,13 +55,14 @@ const AuthorsTable: React.FC<TAuthorsTable> = ({
         <TableBody>
           {
           authorsForShow.map(({
-            id, firstname, lastname,
+            id, firstname, lastname, books,
           }) => (
             <AuthorsItem
               key={id}
               id={id}
               firstname={firstname}
               lastname={lastname}
+              books={books}
               handleEditAuthor={handleEditAuthor}
               handleDeleteAuthor={handleDeleteAuthor}
             />
@@ -77,7 +78,7 @@ const AuthorsTable: React.FC<TAuthorsTable> = ({
               page={page}
               onChangePage={changePage}
               onChangeRowsPerPage={changeRowsPerPage}
-              colSpan={5}
+              colSpan={7}
               ActionsComponent={AuthorsPagination}
             />
           </TableRow>

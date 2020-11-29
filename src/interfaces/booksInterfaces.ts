@@ -36,7 +36,7 @@ export type TBookItem = {
     category: TCategory,
     category_id: null | number | string,
     file_id: null | number | string
-    authors: Array<TAuthorItem> | []
+    authors: Array<TAuthorItem> | any[] | []
 }
 
 export type TFile = {
@@ -68,11 +68,13 @@ export type TUseBooks = {
 export type TBookForMap = Pick<TBookItem, 'id' | 'title' | 'short_description' | 'year' | 'city' | 'edition'> & {
     file: TFile,
     category: TCategory,
+    authors: Array<TAuthorItem>
 }
 
 export type TBookForShowItem = Pick<TBookItem, 'id' | 'title' | 'short_description' | 'year' | 'city' | 'edition'> & {
-     file: string
-     category: string,
+   file: string
+   category: string,
+   authors: Array<string>
 }
 
 export type TBooksModalView = {
@@ -151,6 +153,7 @@ export type BooksItemTable = {
     city?: string,
     file?: string,
     category?: string,
+    authors: Array<string>
     handleEditBook: (id?: number) => void,
     handleDeleteBook: (id?: number) => void,
 }
@@ -159,4 +162,26 @@ export type TBooksModalsProps = {
     id?: number | null
     isOpen: boolean,
     onClose: () => void,
+}
+
+export type TDefaultBookItem = {
+    id: null,
+    title: string,
+    short_description: string,
+    publishing_house: string,
+    year: string,
+    city: string,
+    edition: string,
+    series: string,
+    created_by: string,
+    file?: null,
+    category_id: null,
+    file_id: null,
+    authors: any[],
+    category?: null
+}
+
+export type TUseInfoOfBook = {
+    book: TBookItem | TDefaultBookItem,
+    t: TFunction
 }

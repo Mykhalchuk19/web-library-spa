@@ -58,5 +58,13 @@
   "Year": "Year",
   "City": "City",
   "Category": "Category",
-  "Link": "Link"
+  "Link": "Link",
+  "Detail info": "Detail info",
+  "Publishing house": "Publishing house",
+  "Edition": "Edition",
+  "Series": "Series",
+  "File": "File",
+  "Authors": "Authors",
+  "Create author": "Create author",
+  "No authors have been added to this book yet": "No authors have been added to this book yet"
 }

@@ -38,7 +38,7 @@ const BooksTable: React.FC<TBooksTable> = ({
               {t(field)}
             </TableCell>
           ))}
-          <TableCell colSpan={2}>
+          <TableCell colSpan={3}>
             <Form.CustomInput
               id="books-search"
               label={t('Search')}
@@ -55,7 +55,7 @@ const BooksTable: React.FC<TBooksTable> = ({
         <TableBody>
           {
           booksForShow.map(({
-            id, title, short_description: shortDescription, year, city, file, category,
+            id, title, short_description: shortDescription, year, city, file, category, authors,
           }) => (
             <BooksItem
               key={id}
@@ -66,6 +66,7 @@ const BooksTable: React.FC<TBooksTable> = ({
               city={city}
               file={file}
               category={category}
+              authors={authors}
               handleEditBook={handleEditBook}
               handleDeleteBook={handleDeleteBook}
             />
@@ -81,7 +82,7 @@ const BooksTable: React.FC<TBooksTable> = ({
               page={page}
               onChangePage={changePage}
               onChangeRowsPerPage={changeRowsPerPage}
-              colSpan={9}
+              colSpan={11}
               ActionsComponent={BooksPagination}
             />
           </TableRow>

@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 import { PermissionComponent } from '../../../../components';
 import { ACTIONS, MODULES } from '../../../../constants/permissions';
 import { BooksItemTable } from '../../../../interfaces/booksInterfaces';
@@ -9,7 +10,7 @@ import { fileHelpers, translateHelpers } from '../../../../utils/helpers';
 const DOWNLOAD_LINK_TEXT = 'Download';
 
 const BooksItem: React.FC<BooksItemTable> = ({
-  id, title, shortDescription, year, city, file, category,
+  id, title, shortDescription, year, city, file, category, authors,
   handleEditBook, handleDeleteBook,
 }: BooksItemTable) => (
   <TableRow key={id}>
@@ -32,6 +33,14 @@ const BooksItem: React.FC<BooksItemTable> = ({
       {category}
     </TableCell>
     <TableCell component="td">
+      {authors.map((author) => (
+        <>
+          <span>{author}</span>
+          <br />
+        </>
+      ))}
+    </TableCell>
+    <TableCell component="td">
       <a
         className="download__link"
         href={fileHelpers.getLinkForDownloadBook(file)}
@@ -39,6 +48,14 @@ const BooksItem: React.FC<BooksItemTable> = ({
       >
         {translateHelpers.t(`${DOWNLOAD_LINK_TEXT}`, 'common')}
       </a>
+    </TableCell>
+    <TableCell component="td">
+      <Link
+        className="grid__link"
+        to={`/books/${id}`}
+      >
+        {translateHelpers.t('Detail info', 'common')}
+      </Link>
     </TableCell>
     <TableCell component="td" colSpan={0.5}>
       <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.BOOKS}>
