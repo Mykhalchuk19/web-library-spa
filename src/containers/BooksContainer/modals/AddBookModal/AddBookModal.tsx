@@ -13,6 +13,8 @@ const AddBookModal:React.FC<TBooksModalsProps> = ({ isOpen, onClose }: TBooksMod
     errors,
     isSubmitting,
     onCloseHandler,
+    defaultAuthors,
+    setAuthors,
   } = useAddBookModal(onClose);
   return (
     <ModalView
@@ -27,6 +29,8 @@ const AddBookModal:React.FC<TBooksModalsProps> = ({ isOpen, onClose }: TBooksMod
       setFieldValue={setFieldValue}
       asyncRequest={categoriesRequestHelpers.autocompleteCategoriesRequest}
       authorsAutocomplete={authorsRequestHelpers.autocompleteAuthorsRequest}
+      defaultValueForAuthors={defaultAuthors}
+      setAuthors={setAuthors}
     />
   );
 };

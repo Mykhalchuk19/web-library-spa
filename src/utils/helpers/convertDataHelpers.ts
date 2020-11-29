@@ -27,13 +27,41 @@ enum selectActions {
   SELECT_OPTION = 'select-option'
 }
 
-export const asyncMultiSelectHelper = (option: Array<TAsyncOption> | null, actionInfo: TActionInfo): Array<number | null> => {
+export const asyncMultiSelectHelperForValues = (
+  option: Array<TAsyncOption> | null,
+  actionInfo: TActionInfo,
+): Array<number | null> => {
   if (actionInfo.action === selectActions.CLEAR) {
     return [null];
   }
-  if (actionInfo && actionInfo.action === selectActions.SELECT_OPTION && actionInfo.option && actionInfo.option.value == null) {
+  if (actionInfo
+    && actionInfo.action === selectActions.SELECT_OPTION
+    && actionInfo.option
+    && actionInfo.option.value == null) {
     return [null];
   }
   if (option === null) return [null];
-  return [...option.filter((opt: TAsyncOption) => opt.value !== null).map((opt: TAsyncOption) => opt.value)];
+  return [...option.filter((
+    opt: TAsyncOption,
+  ) => opt.value !== null).map((
+    opt: TAsyncOption,
+  ) => opt.value)];
+};
+
+export const asyncMultiSelectHelper = (
+  option: Array<TAsyncOption> | null,
+  actionInfo: TActionInfo,
+): Array<TAsyncOption> => {
+  if (actionInfo.action === selectActions.CLEAR) {
+    return [{ label: 'None', value: null }];
+  }
+  if (actionInfo
+    && actionInfo.action === selectActions.SELECT_OPTION
+    && actionInfo.option
+    && actionInfo.option.value == null) {
+    return [{ label: 'None', value: null }];
+  }
+  if (option === null) return [{ label: 'None', value: null }];
+
+  return [...option.filter((opt: TAsyncOption) => opt.value !== null)];
 };

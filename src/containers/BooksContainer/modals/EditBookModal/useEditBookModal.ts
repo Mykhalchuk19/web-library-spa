@@ -4,7 +4,7 @@ import {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
 import { isEmpty } from 'ramda';
-import { TBooksModalsHook, TBookEditValues, TBookItem } from '../../../../interfaces/booksInterfaces';
+import { TBooksModalsHook, TBookEditValues } from '../../../../interfaces/booksInterfaces';
 import { booksActions, booksSelectors } from '../../../../state/books';
 import rules from './rules';
 import { createFormData } from '../../../../utils/helpers/fileHelpers';
@@ -13,10 +13,15 @@ import { checkValuesBeforeRequest } from '../../../../utils/helpers/commonHelper
 import PushNotifications from '../../../../utils/helpers/pushNotifications';
 import { SUCCESS_MESSAGES } from '../../../../constants';
 import { TAuthorItem } from '../../../../interfaces/authorsInterfaces';
+import { TAsyncOption } from '../../../../interfaces/componentInterfaces';
 
 const useEditBookModal = (id: number | null | undefined, onClose: () => void): TBooksModalsHook => {
   const dispatch = useDispatch();
   const book = useSelector((state: TStore) => booksSelectors.getBookById(state, id));
+  const [defaultAuthors, setDefaultAuthors] = useState(useMemo(() => (!isEmpty(book.authors) ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => ({
+    label: `${author.firstname} ${author.lastname}`,
+    value: author.id,
+  })) : [{ label: 'None', value: null }]), [book.authors]));
 
   const initialValues = {
     title: book.title || '',
@@ -29,13 +34,8 @@ const useEditBookModal = (id: number | null | undefined, onClose: () => void): T
     category_id: book.category_id,
     file_id: book.file_id,
     file: undefined,
-    authors: !isEmpty(book.authors) ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => author.id) : [],
+    authors: !isEmpty(defaultAuthors) ? (defaultAuthors as Array<TAsyncOption>).map((option: TAsyncOption) => option.value) : [],
   };
-
-  const defaultAuthors = useMemo(() => (!isEmpty(book.authors) ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => ({
-    label: `${author.firstname} ${author.lastname}`,
-    value: author.id,
-  })) : [{ label: 'None', value: null }]), [book.authors]);
 
   const {
     handleSubmit,
@@ -63,16 +63,21 @@ const useEditBookModal = (id: number | null | undefined, onClose: () => void): T
       }
     },
   });
-  const [authors, setAuthors] = useState(values.authors);
-  useEffect(() => {
-    setAuthors(values.authors);
-    console.log(authors);
-  }, [values.authors, authors]);
+  const setAuthors = useCallback((authors) => {
+    setDefaultAuthors(authors);
+  }, []);
 
   const onCloseHandler = useCallback(() => {
     onClose();
     resetForm();
   }, [onClose, resetForm]);
+
+  useEffect(() => {
+    setDefaultAuthors(!isEmpty(book.authors) ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => ({
+      label: `${author.firstname} ${author.lastname}`,
+      value: author.id,
+    })) : [{ label: 'None', value: null }]);
+  }, [book.authors]);
   return {
     handleSubmit,
     handleChange,
@@ -82,6 +87,7 @@ const useEditBookModal = (id: number | null | undefined, onClose: () => void): T
     setFieldValue,
     onCloseHandler,
     defaultAuthors,
+    setAuthors,
   };
 };
 

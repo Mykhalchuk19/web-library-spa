@@ -29,10 +29,11 @@ export const CustomAsyncSelect: React.FC<TAsyncSelect> = ({
         loadOptions={loadOptions}
         onChange={onChange}
         className={`${className} async-select`}
-        value={defaultValue}
-        defaultOptions={defaultOptions}
+        value={isMulti ? defaultValueFromProps : defaultValue}
         isMulti={isMulti}
         isClearable={isClearable}
+        defaultOptions={defaultOptions}
+        defaultValue={defaultValueFromProps}
       />
     </div>
   );

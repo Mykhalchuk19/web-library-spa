@@ -1,6 +1,7 @@
 import { FormikErrors } from 'formik';
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { TFunction } from 'i18next';
+import { Dispatch } from 'redux';
 import { TAuthorItem } from './authorsInterfaces';
 import { TAsyncOption } from './componentInterfaces';
 
@@ -90,7 +91,8 @@ export type TBooksModalView = {
         value: null | number,
         shouldValidate?: (boolean | undefined)
     ) => null | number,
-    defaultValueForAuthors?: Array<TAsyncOption>
+    defaultValueForAuthors?: Array<TAsyncOption>,
+    setAuthors?: (authors: Array<TAsyncOption>) => void
 }
 
 export type TBookValues = {
@@ -126,7 +128,8 @@ export type TBooksModalsHook = {
     handleChange: (e: React.ChangeEvent<any>) => void,
     setFieldValue: (field: string, value: null | number, shouldValidate?: (boolean | undefined)) => null | number
     onCloseHandler: () => void,
-    defaultAuthors?: Array<TAsyncOption>
+    defaultAuthors?: Array<TAsyncOption>,
+    setAuthors?: (authors: Array<TAsyncOption>) => void
 }
 
 export type TBooksTable = {

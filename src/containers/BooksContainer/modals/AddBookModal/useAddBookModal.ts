@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { TBookValues, TBooksModalsHook } from '../../../../interfaces/booksInterfaces';
 import { booksActions } from '../../../../state/books';
 import rules from '../rules';
@@ -8,6 +8,8 @@ import { createFormData } from '../../../../utils/helpers/fileHelpers';
 
 const useAddBookModal = (onClose: () => void): TBooksModalsHook => {
   const dispatch = useDispatch();
+
+  const [defaultAuthors, setDefaultAuthors] = useState([{ label: 'None', value: null }]);
   const {
     handleSubmit,
     values,
@@ -44,6 +46,11 @@ const useAddBookModal = (onClose: () => void): TBooksModalsHook => {
     onClose();
     resetForm();
   }, [onClose, resetForm]);
+
+  const setAuthors = useCallback((authors) => {
+    setDefaultAuthors(authors);
+  }, []);
+
   return {
     handleSubmit,
     handleChange,
@@ -52,6 +59,8 @@ const useAddBookModal = (onClose: () => void): TBooksModalsHook => {
     isSubmitting,
     setFieldValue,
     onCloseHandler,
+    setAuthors,
+    defaultAuthors,
   };
 };
 

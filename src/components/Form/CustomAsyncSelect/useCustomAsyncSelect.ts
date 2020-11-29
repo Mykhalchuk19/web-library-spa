@@ -8,14 +8,19 @@ import { translateHelpers } from '../../../utils/helpers';
 
 const defaultObj = { label: translateHelpers.t('None', 'common'), value: null };
 
-// eslint-disable-next-line max-len
-const useCustomAsyncSelect = ({ value, asyncRequest, defaultValueFromProps }: TAsyncSelectHookProps): TAsyncSelectHook => {
+const useCustomAsyncSelect = ({
+  value,
+  asyncRequest,
+  defaultValueFromProps,
+}: TAsyncSelectHookProps): TAsyncSelectHook => {
   const correctDefaultValue = defaultValueFromProps || [];
-  // eslint-disable-next-line max-len
-  const [defaultValue, setDefaultValue] = useState(!isEmpty(correctDefaultValue) ? correctDefaultValue : defaultObj);
-  // eslint-disable-next-line max-len
-  console.log(defaultValue);
-  const [defaultOptions, setDefaultOptions] = useState(Array(defaultValue) ? defaultValue : [defaultValue]);
+
+  const [defaultValue, setDefaultValue] = useState(!isEmpty(correctDefaultValue)
+    ? correctDefaultValue : defaultObj);
+
+  const [defaultOptions, setDefaultOptions] = useState(Array(defaultValue)
+    ? defaultValue : [defaultValue]);
+
   const autoCompleteRequest = useCallback(
     async (
       inputValue: string,
@@ -39,12 +44,11 @@ const useCustomAsyncSelect = ({ value, asyncRequest, defaultValueFromProps }: TA
     inputValue: string,
     callback: (options: OptionsType<OptionTypeBase>) => void,
   ) => {
-    console.log(inputValue);
     await callback(await autoCompleteRequest(inputValue));
   };
 
   const getDefaultValue = useCallback(async () => {
-    if (value && !Array(value)) {
+    if (value && typeof value === 'number') {
       const options = await autoCompleteRequest('', value);
       setDefaultValue(options[0]);
     }
