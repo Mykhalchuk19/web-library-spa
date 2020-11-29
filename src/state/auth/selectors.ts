@@ -2,7 +2,6 @@ import { createSelector } from 'reselect';
 import { identity, pathOr } from 'ramda';
 
 const getPending = createSelector(pathOr(false, ['auth', 'pending']), identity);
-const getAuthError = createSelector(pathOr(null, ['auth', 'error']), identity);
 const getUserData = createSelector(pathOr({
   id: null,
   username: '',
@@ -18,5 +17,4 @@ export {
   getPending,
   getUserData,
   getMyPermissions,
-  getAuthError,
 };

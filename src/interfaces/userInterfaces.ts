@@ -15,7 +15,7 @@ export type UserItem = {
 // export type UserItem = Partial<UserInitialValues>
 
 export type TUsersList = {
-    users: Array<UserItem> | [],
+    users: Array<UserItem>,
     limit: number,
     page: number,
     count: number,
