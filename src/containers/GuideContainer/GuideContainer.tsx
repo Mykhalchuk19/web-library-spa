@@ -1,7 +1,10 @@
 import React from 'react';
+import Layout from '../Layout/Layout';
 
 const GuideContainer: React.FC = () => (
-  <p> 2343423</p>
+  <Layout>
+    <div className="guide" />
+  </Layout>
 );
 
 export default GuideContainer;

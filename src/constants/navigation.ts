@@ -24,4 +24,9 @@ export const NAVIGATION = {
     title: 'Authors',
     icon: 'icon-authors',
   },
+  GUIDE: {
+    href: '/guide',
+    title: 'Guide',
+    icon: 'icon-guide',
+  },
 };

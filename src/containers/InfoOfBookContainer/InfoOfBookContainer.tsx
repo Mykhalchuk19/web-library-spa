@@ -48,7 +48,7 @@ const InfoOfBookContainer: React.FC = () => {
             {convertEmptyValueForShow(book.edition)}
           </p>
           <p className="book__text book__series">
-            {t('Edition')}
+            {t('Series')}
             :
             {' '}
             {convertEmptyValueForShow(book.series)}
