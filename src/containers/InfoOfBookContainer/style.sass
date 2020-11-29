@@ -12,12 +12,17 @@
     font-family: "Roboto", sans-serif
     font-size: 18px
     color: rgb(34,34,34)
+    +if-sm
+      margin-left: 20px
+      font-size: 14px
   &__text
     margin-bottom: 10px
   &__title
     font-size: 32px
     color: $color-blue
     text-transform: uppercase
+    +if-sm
+      font-size: 20px
   &__short-description
     font-size: 20px
     color: rgb(34,34,34)
