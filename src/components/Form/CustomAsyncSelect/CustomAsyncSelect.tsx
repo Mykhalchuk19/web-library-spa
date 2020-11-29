@@ -5,7 +5,6 @@ import { TAsyncSelect } from '../../../interfaces/componentInterfaces';
 import './style.sass';
 
 export const CustomAsyncSelect: React.FC<TAsyncSelect> = ({
-  handleChange,
   className,
   value,
   id,

@@ -134,15 +134,12 @@ const ModalView:React.FC<TBooksModalView> = ({
           <Form.CustomAsyncSelect
             label="Authors"
             id="authors"
-            // @ts-ignore
             onChange={(option, actionInfo) => {
-              // @ts-ignore
               setFieldValue('authors', [...asyncMultiSelectHelperForValues(option, actionInfo)]);
               if (setAuthors) {
                 setAuthors([...asyncMultiSelectHelper(option, actionInfo)]);
               }
             }}
-            // @ts-ignore
             value={values.authors}
             defaultValue={defaultValueForAuthors}
             asyncRequest={authorsAutocomplete}

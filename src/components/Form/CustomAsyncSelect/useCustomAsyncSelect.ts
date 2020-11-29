@@ -66,7 +66,6 @@ const useCustomAsyncSelect = ({
   return {
     loadOptions,
     defaultValue,
-    // @ts-ignore
     defaultOptions,
   };
 };

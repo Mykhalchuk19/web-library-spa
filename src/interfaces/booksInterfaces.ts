@@ -86,11 +86,7 @@ export type TBooksModalView = {
     handleChange: (e: React.ChangeEvent<any>) => void,
     asyncRequest: any,
     authorsAutocomplete: any,
-    setFieldValue: (
-        field: string,
-        value: null | number,
-        shouldValidate?: (boolean | undefined)
-    ) => null | number,
+    setFieldValue: (field: string, value: any, shouldValidate?: (boolean | undefined)) => any,
     defaultValueForAuthors?: Array<TAsyncOption>,
     setAuthors?: (authors: Array<TAsyncOption>) => void
 }
@@ -126,7 +122,7 @@ export type TBooksModalsHook = {
     values: TBookValues,
     isSubmitting: boolean,
     handleChange: (e: React.ChangeEvent<any>) => void,
-    setFieldValue: (field: string, value: null | number, shouldValidate?: (boolean | undefined)) => null | number
+    setFieldValue: (field: string, value: any, shouldValidate?: (boolean | undefined)) => any
     onCloseHandler: () => void,
     defaultAuthors?: Array<TAsyncOption>,
     setAuthors?: (authors: Array<TAsyncOption>) => void
