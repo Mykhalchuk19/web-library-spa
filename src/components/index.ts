@@ -5,6 +5,7 @@ import Routing from './Routing/Routing';
 import Loader from './Loader/Loader';
 import ModalWindow from './ModalWindow/ModalWindow';
 import PermissionComponent from './PermissionComponent/PermissionComponent';
+import ChangeLanguage from './ChangeLanguage/ChangeLanguage';
 
 export {
   Header,
@@ -14,4 +15,5 @@ export {
   ModalWindow,
   Form,
   PermissionComponent,
+  ChangeLanguage,
 };

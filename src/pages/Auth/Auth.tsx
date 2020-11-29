@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Header } from '../../components';
+import { Header, ChangeLanguage } from '../../components';
 import {
   SignUpForm, SignInForm, ActivateAccount, ForgotPassword, ResetPassword,
 } from '../../containers';
@@ -16,6 +16,7 @@ const Auth: React.FC = () => (
       <Route exact path="/auth/reset-password/:id/:code" component={ResetPassword} />
       <Route path="/" component={SignUpForm} />
     </Switch>
+    <ChangeLanguage />
   </>
 );
 

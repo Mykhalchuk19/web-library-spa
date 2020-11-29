@@ -64,3 +64,7 @@ export type TAsyncOption = {
     label: string,
     value: number | null
 }
+
+export type TChangeLanguage = {
+    changeLanguage: (lng: string) => Promise<void>
+}
