@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     width: '80%',
     maxWidth: '400px',
     display: 'block',
-    margin: '200px auto 0',
+    margin: '100px auto 0',
   },
 });
 

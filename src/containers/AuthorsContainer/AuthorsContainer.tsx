@@ -4,10 +4,11 @@ import useAuthors from './useAuthors';
 import { useGrid } from '../../hooks';
 import { authorsActions } from '../../state/authors';
 import Layout from '../Layout/Layout';
-import { CustomButton } from '../../components';
+import { CustomButton, PermissionComponent } from '../../components';
 import AuthorsTable from './components/AuthorsTable/AuthorsTable';
 import { CreateAuthorModal, DeleteAuthorModal, EditAuthorModal } from './modals';
 import './style.sass';
+import { ACTIONS, MODULES } from '../../constants/permissions';
 
 const useStyles = makeStyles({
   authors_btn_add: {
@@ -46,14 +47,16 @@ const AuthorsContainer: React.FC = () => {
           <div className="authors__header">
             <h2 className="authors__title">{t('Authors')}</h2>
           </div>
-          <div className="authors__row">
-            <CustomButton
-              type="button"
-              text="Create author"
-              className={classes.authors_btn_add}
-              onClick={openCreateAuthorModalHandler}
-            />
-          </div>
+          <PermissionComponent action={ACTIONS.CREATE} module={MODULES.AUTHORS}>
+            <div className="authors__row">
+              <CustomButton
+                type="button"
+                text="Create author"
+                className={classes.authors_btn_add}
+                onClick={openCreateAuthorModalHandler}
+              />
+            </div>
+          </PermissionComponent>
           <AuthorsTable
             authorsForShow={authorsForShow}
             handleEditAuthor={handleEditAuthor}

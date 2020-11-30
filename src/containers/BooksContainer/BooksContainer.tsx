@@ -1,12 +1,13 @@
 import React from 'react';
 import Layout from '../Layout/Layout';
-import { CustomButton } from '../../components';
+import { CustomButton, PermissionComponent } from '../../components';
 import { AddBookModal, EditBookModal, DeleteBookModal } from './modals';
 import './style.sass';
 import useBooks from './useBooks';
 import { useGrid } from '../../hooks';
 import { booksActions } from '../../state/books';
 import BooksTable from './components/BooksTable/BooksTable';
+import { ACTIONS, MODULES } from '../../constants/permissions';
 
 const BooksContainer: React.FC = () => {
   const {
@@ -38,13 +39,15 @@ const BooksContainer: React.FC = () => {
           <div className="books__header">
             <h2 className="books__title">{t('Books')}</h2>
           </div>
-          <div className="books__row">
-            <CustomButton
-              type="button"
-              text="Add book"
-              onClick={openAddBookModalHandler}
-            />
-          </div>
+          <PermissionComponent action={ACTIONS.CREATE} module={MODULES.BOOKS}>
+            <div className="books__row">
+              <CustomButton
+                type="button"
+                text="Add book"
+                onClick={openAddBookModalHandler}
+              />
+            </div>
+          </PermissionComponent>
           <BooksTable
             booksForShow={booksForShow}
             handleEditBook={handleEditBook}

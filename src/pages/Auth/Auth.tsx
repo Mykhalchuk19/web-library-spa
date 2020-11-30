@@ -4,10 +4,14 @@ import { Header, ChangeLanguage } from '../../components';
 import {
   SignUpForm, SignInForm, ActivateAccount, ForgotPassword, ResetPassword,
 } from '../../containers';
+import logo from '../../assets/fisfm.png';
 
 const Auth: React.FC = () => (
   <>
     <Header />
+    <div className="logo__wrapper">
+      <img src={logo} alt="Logo_fitm" className="logo__img" />
+    </div>
     <Switch>
       <Route exact path="/auth/signup/" component={SignUpForm} />
       <Route exact path="/auth/signin/" component={SignInForm} />
