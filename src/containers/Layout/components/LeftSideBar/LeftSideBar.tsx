@@ -56,7 +56,13 @@ const LeftSideBar: React.FC = () => {
             />
           </div>
           <div className="left-sidebar__copyright">
-            <p className="left-sidebar__copyright--text">Created by Mykhalchuk Yaroslav</p>
+            <p className="left-sidebar__copyright--text">
+              ©
+              {' '}
+              <a className="left-sidebar__copyright--link" rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/yaroslavmykhalchuk/">Mykhalchuk Yaroslav</a>
+              {' '}
+              2020
+            </p>
           </div>
           <div className="left-sidebar__languages">
             <IconButton onClick={() => changeLanguage(LANGUAGES.uk)}>
