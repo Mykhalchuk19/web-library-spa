@@ -4,7 +4,7 @@ import { userActions, userSelectors } from '../../../../state/user';
 import { TUserValues, TUseUserEdit } from '../../../../interfaces/userInterfaces';
 import rules from './rules';
 import { TStore } from '../../../../state/storeInterfaces';
-import { checkValuesBeforeRequest } from '../../../../utils/helpers/commonHelpers';
+import { isDifferentValues } from '../../../../utils/helpers/commonHelpers';
 import PushNotifications from '../../../../utils/helpers/pushNotifications';
 import { SUCCESS_MESSAGES } from '../../../../constants';
 
@@ -34,13 +34,13 @@ const useEditUserModal = (id: number | null, closeEditModal: () => void): TUseUs
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      if (checkValuesBeforeRequest(initialValues, formValues)) {
-        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
-        setSubmitting(false);
-      } else {
+      if (isDifferentValues(initialValues, formValues)) {
         dispatch(userActions.userUpdateRequest({ ...formValues, id: user.id }));
         setSubmitting(isPending);
         closeEditModal();
+      } else {
+        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
+        setSubmitting(false);
       }
     },
   });

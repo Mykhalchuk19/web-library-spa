@@ -11,10 +11,11 @@ type TObject = {
     [key: string]: any,
 }
 
-const checkValuesBeforeRequest = (
+const isDifferentValues = (
   initialValues: TObject,
   currentValues: TObject,
-): boolean => equals(initialValues, currentValues);
+  needRequest?: boolean,
+): boolean => needRequest || !equals(initialValues, currentValues);
 
 const debounce = (func: () => void, time: number, n: string, needSearch: boolean): void => {
   const name = n || func.name;
@@ -35,6 +36,6 @@ const debounce = (func: () => void, time: number, n: string, needSearch: boolean
 };
 
 export {
-  checkValuesBeforeRequest,
+  isDifferentValues,
   debounce,
 };

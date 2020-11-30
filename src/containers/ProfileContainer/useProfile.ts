@@ -7,7 +7,7 @@ import { authActions, authSelectors } from '../../state/auth';
 import { TUserValues, TUseProfile } from '../../interfaces/userInterfaces';
 import rules from './rules';
 import { permissions, SUCCESS_MESSAGES } from '../../constants';
-import { checkValuesBeforeRequest } from '../../utils/helpers/commonHelpers';
+import { isDifferentValues } from '../../utils/helpers/commonHelpers';
 import PushNotifications from '../../utils/helpers/pushNotifications';
 
 const { ROLES_LIST } = permissions;
@@ -39,11 +39,11 @@ const useProfile = (): TUseProfile => {
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      if (checkValuesBeforeRequest(initialValues, formValues)) {
-        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
-      } else {
+      if (isDifferentValues(initialValues, formValues)) {
         dispatch(authActions.profileUpdateRequest({ ...formValues, id: user.id }));
         setSubmitting(isPending);
+      } else {
+        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
       }
     },
   });

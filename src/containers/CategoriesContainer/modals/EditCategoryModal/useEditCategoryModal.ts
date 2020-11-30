@@ -5,7 +5,7 @@ import { TCategoriesValues, TCategoriesModalsHook } from '../../../../interfaces
 import { categoriesActions, categoriesSelectors } from '../../../../state/categories';
 import rules from '../rules';
 import { TStore } from '../../../../state/storeInterfaces';
-import { checkValuesBeforeRequest } from '../../../../utils/helpers/commonHelpers';
+import { isDifferentValues } from '../../../../utils/helpers/commonHelpers';
 import PushNotifications from '../../../../utils/helpers/pushNotifications';
 import { SUCCESS_MESSAGES } from '../../../../constants';
 
@@ -38,13 +38,13 @@ const useEditCategoryModal = (
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      if (checkValuesBeforeRequest(initialValues, formValues)) {
-        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
-        setSubmitting(false);
-      } else {
+      if (isDifferentValues(initialValues, formValues)) {
         dispatch(categoriesActions.categoryUpdateRequest({ ...formValues, id: category.id }));
         resetForm();
         onClose();
+      } else {
+        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
+        setSubmitting(false);
       }
     },
   });

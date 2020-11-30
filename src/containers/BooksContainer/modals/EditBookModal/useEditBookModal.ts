@@ -9,7 +9,7 @@ import { booksActions, booksSelectors } from '../../../../state/books';
 import rules from './rules';
 import { createFormData } from '../../../../utils/helpers/fileHelpers';
 import { TStore } from '../../../../state/storeInterfaces';
-import { checkValuesBeforeRequest } from '../../../../utils/helpers/commonHelpers';
+import { isDifferentValues } from '../../../../utils/helpers/commonHelpers';
 import PushNotifications from '../../../../utils/helpers/pushNotifications';
 import { SUCCESS_MESSAGES } from '../../../../constants';
 import { TAuthorItem } from '../../../../interfaces/authorsInterfaces';
@@ -23,6 +23,7 @@ const useEditBookModal = (
 
   const book = useSelector((state: TStore) => booksSelectors.getBookById(state, id));
 
+  const [needRequest, setNeedRequest] = useState(false);
   const [defaultAuthors, setDefaultAuthors] = useState(useMemo(() => (!isEmpty(book.authors)
     ? (book.authors as Array<TAuthorItem>).map((author: TAuthorItem) => ({
       label: `${author.firstname} ${author.lastname}`,
@@ -59,19 +60,20 @@ const useEditBookModal = (
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      if (checkValuesBeforeRequest(initialValues, formValues)) {
-        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
-        setSubmitting(false);
-      } else {
+      if (isDifferentValues(initialValues, formValues, needRequest)) {
         const formData = createFormData(formValues);
         dispatch(booksActions.bookUpdateRequest({ formData, id: book.id }));
         onClose();
         resetForm();
+      } else {
+        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
+        setSubmitting(false);
       }
     },
   });
   const setAuthors = useCallback((authors) => {
     setDefaultAuthors(authors);
+    setNeedRequest(true);
   }, []);
 
   const onCloseHandler = useCallback(() => {
@@ -85,6 +87,10 @@ const useEditBookModal = (
         label: `${author.firstname} ${author.lastname}`,
         value: author.id,
       })) : [{ label: 'None', value: null }]);
+
+    return () => {
+      setNeedRequest(false);
+    };
   }, [book.authors]);
   return {
     handleSubmit,

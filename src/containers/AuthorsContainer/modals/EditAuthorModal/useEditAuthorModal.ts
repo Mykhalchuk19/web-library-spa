@@ -5,7 +5,7 @@ import { TAuthorsValues, TAuthorsModalsHook } from '../../../../interfaces/autho
 import { authorsActions, authorsSelectors } from '../../../../state/authors';
 import rules from '../rules';
 import { TStore } from '../../../../state/storeInterfaces';
-import { checkValuesBeforeRequest } from '../../../../utils/helpers/commonHelpers';
+import { isDifferentValues } from '../../../../utils/helpers/commonHelpers';
 import PushNotifications from '../../../../utils/helpers/pushNotifications';
 import { SUCCESS_MESSAGES } from '../../../../constants';
 
@@ -35,14 +35,13 @@ const useEditAuthorModal = (
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      if (checkValuesBeforeRequest(initialValues, formValues)) {
-        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
-        setSubmitting(false);
-      } else {
-        console.log(formValues);
+      if (isDifferentValues(initialValues, formValues)) {
         dispatch(authorsActions.authorUpdateRequest({ ...formValues, id: author.id }));
         resetForm();
         onClose();
+      } else {
+        PushNotifications.info({ content: SUCCESS_MESSAGES.VALUES_ARE_IDENTICAL });
+        setSubmitting(false);
       }
     },
   });
