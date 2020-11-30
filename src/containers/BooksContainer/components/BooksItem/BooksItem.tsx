@@ -34,10 +34,11 @@ const BooksItem: React.FC<BooksItemTable> = ({
     </TableCell>
     <TableCell component="td">
       {authors.map((author) => (
-        <>
+        <div key={author}>
           <span>{author}</span>
           <br />
-        </>
+          <br />
+        </div>
       ))}
     </TableCell>
     <TableCell component="td">
