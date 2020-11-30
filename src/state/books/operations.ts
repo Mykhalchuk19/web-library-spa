@@ -2,6 +2,7 @@ import {
   put, take, call, fork,
 } from 'redux-saga/effects';
 
+import { push } from 'connected-react-router';
 import bookTypes from './types';
 import {
   bookCreateSuccess,
@@ -40,6 +41,7 @@ function* getBook() {
     yield put(bookGetSuccess({ ...res }));
   } catch (e) {
     yield put(bookRequestFailure());
+    yield put(push('/404'));
     PushNotifications.error({ content: e.response.data.error });
   }
 }

@@ -31,6 +31,7 @@ const Routing: React.FC = () => {
         <PrivateRoute exact path="/books/:id" component={InfoOfBook} />
         <PrivateRoute exact path="/categories" component={Categories} />
         <PrivateRoute exact path="/users" component={Users} />
+        <PrivateRoute exact path="/404" component={ErrorPage} />
         <PrivateRoute exact path="/profile" component={Profile} />
         <PrivateRoute exact path="/" component={Profile} />
         <PrivateRoute exact path="*" component={ErrorPage} />
