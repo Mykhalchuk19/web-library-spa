@@ -1,0 +1,9 @@
+{
+  "There are four roles in this application": "У даному додатку є чотири ролі:",
+  "Application consist of seven main sections": "Додаток складається з семи основних складових:",
+  "Detailed information of book": "Детальна інформація про книгу",
+  "User can see authors, categories, other users, also see and download books and update his profile": "Користувач може бачити авторів, категорії, інших користувачів, а також переглядати та завантажувати книги та оновлювати свій профіль.",
+  "Manager can create, update, and delete categories, books, authors, and all other that the user can": "Менеджер може створювати, оновлювати та видаляти категорії, книги, авторів та все інше, що може користувач.",
+  "Admin can update and delete other users and all other that manager can": "Адміністратор може редагувати та видаляти інших користувачів та все інше, що може менеджер",
+  "Super admin can do anything": "Супер адміністратор може робити будь-що в межах додатку"
+}

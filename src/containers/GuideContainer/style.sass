@@ -1,0 +1,38 @@
+@import '../../utils/styles/themes/index'
+
+.guide
+  width: 100%
+  display: flex
+  justify-content: center
+  padding-top: 30px
+  &__wrapper
+    margin-left: 50px
+    width: 100%
+    font-family: "Roboto", sans-serif
+    +if-sm
+      margin-left: 20px
+  &__title
+    text-align: center
+    font-size: 28px
+    text-transform: uppercase
+    color: $color-blue
+    +if-sm
+      font-size: 24px
+  &__list
+    margin-bottom: 10px
+    &--title
+      font-size: 20px
+      color: rgb(34,34,34)
+      +if-sm
+        font-size: 16px
+  &__item
+    font-size: 18px
+    color: rgb(34,34,34)
+    +if-sm
+      font-size: 14px
+  &__text
+    font-size: 20px
+    color: rgb(34,34,34)
+    margin-bottom: 10px
+    +if-sm
+      font-size: 16px

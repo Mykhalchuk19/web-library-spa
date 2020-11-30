@@ -1,18 +1,19 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?p0mcgr');
-  src:  url('fonts/icomoon.eot?p0mcgr#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?p0mcgr') format('truetype'),
-    url('fonts/icomoon.woff?p0mcgr') format('woff'),
-    url('fonts/icomoon.svg?p0mcgr#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?l0ff5g');
+  src:  url('fonts/icomoon.eot?l0ff5g#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?l0ff5g') format('truetype'),
+    url('fonts/icomoon.woff?l0ff5g') format('woff'),
+    url('fonts/icomoon.svg?l0ff5g#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-/*noinspection CssInvalidPropertyValue,CssInvalidPropertyValue*/
 [class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,6 +26,12 @@
 }
 
 .icon-books:before {
+  content: "\e904";
+}
+.icon-guide:before {
+  content: "\e905";
+}
+.icon-authors:before {
   content: "\e903";
 }
 .icon-categories:before {

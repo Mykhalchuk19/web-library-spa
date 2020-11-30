@@ -1,0 +1,9 @@
+{
+  "There are four roles in this application": "There are four roles in this application:",
+  "Application consist of seven main sections": "Application consist of seven main sections:",
+  "Detailed information of book": "Detailed information of book",
+  "User can see authors, categories, other users, also see and download books and update his profile": "User can see authors, categories, other users, also see and download books and update his profile.",
+  "Manager can create, update, and delete categories, books, authors, and all other that the user can": "Manager can create, update, and delete categories, books, authors, and all other that the user can.",
+  "Admin can update and delete other users and all other that manager can": "Admin can update and delete other users and all other that manager can.",
+  "Super admin can do anything": "Super admin can do anything."
+}
