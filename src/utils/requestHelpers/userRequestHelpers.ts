@@ -5,6 +5,7 @@ const updateUserRequest = createRequestApi('put', 'users/');
 const deleteUserRequest = createRequestApi('delete', 'users/');
 const getCurrentUser = createRequestApi('get', 'users/current-user');
 const updateProfile = createRequestApi('put', 'users/profile');
+const avatarUpload = createRequestApi('post', 'users/profile/avatar');
 
 export {
   getUsersListRequest,
@@ -12,4 +13,5 @@ export {
   deleteUserRequest,
   getCurrentUser,
   updateProfile,
+  avatarUpload,
 };

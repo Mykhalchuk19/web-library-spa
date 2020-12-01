@@ -36,5 +36,7 @@
   "Author successfully created": "Author successfully created",
   "Author successfully edited": "Author successfully edited",
   "Author successfully deleted": "Author successfully deleted",
-  "Such author is not exists": "Such author is not exists"
+  "Such author is not exists": "Such author is not exists",
+  "Allow only svg, png, jpg and jpeg formats": "Allow only svg, png, jpg and jpeg formats",
+  "Avatar successfully uploaded": "Avatar successfully uploaded"
 }

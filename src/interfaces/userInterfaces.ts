@@ -10,6 +10,10 @@ export type UserItem = {
     email: string,
     type: number,
     status: 1 | 2 | 3,
+    avatar: null | number | string,
+    file: null | {
+        filename: string,
+    },
 }
 
 // export type UserItem = Partial<UserInitialValues>
@@ -65,7 +69,10 @@ export type TUseProfile = {
     setSubmitting: (isSubmitting: boolean) => void,
     isSubmitting: boolean,
     t: TFunction,
-    labelForRole: string
+    labelForRole: string,
+    setFieldValue: (field: string, value: any, shouldValidate?: (boolean | undefined)) => any,
+    src: string | null,
+    setAvatar: (file: any) => void,
 }
 
 export type TUseUsers = {
@@ -105,6 +112,7 @@ export type UsersItemTable = {
     lastname?: string,
     email?: string,
     status: 1 | 2 | 3,
+    filename?: string,
     handleEditUser: (id?: number) => void,
     handleDeleteUser: (id?: number) => void,
     t: TFunction

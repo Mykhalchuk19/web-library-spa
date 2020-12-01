@@ -36,5 +36,7 @@
   "Author successfully created": "Автор успішно створений",
   "Author successfully edited": "Автор успішно відредагований",
   "Author successfully deleted": "Автор успішно видалений",
-  "Such author is not exists": "Такого автора не існує"
+  "Such author is not exists": "Такого автора не існує",
+  "Allow only svg, png, jpg and jpeg formats": "Дозволені лише svg, png, jpg та jpeg формати",
+  "Avatar successfully uploaded": "Аватар успішно завантажений"
 }

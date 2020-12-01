@@ -55,7 +55,13 @@ const UsersTable: React.FC<TUsersTable> = ({
         <TableBody>
           {
         usersForShow.map(({
-          id, username, firstname, lastname, email, status,
+          id,
+          username,
+          firstname,
+          lastname,
+          email,
+          status,
+          file,
         }) => (
           <UsersItem
             key={id}
@@ -65,6 +71,7 @@ const UsersTable: React.FC<TUsersTable> = ({
             firstname={firstname}
             email={email}
             status={status}
+            filename={file?.filename}
             handleEditUser={handleEditUser}
             handleDeleteUser={handleDeleteUser}
             t={t}

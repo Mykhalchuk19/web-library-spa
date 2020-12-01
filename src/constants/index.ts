@@ -7,6 +7,7 @@ import { CATEGORIES_FIELDS } from './categories';
 import * as permissions from './permissions';
 import { BOOKS_FIELDS } from './books';
 import { AUTHORS_FIELDS } from './authors';
+import { COLORS } from './colors';
 
 export {
   baseUrlApi,
@@ -18,4 +19,5 @@ export {
   CATEGORIES_FIELDS,
   BOOKS_FIELDS,
   AUTHORS_FIELDS,
+  COLORS,
 };

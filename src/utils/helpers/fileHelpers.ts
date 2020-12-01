@@ -12,7 +12,10 @@ const createFormData = (objWithData: TObject): FormData => {
 
 const getLinkForDownloadBook = (filename?: string): string => `${process.env.REACT_APP_API_URL}books/download/${filename}`;
 
+const getLinkForDisplayImage = (filename?: string | null): string | null => (filename ? `${process.env.REACT_APP_API_URL}/${filename}` : null);
+
 export {
   createFormData,
   getLinkForDownloadBook,
+  getLinkForDisplayImage,
 };

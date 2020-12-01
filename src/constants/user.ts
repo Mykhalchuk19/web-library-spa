@@ -5,22 +5,26 @@ export const USER_FIELDS = [
   },
   {
     id: 2,
-    field: 'Username',
+    field: 'Avatar',
   },
   {
     id: 3,
-    field: 'First name',
+    field: 'Username',
   },
   {
     id: 4,
-    field: 'Last name',
+    field: 'First name',
   },
   {
     id: 5,
-    field: 'Email',
+    field: 'Last name',
   },
   {
     id: 6,
+    field: 'Email',
+  },
+  {
+    id: 7,
     field: 'Status',
   },
 ];

@@ -1,10 +1,10 @@
-import React, { memo } from 'react';
+import React, { ChangeEvent, memo } from 'react';
 import {
   isEmpty,
 } from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../Layout/Layout';
-import { Form, CustomButton } from '../../components';
+import { Form, CustomButton, Avatar } from '../../components';
 import useProfile from './useProfile';
 import './style.sass';
 
@@ -25,7 +25,11 @@ const ProfileContainer: React.FC = () => {
     t,
     labelForRole,
     isPending,
+    setFieldValue,
+    src,
+    setAvatar,
   } = useProfile();
+  console.log(src);
   const classes = useStyles();
   return (
     <Layout>
@@ -35,6 +39,19 @@ const ProfileContainer: React.FC = () => {
             <h2 className="profile__title">{t('Profile')}</h2>
           </div>
           <div className="profile__body">
+            <div className="profile__row">
+              <Avatar
+                src={src}
+                inputProps={{
+                  name: 'file',
+                  disabled: isSubmitting,
+                  onChange: (event: ChangeEvent<any>) => {
+                    setFieldValue('file', event.target.files[0]);
+                    setAvatar(event.target.files[0]);
+                  },
+                }}
+              />
+            </div>
             <div className="profile__row">
               <Form.CustomInput
                 id="username"

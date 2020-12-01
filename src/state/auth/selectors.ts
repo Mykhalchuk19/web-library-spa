@@ -9,6 +9,10 @@ const getUserData = createSelector(pathOr({
   lastname: '',
   email: '',
   type: undefined,
+  file: {
+    filename: null,
+  },
+  avatar: null,
 }, ['auth', 'userData']), identity);
 
 const getMyPermissions = createSelector(pathOr([], ['auth', 'userData', 'permissions']), identity);

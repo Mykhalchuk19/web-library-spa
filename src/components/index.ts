@@ -6,6 +6,7 @@ import Loader from './Loader/Loader';
 import ModalWindow from './ModalWindow/ModalWindow';
 import PermissionComponent from './PermissionComponent/PermissionComponent';
 import ChangeLanguage from './ChangeLanguage/ChangeLanguage';
+import Avatar from './Avatar/Avatar';
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   Form,
   PermissionComponent,
   ChangeLanguage,
+  Avatar,
 };

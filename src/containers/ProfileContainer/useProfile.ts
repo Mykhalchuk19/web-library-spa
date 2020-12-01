@@ -1,4 +1,6 @@
-import { useEffect, useMemo } from 'react';
+import {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -7,8 +9,9 @@ import { authActions, authSelectors } from '../../state/auth';
 import { TUserValues, TUseProfile } from '../../interfaces/userInterfaces';
 import rules from './rules';
 import { permissions, SUCCESS_MESSAGES } from '../../constants';
-import { isDifferentValues } from '../../utils/helpers/commonHelpers';
+import { commonHelpers, fileHelpers } from '../../utils/helpers';
 import PushNotifications from '../../utils/helpers/pushNotifications';
+import { createFormData } from '../../utils/helpers/fileHelpers';
 
 const { ROLES_LIST } = permissions;
 
@@ -17,6 +20,7 @@ const useProfile = (): TUseProfile => {
   const { t } = useTranslation(['common']);
   const user = useSelector(authSelectors.getUserData);
   const isPending = useSelector(authSelectors.getPending);
+  const [src, setSrc] = useState(fileHelpers.getLinkForDisplayImage(user.file?.filename));
 
   const initialValues = {
     username: user.username || '',
@@ -33,13 +37,14 @@ const useProfile = (): TUseProfile => {
     handleChange,
     setSubmitting,
     isSubmitting,
+    setFieldValue,
   } = useFormik<TUserValues>({
     initialValues,
     validateOnChange: false,
     validationSchema: rules,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      if (isDifferentValues(initialValues, formValues)) {
+      if (commonHelpers.isDifferentValues(initialValues, formValues)) {
         dispatch(authActions.profileUpdateRequest({ ...formValues, id: user.id }));
         setSubmitting(isPending);
       } else {
@@ -47,14 +52,26 @@ const useProfile = (): TUseProfile => {
       }
     },
   });
+
   useEffect(() => {
-    dispatch(authActions.getCurrentUserRequest());
-  }, [dispatch]);
+    if (!user.id) dispatch(authActions.getCurrentUserRequest());
+    setSrc(fileHelpers.getLinkForDisplayImage(user.file?.filename));
+  }, [dispatch, src, user, user.file]);
+
+  const setAvatar = useCallback((file) => {
+    const formValues = {
+      file,
+      avatar: user.avatar,
+    };
+    const formData = createFormData(formValues);
+    dispatch(authActions.avatarUploadRequest(formData));
+  }, [dispatch, user.avatar]);
 
   const labelForRole = useMemo(() => {
     const currentRole: any = find(propEq('value', values.type))(ROLES_LIST);
     return currentRole ? currentRole.label : '';
   }, [values.type]);
+
   return {
     user,
     isPending,
@@ -66,6 +83,9 @@ const useProfile = (): TUseProfile => {
     isSubmitting,
     t,
     labelForRole,
+    setFieldValue,
+    src,
+    setAvatar,
   };
 };
 

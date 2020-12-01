@@ -68,3 +68,19 @@ export type TAsyncOption = {
 export type TChangeLanguage = {
     changeLanguage: (lng: string) => Promise<void>
 }
+
+export type TUseAvatar = {
+    getPseudoRandomColor: string
+}
+
+export type TAvatar = {
+    src?: string | null,
+    disabled?: boolean,
+    text?: string,
+    className?: string,
+    inputProps?: IObject
+}
+
+export type IObject = {
+    [prop: string]: any;
+}

@@ -16,7 +16,12 @@ export type UserData = {
     email?: string,
     type?: number | undefined,
     permissions?: Array<PermissionItem>
-}
+    avatar: string | number | null,
+    file?: null | {
+        filename: string | null,
+    },
+// eslint-disable-next-line @typescript-eslint/ban-types
+} | {}
 
 export type PermissionItem = {
     module: string,

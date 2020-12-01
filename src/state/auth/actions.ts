@@ -14,6 +14,7 @@ export const {
   userLogOut,
   getCurrentUserRequest,
   profileUpdateRequest,
+  avatarUploadRequest,
   setUser,
 } = createActions(
   authTypes.USER_AUTHORIZATION_ERROR,
@@ -28,5 +29,6 @@ export const {
   authTypes.RESET_PASSWORD_SUCCESS,
   authTypes.GET_CURRENT_USER_REQUEST,
   authTypes.PROFILE_UPDATE_REQUEST,
+  authTypes.AVATAR_UPLOAD_REQUEST,
   authTypes.SET_USER,
 );

@@ -128,6 +128,22 @@ function* updateProfile() {
   }
 }
 
+function* uploadAvatar() {
+  while (true) {
+    try {
+      const action = yield take(authTypes.AVATAR_UPLOAD_REQUEST);
+      const res = normalizeRequestData(yield call(userRequestHelpers.avatarUpload,
+        action.payload));
+      yield put(setUser({ ...res }));
+      PushNotifications.success({ content: SUCCESS_MESSAGES.AVATAR_SUCCESSFULLY_UPLOADED });
+    } catch (e) {
+      console.error(e);
+      yield put(userAuthorizationError());
+      PushNotifications.error({ content: e.response.data.error });
+    }
+  }
+}
+
 function* getCurrentUser() {
   while (true) {
     try {
@@ -150,4 +166,5 @@ export default function* (): Generator {
   yield fork(getCurrentUser);
   yield fork(updateProfile);
   yield fork(logOut);
+  yield fork(uploadAvatar);
 }

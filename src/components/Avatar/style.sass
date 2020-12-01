@@ -1,0 +1,50 @@
+@import "../../utils/styles/style"
+
+.avatar
+  &__wrapper
+    width: 200px
+    height: 200px
+    position: relative
+    border-radius: 50%
+    overflow: hidden
+  &__upload--input
+    width: 100%
+    height: 100%
+    cursor: pointer
+    color: transparent
+    background: transparent
+    opacity: 0.0
+    position: absolute
+    z-index: 100
+    &:hover + .avatar__label
+      opacity: 1
+  &__image
+    &--wrapper
+      width: 100%
+      height: 100%
+      position: absolute
+      display: flex
+      justify-content: center
+      align-items: center
+    &--photo
+      height: 100%
+      width: auto
+    &--pseudo
+      font-family: "Roboto", sans-serif
+      color: white
+      font-size: 20px
+  &__label
+    width: 100%
+    height: 100%
+    border-radius: 50%
+    position: absolute
+    display: flex
+    justify-content: center
+    align-items: center
+    opacity: 0
+    background-color: rgba(0,0,0, 0.7)
+    &--text
+      font-family: "Roboto", sans-serif
+      color: white
+      font-size: 20px
+

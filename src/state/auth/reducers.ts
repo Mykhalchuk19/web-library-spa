@@ -3,7 +3,7 @@ import { TAction, AuthState } from '../../interfaces/authInterfaces';
 import authTypes from './types';
 
 const initialState: AuthState = {
-  userData: { },
+  userData: {},
   pending: false,
 };
 
@@ -33,6 +33,10 @@ const userReducer = handleActions<AuthState, string>({
     userData: {},
   }),
   [authTypes.PROFILE_UPDATE_REQUEST]: (state) => ({
+    ...state,
+    pending: true,
+  }),
+  [authTypes.AVATAR_UPLOAD_REQUEST]: (state) => ({
     ...state,
     pending: true,
   }),
