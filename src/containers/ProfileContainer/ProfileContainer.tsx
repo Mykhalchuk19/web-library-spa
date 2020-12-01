@@ -29,7 +29,6 @@ const ProfileContainer: React.FC = () => {
     src,
     setAvatar,
   } = useProfile();
-  console.log(src);
   const classes = useStyles();
   return (
     <Layout>
@@ -42,6 +41,7 @@ const ProfileContainer: React.FC = () => {
             <div className="profile__row">
               <Avatar
                 src={src}
+                disabled={false}
                 inputProps={{
                   name: 'file',
                   disabled: isSubmitting,
