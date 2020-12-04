@@ -20,7 +20,10 @@ const getAuthorById = createSelector(
   },
 );
 
+const getPending = createSelector(pathOr(false, ['authors', 'pending']), identity);
+
 export {
   getAuthorsList,
   getAuthorById,
+  getPending,
 };

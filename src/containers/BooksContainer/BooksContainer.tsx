@@ -25,6 +25,7 @@ const BooksContainer: React.FC = () => {
     isOpenDeleteBookModal,
     closeDeleteBookModal,
     bookId,
+    isPending,
   } = useBooks();
 
   const {
@@ -59,6 +60,7 @@ const BooksContainer: React.FC = () => {
             changePage={changePage}
             changeRowsPerPage={changeRowsPerPage}
             onBooksSearch={onSearch}
+            isPending={isPending}
           />
         </div>
       </Layout>

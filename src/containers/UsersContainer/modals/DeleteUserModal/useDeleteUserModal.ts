@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { userActions } from '../../../../state/user';
+import { usersActions } from '../../../../state/users';
 
 type TUseDeleteUserModal = {
    onDeleteUser: () => void,
@@ -13,7 +13,7 @@ const useDeleteUserModal = (
   const dispatch = useDispatch();
 
   const onDeleteUser = useCallback(() => {
-    dispatch(userActions.userDeleteRequest({ id: userId }));
+    dispatch(usersActions.userDeleteRequest({ id: userId }));
     closeDeleteModal();
   }, [dispatch, userId, closeDeleteModal]);
   return {

@@ -10,7 +10,7 @@ const AuthorsItem: React.FC<TAuthorsItemTable> = ({
   id, firstname, lastname, books,
   handleEditAuthor, handleDeleteAuthor,
 }: TAuthorsItemTable) => (
-  <TableRow key={id}>
+  <TableRow>
     <TableCell component="td">
       {id}
     </TableCell>
@@ -20,36 +20,40 @@ const AuthorsItem: React.FC<TAuthorsItemTable> = ({
     <TableCell component="td">
       {lastname}
     </TableCell>
-    <TableCell component="td">
+    <TableCell component="td" colSpan={2}>
       {books.map((book) => (
-        <>
+        <div key={book.id}>
           <Link className="grid__link" to={`/books/${book.id}`}>{book.title}</Link>
           <br />
           <br />
-        </>
+        </div>
       ))}
     </TableCell>
-    <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.AUTHORS}>
-        <IconButton
-          onClick={() => handleEditAuthor(id)}
-          type="button"
-          aria-label="edit"
-        >
-          <Edit />
-        </IconButton>
-      </PermissionComponent>
-    </TableCell>
-    <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.AUTHORS}>
-        <IconButton
-          onClick={() => handleDeleteAuthor(id)}
-          type="button"
-          aria-label="delete"
-        >
-          <Delete />
-        </IconButton>
-      </PermissionComponent>
+    <TableCell component="td" colSpan={1}>
+      <div className="controls-wrapper">
+        <div className="controls-wrapper__column">
+          <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.AUTHORS}>
+            <IconButton
+              onClick={() => handleEditAuthor(id)}
+              type="button"
+              aria-label="edit"
+            >
+              <Edit />
+            </IconButton>
+          </PermissionComponent>
+        </div>
+        <div className="controls-wrapper__column">
+          <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.AUTHORS}>
+            <IconButton
+              onClick={() => handleDeleteAuthor(id)}
+              type="button"
+              aria-label="delete"
+            >
+              <Delete />
+            </IconButton>
+          </PermissionComponent>
+        </div>
+      </div>
     </TableCell>
   </TableRow>
 );

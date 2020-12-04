@@ -11,6 +11,7 @@ const useCategories = (): TUseCategories => {
   const { t } = useTranslation(['common']);
   const dispatch = useDispatch();
   const categoriesList = useSelector(categoriesSelectors.getCategoriesList);
+  const isPending = useSelector(categoriesSelectors.getPending);
   const {
     categories, limit, page, count,
   } = categoriesList;
@@ -80,6 +81,7 @@ const useCategories = (): TUseCategories => {
     isOpenDeleteCategoryModal,
     closeDeleteCategoryModal,
     categoryId,
+    isPending,
   };
 };
 

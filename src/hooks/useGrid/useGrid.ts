@@ -35,7 +35,7 @@ const useGrid = ({ limit, getListRequest }: TUseGridProps): TUseGrid => {
     if (needSearch) {
       debounce(() => {
         dispatch(getListRequest({ q: searchValue, limit }));
-      }, 800, 'searchFunc', needSearch);
+      }, 400, 'searchFunc', needSearch);
     }
   }, [searchValue, limit, dispatch, getListRequest, needSearch]);
 

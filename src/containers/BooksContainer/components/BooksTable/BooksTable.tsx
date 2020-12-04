@@ -8,9 +8,8 @@ import {
   TablePagination,
   TableRow,
 } from '@material-ui/core';
-import { isEmpty } from 'ramda';
 import { BOOKS_FIELDS } from '../../../../constants';
-import { Form } from '../../../../components';
+import { Form, Loader } from '../../../../components';
 import { TBooksTable } from '../../../../interfaces/booksInterfaces';
 import BooksItem from '../BooksItem/BooksItem';
 import BooksPagination from '../BooksPagination/BooksPagination';
@@ -26,6 +25,7 @@ const BooksTable: React.FC<TBooksTable> = ({
   onBooksSearch,
   handleEditBook,
   handleDeleteBook,
+  isPending,
 } : TBooksTable) => (
   <TableContainer>
     <Table>
@@ -50,10 +50,10 @@ const BooksTable: React.FC<TBooksTable> = ({
           </TableCell>
         </TableRow>
       </TableHead>
-      { !isEmpty(booksForShow) && (
-      <>
-        <TableBody>
-          {
+      { !isPending ? (
+        <>
+          <TableBody>
+            {
           booksForShow.map(({
             id, title, short_description: shortDescription, year, city, file, category, authors,
           }) => (
@@ -72,23 +72,23 @@ const BooksTable: React.FC<TBooksTable> = ({
             />
           ))
         }
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              count={count}
-              rowsPerPage={limit}
-              labelRowsPerPage={t('Rows per page')}
-              page={page}
-              onChangePage={changePage}
-              onChangeRowsPerPage={changeRowsPerPage}
-              colSpan={11}
-              ActionsComponent={BooksPagination}
-            />
-          </TableRow>
-        </TableFooter>
-      </>
-      )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={count}
+                rowsPerPage={limit}
+                labelRowsPerPage={t('Rows per page')}
+                page={page}
+                onChangePage={changePage}
+                onChangeRowsPerPage={changeRowsPerPage}
+                colSpan={11}
+                ActionsComponent={BooksPagination}
+              />
+            </TableRow>
+          </TableFooter>
+        </>
+      ) : (<Loader secondary />)}
     </Table>
   </TableContainer>
 );

@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { userActions, userSelectors } from '../../../../state/user';
+import { usersActions, usersSelectors } from '../../../../state/users';
 import { TUserValues, TUseUserEdit } from '../../../../interfaces/userInterfaces';
 import rules from './rules';
 import { TStore } from '../../../../state/storeInterfaces';
@@ -10,8 +10,8 @@ import { SUCCESS_MESSAGES } from '../../../../constants';
 
 const useEditUserModal = (id: number | null, closeEditModal: () => void): TUseUserEdit => {
   const dispatch = useDispatch();
-  const user = useSelector((state: TStore) => userSelectors.getUserById(state, id));
-  const isPending = useSelector(userSelectors.getPending);
+  const user = useSelector((state: TStore) => usersSelectors.getUserById(state, id));
+  const isPending = useSelector(usersSelectors.getPending);
 
   const initialValues = {
     username: user.username,
@@ -35,7 +35,7 @@ const useEditUserModal = (id: number | null, closeEditModal: () => void): TUseUs
     enableReinitialize: true,
     onSubmit: (formValues) => {
       if (isDifferentValues(initialValues, formValues)) {
-        dispatch(userActions.userUpdateRequest({ ...formValues, id: user.id }));
+        dispatch(usersActions.userUpdateRequest({ ...formValues, id: user.id }));
         setSubmitting(isPending);
         closeEditModal();
       } else {

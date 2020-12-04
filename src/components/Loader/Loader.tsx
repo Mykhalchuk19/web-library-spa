@@ -1,9 +1,13 @@
 import React from 'react';
 import './style.sass';
 
-const Loader: React.FC = () => (
+type TLoader = {
+  secondary?: boolean
+}
+
+const Loader: React.FC<TLoader> = ({ secondary = false }: TLoader) => (
   <div className="loader">
-    <div className="circle" />
+    <div className={secondary ? 'secondary-circle' : 'circle'} />
   </div>
 );
 

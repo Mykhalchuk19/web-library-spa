@@ -8,7 +8,7 @@ import { TAuthorsState } from '../interfaces/authorsInterfaces';
 export type TStore = {
   // _persist: any,
   router: any,
-  user: UserState,
+  users: UserState,
   categories: TCategoriesState,
   auth: AuthState,
   ui: TUiState,

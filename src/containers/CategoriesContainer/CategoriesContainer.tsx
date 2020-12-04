@@ -33,6 +33,7 @@ const CategoriesContainer: React.FC = () => {
     isOpenDeleteCategoryModal,
     closeDeleteCategoryModal,
     categoryId,
+    isPending,
   } = useCategories();
 
   const {
@@ -68,6 +69,7 @@ const CategoriesContainer: React.FC = () => {
             changePage={changePage}
             changeRowsPerPage={changeRowsPerPage}
             onCategoriesSearch={onSearch}
+            isPending={isPending}
           />
         </div>
       </Layout>

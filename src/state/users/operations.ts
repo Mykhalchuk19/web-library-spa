@@ -1,7 +1,7 @@
 import {
   call, put, fork, take,
 } from 'redux-saga/effects';
-import userTypes from './types';
+import usersTypes from './types';
 import { PushNotifications } from '../../utils/helpers';
 import {
   usersListSuccess,
@@ -17,7 +17,7 @@ const { normalizeRequestData } = apiHelpers;
 function* getListUsers() {
   while (true) {
     try {
-      const action = yield take(userTypes.USERS_LIST_REQUEST);
+      const action = yield take(usersTypes.USERS_LIST_REQUEST);
       const res = normalizeRequestData(yield call(userRequestHelpers.getUsersListRequest,
         { ...action.payload }));
       yield put(usersListSuccess({ ...res }));
@@ -31,7 +31,7 @@ function* getListUsers() {
 function* updateUser() {
   while (true) {
     try {
-      const action = yield take(userTypes.USER_UPDATE_REQUEST);
+      const action = yield take(usersTypes.USER_UPDATE_REQUEST);
       const res = normalizeRequestData(yield call(userRequestHelpers.updateUserRequest,
         { ...action.payload }, { id: action.payload.id }));
       yield put(userUpdateSuccess({ ...res }));
@@ -46,7 +46,7 @@ function* updateUser() {
 function* deleteUser() {
   while (true) {
     try {
-      const action = yield take(userTypes.USER_DELETE_REQUEST);
+      const action = yield take(usersTypes.USER_DELETE_REQUEST);
       const res = normalizeRequestData(yield call(userRequestHelpers.deleteUserRequest,
         {}, { id: action.payload.id }));
       yield put(userDeleteSuccess(({ ...res })));

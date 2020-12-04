@@ -42,13 +42,15 @@ const BooksItem: React.FC<BooksItemTable> = ({
       ))}
     </TableCell>
     <TableCell component="td">
-      <a
-        className="download__link"
-        href={fileHelpers.getLinkForDownloadBook(file)}
-        download
-      >
-        {translateHelpers.t(`${DOWNLOAD_LINK_TEXT}`, 'common')}
-      </a>
+      {file ? (
+        <a
+          className="download__link"
+          href={fileHelpers.getLinkForDownloadBook(file)}
+          download
+        >
+          {translateHelpers.t(`${DOWNLOAD_LINK_TEXT}`, 'common')}
+        </a>
+      ) : <span>{translateHelpers.t('No file', 'common')}</span>}
     </TableCell>
     <TableCell component="td">
       <Link
@@ -58,27 +60,31 @@ const BooksItem: React.FC<BooksItemTable> = ({
         {translateHelpers.t('Detail info', 'common')}
       </Link>
     </TableCell>
-    <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.BOOKS}>
-        <IconButton
-          onClick={() => handleEditBook(id)}
-          type="button"
-          aria-label="edit"
-        >
-          <Edit />
-        </IconButton>
-      </PermissionComponent>
-    </TableCell>
-    <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.BOOKS}>
-        <IconButton
-          onClick={() => handleDeleteBook(id)}
-          type="button"
-          aria-label="delete"
-        >
-          <Delete />
-        </IconButton>
-      </PermissionComponent>
+    <TableCell component="td" colSpan={1}>
+      <div className="controls-wrapper">
+        <div className="controls-wrapper__column">
+          <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.BOOKS}>
+            <IconButton
+              onClick={() => handleEditBook(id)}
+              type="button"
+              aria-label="edit"
+            >
+              <Edit />
+            </IconButton>
+          </PermissionComponent>
+        </div>
+        <div className="controls-wrapper__column">
+          <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.BOOKS}>
+            <IconButton
+              onClick={() => handleDeleteBook(id)}
+              type="button"
+              aria-label="delete"
+            >
+              <Delete />
+            </IconButton>
+          </PermissionComponent>
+        </div>
+      </div>
     </TableCell>
   </TableRow>
 );

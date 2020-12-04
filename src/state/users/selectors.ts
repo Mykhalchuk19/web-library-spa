@@ -8,10 +8,10 @@ const getUsersList = createSelector(pathOr({
   limit: 10,
   page: 0,
   count: 0,
-}, ['user', 'list']), identity);
+}, ['users', 'list']), identity);
 
 const getUserById = createSelector(
-  (state: TStore) => state.user.list.users,
+  (state: TStore) => state.users.list.users,
   (_: TStore, userId: number | null) => userId,
   (users, userId) => users.find((item: UserItem): boolean => item.id === userId) || {
     id: null,
@@ -23,7 +23,7 @@ const getUserById = createSelector(
   },
 );
 
-const getPending = createSelector(pathOr(false, ['auth', 'pending']), identity);
+const getPending = createSelector(pathOr(false, ['users', 'pending']), identity);
 
 export {
   getUsersList,

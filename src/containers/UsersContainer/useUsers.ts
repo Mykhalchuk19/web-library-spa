@@ -3,12 +3,13 @@ import {
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { userActions, userSelectors } from '../../state/user';
+import { usersActions, usersSelectors } from '../../state/users';
 import { TUseUsers } from '../../interfaces/userInterfaces';
 
 const useUsers = (): TUseUsers => {
   const dispatch = useDispatch();
-  const usersList = useSelector(userSelectors.getUsersList);
+  const usersList = useSelector(usersSelectors.getUsersList);
+  const isPending = useSelector(usersSelectors.getPending);
   const { t } = useTranslation(['common']);
 
   const [isOpenEditModal, setOpenEditModal] = useState(false);
@@ -18,7 +19,7 @@ const useUsers = (): TUseUsers => {
     users, limit, page, count,
   } = usersList;
   useEffect(() => {
-    dispatch(userActions.usersListRequest());
+    dispatch(usersActions.usersListRequest());
   }, [dispatch]);
 
   const usersForShow = useMemo(
@@ -52,6 +53,7 @@ const useUsers = (): TUseUsers => {
     isOpenDeleteModal,
     closeDeleteModal,
     userId,
+    isPending,
   };
 };
 

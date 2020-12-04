@@ -5,7 +5,7 @@ import { all } from 'redux-saga/effects';
 import { connectRouter, LocationChangeAction } from 'connected-react-router';
 import { History } from 'history';
 
-import userReducer, { userSaga } from './user';
+import usersReducer, { usersSaga } from './users';
 import categoriesReducer, { categoriesSaga } from './categories';
 import authReducer, { authSaga } from './auth';
 import uiReducer from './ui';
@@ -17,7 +17,7 @@ const rootReducer = (
   history: History,
 ): Reducer<CombinedState<TStore>, LocationChangeAction> => combineReducers({
   router: connectRouter(history as History),
-  user: userReducer,
+  users: usersReducer,
   ui: uiReducer,
   categories: categoriesReducer,
   auth: authReducer,
@@ -29,7 +29,7 @@ const rootReducer = (
 export const rootSaga = function* () {
   yield all([
     authSaga(),
-    userSaga(),
+    usersSaga(),
     categoriesSaga(),
     booksSaga(),
     authorsSaga(),

@@ -3,7 +3,7 @@ import categoriesTypes from './types';
 import { TCategoriesState, TAction, TCategoryItem } from '../../interfaces/categoriesInterfaces';
 
 const initialState: TCategoriesState = {
-  pending: false,
+  pending: true,
   list: {
     categories: [],
     limit: 10,

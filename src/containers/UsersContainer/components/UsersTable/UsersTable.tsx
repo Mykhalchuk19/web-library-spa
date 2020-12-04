@@ -8,9 +8,8 @@ import {
   TablePagination,
   TableRow,
 } from '@material-ui/core';
-import { isEmpty } from 'ramda';
 import { USER_FIELDS } from '../../../../constants/user';
-import { Form } from '../../../../components';
+import { Form, Loader } from '../../../../components';
 import { UsersPagination } from '../index';
 import { TUsersTable } from '../../../../interfaces/userInterfaces';
 import UsersItem from '../UsersItem/UsersItem';
@@ -26,6 +25,7 @@ const UsersTable: React.FC<TUsersTable> = ({
   changeRowsPerPage,
   t,
   onUsersSearch,
+  isPending,
 } : TUsersTable) => (
   <TableContainer>
     <Table>
@@ -50,10 +50,10 @@ const UsersTable: React.FC<TUsersTable> = ({
           </TableCell>
         </TableRow>
       </TableHead>
-      { !isEmpty(usersForShow) && (
-      <>
-        <TableBody>
-          {
+      { !isPending ? (
+        <>
+          <TableBody>
+            {
         usersForShow.map(({
           id,
           username,
@@ -78,23 +78,23 @@ const UsersTable: React.FC<TUsersTable> = ({
           />
         ))
 }
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              count={count}
-              rowsPerPage={limit}
-              labelRowsPerPage={t('Rows per page')}
-              page={page}
-              onChangePage={changePage}
-              onChangeRowsPerPage={changeRowsPerPage}
-              colSpan={7}
-              ActionsComponent={UsersPagination}
-            />
-          </TableRow>
-        </TableFooter>
-      </>
-      )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={count}
+                rowsPerPage={limit}
+                labelRowsPerPage={t('Rows per page')}
+                page={page}
+                onChangePage={changePage}
+                onChangeRowsPerPage={changeRowsPerPage}
+                colSpan={9}
+                ActionsComponent={UsersPagination}
+              />
+            </TableRow>
+          </TableFooter>
+        </>
+      ) : (<Loader secondary />)}
     </Table>
   </TableContainer>
 );

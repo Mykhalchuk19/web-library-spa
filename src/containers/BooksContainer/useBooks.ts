@@ -12,6 +12,7 @@ const useBooks = (): TUseBooks => {
   const { t } = useTranslation(['common']);
   const dispatch = useDispatch();
   const booksList = useSelector(booksSelectors.getBooksList);
+  const isPending = useSelector(booksSelectors.getPending);
   const {
     books, limit, page, count,
   } = booksList;
@@ -38,7 +39,7 @@ const useBooks = (): TUseBooks => {
         year: convertEmptyValueForShow(year),
         city: convertEmptyValueForShow(city),
         edition: convertEmptyValueForShow(edition),
-        file: file.filename,
+        file: file?.filename,
         category: category ? category.title : convertEmptyValueForShow(' '),
         authors: authors.map((author) => `${author.firstname} ${author.lastname}`),
       }))
@@ -90,6 +91,7 @@ const useBooks = (): TUseBooks => {
     isOpenDeleteBookModal,
     closeDeleteBookModal,
     bookId,
+    isPending,
   };
 };
 

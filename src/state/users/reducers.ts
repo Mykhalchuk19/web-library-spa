@@ -3,7 +3,7 @@ import { TAction, UserState, UserItem } from '../../interfaces/userInterfaces';
 import userTypes from './types';
 
 const initialState: UserState = {
-  pending: false,
+  pending: true,
   list: {
     users: [],
     limit: 10,

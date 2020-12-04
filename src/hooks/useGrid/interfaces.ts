@@ -11,5 +11,5 @@ export type TUseGrid = {
         event: React.MouseEvent<HTMLButtonElement> | null,
         newPage: number) => void,
     changeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
-    onSearch: (value?: string) => void,
+    onSearch: (value?: string) => void
 }

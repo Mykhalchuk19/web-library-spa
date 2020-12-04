@@ -8,9 +8,8 @@ import {
   TablePagination,
   TableRow,
 } from '@material-ui/core';
-import { isEmpty } from 'ramda';
 import { AUTHORS_FIELDS } from '../../../../constants';
-import { Form } from '../../../../components';
+import { Form, Loader } from '../../../../components';
 import { TAuthorsTable } from '../../../../interfaces/authorsInterfaces';
 import AuthorsItem from '../AuthorsItem/AuthorsItem';
 import AuthorsPagination from '../AuthorsPagination/AuthorsPagination';
@@ -26,6 +25,7 @@ const AuthorsTable: React.FC<TAuthorsTable> = ({
   onAuthorsSearch,
   handleEditAuthor,
   handleDeleteAuthor,
+  isPending,
 } : TAuthorsTable) => (
   <TableContainer>
     <Table>
@@ -50,10 +50,10 @@ const AuthorsTable: React.FC<TAuthorsTable> = ({
           </TableCell>
         </TableRow>
       </TableHead>
-      { !isEmpty(authorsForShow) && (
-      <>
-        <TableBody>
-          {
+      { !isPending ? (
+        <>
+          <TableBody>
+            {
           authorsForShow.map(({
             id, firstname, lastname, books,
           }) => (
@@ -68,23 +68,23 @@ const AuthorsTable: React.FC<TAuthorsTable> = ({
             />
           ))
         }
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              count={count}
-              rowsPerPage={limit}
-              labelRowsPerPage={t('Rows per page')}
-              page={page}
-              onChangePage={changePage}
-              onChangeRowsPerPage={changeRowsPerPage}
-              colSpan={7}
-              ActionsComponent={AuthorsPagination}
-            />
-          </TableRow>
-        </TableFooter>
-      </>
-      )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={count}
+                rowsPerPage={limit}
+                labelRowsPerPage={t('Rows per page')}
+                page={page}
+                onChangePage={changePage}
+                onChangeRowsPerPage={changeRowsPerPage}
+                colSpan={7}
+                ActionsComponent={AuthorsPagination}
+              />
+            </TableRow>
+          </TableFooter>
+        </>
+      ) : (<Loader secondary />)}
     </Table>
   </TableContainer>
 );

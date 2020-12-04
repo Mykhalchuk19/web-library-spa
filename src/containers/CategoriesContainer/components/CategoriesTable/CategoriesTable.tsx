@@ -8,9 +8,8 @@ import {
   TablePagination,
   TableRow,
 } from '@material-ui/core';
-import { isEmpty } from 'ramda';
 import { CATEGORIES_FIELDS } from '../../../../constants';
-import { Form } from '../../../../components';
+import { Form, Loader } from '../../../../components';
 import { TCategoriesTable } from '../../../../interfaces/categoriesInterfaces';
 import CategoriesItem from '../CategoriesItem/CategoriesItem';
 import CategoriesPagination from '../CategoriesPagination/CategoriesPagination';
@@ -26,6 +25,7 @@ const CategoriesTable: React.FC<TCategoriesTable> = ({
   onCategoriesSearch,
   handleEditCategory,
   handleDeleteCategory,
+  isPending,
 } : TCategoriesTable) => (
   <TableContainer>
     <Table>
@@ -50,10 +50,10 @@ const CategoriesTable: React.FC<TCategoriesTable> = ({
           </TableCell>
         </TableRow>
       </TableHead>
-      { !isEmpty(categoriesForShow) && (
-      <>
-        <TableBody>
-          {
+      { !isPending ? (
+        <>
+          <TableBody>
+            {
           categoriesForShow.map(({
             id, title, shortDescription, description, author,
           }) => (
@@ -69,23 +69,23 @@ const CategoriesTable: React.FC<TCategoriesTable> = ({
             />
           ))
         }
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              count={count}
-              rowsPerPage={limit}
-              labelRowsPerPage={t('Rows per page')}
-              page={page}
-              onChangePage={changePage}
-              onChangeRowsPerPage={changeRowsPerPage}
-              colSpan={7}
-              ActionsComponent={CategoriesPagination}
-            />
-          </TableRow>
-        </TableFooter>
-      </>
-      )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={count}
+                rowsPerPage={limit}
+                labelRowsPerPage={t('Rows per page')}
+                page={page}
+                onChangePage={changePage}
+                onChangeRowsPerPage={changeRowsPerPage}
+                colSpan={7}
+                ActionsComponent={CategoriesPagination}
+              />
+            </TableRow>
+          </TableFooter>
+        </>
+      ) : (<Loader secondary />)}
     </Table>
   </TableContainer>
 );

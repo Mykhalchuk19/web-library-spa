@@ -73,6 +73,7 @@ export type TAuthorsTable = {
   handleDeleteAuthor: (id?: number) => void,
   t: TFunction,
   onAuthorsSearch: (value?: string) => void,
+  isPending: boolean
 }
 
 export type TAuthorsItemTable = {
@@ -113,4 +114,5 @@ export type TUseAuthors = {
   isOpenDeleteAuthorModal: boolean,
   closeDeleteAuthorModal:() => void,
   authorId: number | null | undefined,
+  isPending: boolean
 }

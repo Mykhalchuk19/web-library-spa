@@ -28,7 +28,7 @@ const GuideContainer: React.FC = () => {
             <li className="guide__item">{t('guide:Detailed information of book')}</li>
           </ol>
           <p className="guide__text">{t('guide:User can see authors, categories, other users, also see and download books and update his profile')}</p>
-          <p className="guide__text">{t('guide:Manager can create, update, and delete categories, books, authors, and all other that the user can')}</p>
+          <p className="guide__text">{t('guide:Manager can create, update, and delete categories, books, authors, and all other that the users can')}</p>
           <p className="guide__text">{t('guide:Admin can update and delete other users and all other that manager can')}</p>
           <p className="guide__text">{t('guide:Super admin can do anything')}</p>
         </div>

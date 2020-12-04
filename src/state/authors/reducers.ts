@@ -3,7 +3,7 @@ import { TAuthorsState, TAction, TAuthorItem } from '../../interfaces/authorsInt
 import authorsTypes from './types';
 
 const initialState: TAuthorsState = {
-  pending: false,
+  pending: true,
   list: {
     authors: [],
     limit: 10,
@@ -13,12 +13,9 @@ const initialState: TAuthorsState = {
 };
 
 const reducer = handleActions({
-  [authorsTypes.AUTHOR_REQUEST_FAILURE]: (state) => ({
-    ...state,
-    pending: true,
-  }),
   [authorsTypes.AUTHOR_CREATE_SUCCESS]: (state, action: TAction) => ({
     ...state,
+    pending: false,
     list: {
       ...state.list,
       authors: [...state.list.authors, action.payload.author],

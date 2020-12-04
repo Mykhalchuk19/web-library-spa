@@ -63,6 +63,7 @@ export type TUseBooks = {
     isOpenDeleteBookModal: boolean,
     closeDeleteBookModal:() => void,
     bookId: number | null | undefined,
+    isPending: boolean
 }
 
 export type TBookForMap = Pick<TBookItem, 'id' | 'title' | 'short_description' | 'year' | 'city' | 'edition'> & {
@@ -143,6 +144,7 @@ export type TBooksTable = {
     handleDeleteBook: (id?: number) => void,
     t: TFunction,
     onBooksSearch: (value?: string) => void,
+    isPending: boolean
 }
 
 export type BooksItemTable = {

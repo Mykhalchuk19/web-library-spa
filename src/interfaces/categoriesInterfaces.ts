@@ -101,6 +101,7 @@ export type TUseCategories = {
     isOpenDeleteCategoryModal: boolean,
     closeDeleteCategoryModal:() => void,
     categoryId: number | null | undefined,
+    isPending: boolean
 }
 
 export type CategoriesItemTable = {
@@ -132,4 +133,5 @@ export type TCategoriesTable = {
     handleDeleteCategory: (id?: number) => void,
     t: TFunction,
     onCategoriesSearch: (value?: string) => void,
+    isPending: boolean
 }

@@ -33,6 +33,7 @@ const AuthorsContainer: React.FC = () => {
     isOpenDeleteAuthorModal,
     closeDeleteAuthorModal,
     authorId,
+    isPending,
   } = useAuthors();
 
   const {
@@ -68,6 +69,7 @@ const AuthorsContainer: React.FC = () => {
             changePage={changePage}
             changeRowsPerPage={changeRowsPerPage}
             onAuthorsSearch={onSearch}
+            isPending={isPending}
           />
         </div>
       </Layout>

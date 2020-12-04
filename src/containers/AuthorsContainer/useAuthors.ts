@@ -11,6 +11,7 @@ const useAuthors = (): TUseAuthors => {
   const { t } = useTranslation(['common']);
   const dispatch = useDispatch();
   const authorsList = useSelector(authorsSelectors.getAuthorsList);
+  const isPending = useSelector(authorsSelectors.getPending);
   const {
     authors, limit, page, count,
   } = authorsList;
@@ -78,6 +79,7 @@ const useAuthors = (): TUseAuthors => {
     isOpenDeleteAuthorModal,
     closeDeleteAuthorModal,
     authorId,
+    isPending,
   };
 };
 

@@ -25,27 +25,31 @@ const CategoriesItem: React.FC<CategoriesItemTable> = ({
     <TableCell component="td">
       {author}
     </TableCell>
-    <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.CATEGORIES}>
-        <IconButton
-          onClick={() => handleEditCategory(id)}
-          type="button"
-          aria-label="edit"
-        >
-          <Edit />
-        </IconButton>
-      </PermissionComponent>
-    </TableCell>
-    <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.CATEGORIES}>
-        <IconButton
-          onClick={() => handleDeleteCategory(id)}
-          type="button"
-          aria-label="delete"
-        >
-          <Delete />
-        </IconButton>
-      </PermissionComponent>
+    <TableCell component="td" colSpan={1}>
+      <div className="controls-wrapper">
+        <div className="controls-wrapper__column">
+          <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.CATEGORIES}>
+            <IconButton
+              onClick={() => handleEditCategory(id)}
+              type="button"
+              aria-label="edit"
+            >
+              <Edit />
+            </IconButton>
+          </PermissionComponent>
+        </div>
+        <div className="controls-wrapper__column">
+          <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.CATEGORIES}>
+            <IconButton
+              onClick={() => handleDeleteCategory(id)}
+              type="button"
+              aria-label="delete"
+            >
+              <Delete />
+            </IconButton>
+          </PermissionComponent>
+        </div>
+      </div>
     </TableCell>
   </TableRow>
 );

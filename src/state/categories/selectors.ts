@@ -26,7 +26,10 @@ const getCategoryById = createSelector(
   },
 );
 
+const getPending = createSelector(pathOr(false, ['categories', 'pending']), identity);
+
 export {
   getCategoriesList,
   getCategoryById,
+  getPending,
 };

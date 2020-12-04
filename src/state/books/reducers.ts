@@ -3,7 +3,7 @@ import { TBooksState, TAction, TBookItem } from '../../interfaces/booksInterface
 import { bookTypes } from './index';
 
 const initialState: TBooksState = {
-  pending: false,
+  pending: true,
   list: {
     books: [],
     limit: 10,

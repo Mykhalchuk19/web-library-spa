@@ -36,27 +36,31 @@ const UsersItem: React.FC<UsersItemTable> = ({
     <TableCell component="td">
       {t(USER_STATUSES[status])}
     </TableCell>
-    <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.USERS}>
-        <IconButton
-          onClick={() => handleEditUser(id)}
-          type="button"
-          aria-label="edit"
-        >
-          <Edit />
-        </IconButton>
-      </PermissionComponent>
-    </TableCell>
-    <TableCell component="td" colSpan={0.5}>
-      <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.USERS}>
-        <IconButton
-          onClick={() => handleDeleteUser(id)}
-          type="button"
-          aria-label="delete"
-        >
-          <Delete />
-        </IconButton>
-      </PermissionComponent>
+    <TableCell component="td" colSpan={1}>
+      <div className="controls-wrapper">
+        <div className="controls-wrapper__column">
+          <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.USERS}>
+            <IconButton
+              onClick={() => handleEditUser(id)}
+              type="button"
+              aria-label="edit"
+            >
+              <Edit />
+            </IconButton>
+          </PermissionComponent>
+        </div>
+        <div className="controls-wrapper__column">
+          <PermissionComponent action={ACTIONS.UPDATE} module={MODULES.USERS}>
+            <IconButton
+              onClick={() => handleDeleteUser(id)}
+              type="button"
+              aria-label="delete"
+            >
+              <Delete />
+            </IconButton>
+          </PermissionComponent>
+        </div>
+      </div>
     </TableCell>
   </TableRow>
 );

@@ -88,6 +88,7 @@ export type TUseUsers = {
     closeDeleteModal: () => void,
     isOpenDeleteModal: boolean,
     userId: null | number,
+    isPending: boolean
 }
 
 export type TUsersTable = {
@@ -103,6 +104,7 @@ export type TUsersTable = {
     handleDeleteUser: (id?: number) => void,
     t: TFunction,
     onUsersSearch: (value?: string) => void,
+    isPending: boolean
 }
 
 export type UsersItemTable = {

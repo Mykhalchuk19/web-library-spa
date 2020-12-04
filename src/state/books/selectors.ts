@@ -30,7 +30,10 @@ const getBookById = createSelector(
   },
 );
 
+const getPending = createSelector(pathOr(false, ['books', 'pending']), identity);
+
 export {
   getBooksList,
   getBookById,
+  getPending,
 };
