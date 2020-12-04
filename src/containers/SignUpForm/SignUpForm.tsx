@@ -150,7 +150,7 @@ const SignUpForm: React.FC<SignUpProps> = () => {
               to="/auth/signin"
               className="auth__link"
             >
-              {t('I already sign in')}
+              {t('I already signed up')}
             </NavLink>
           </div>
         </div>
