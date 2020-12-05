@@ -14,6 +14,7 @@
   "Passwords are not matched": "Passwords are not matched",
   "New password": "New password",
   "This field is required": "This field is required",
+  "Incorrect format (only latin alphabet and numbers)": "Incorrect format (only latin alphabet and numbers)",
   "First name is required": "First name is required",
   "Last name is required": "Last name is required",
   "Email is required": "Email is required",

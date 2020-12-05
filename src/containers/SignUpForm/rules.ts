@@ -2,7 +2,8 @@ import * as yup from 'yup';
 import { SignUpValues } from '../../interfaces/authInterfaces';
 
 const rules = yup.object<SignUpValues>({
-  username: yup.string().required('Username is required'),
+  username: yup.string().required('Username is required')
+    .matches(/[A-Za-z0-9]+/, 'Incorrect format (only latin alphabet and numbers)'),
   firstname: yup.string().required('First name is required'),
   lastname: yup.string().required('Last name is required'),
   email: yup.string().email('Email is not valid').required('Email is required'),
