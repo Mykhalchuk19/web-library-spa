@@ -19,6 +19,7 @@ const reducer = handleActions({
   }),
   [bookTypes.BOOK_CREATE_SUCCESS]: (state, action: TAction) => ({
     ...state,
+    pending: false,
     list: {
       ...state.list,
       books: [...state.list.books, action.payload.book],
