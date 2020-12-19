@@ -19,10 +19,10 @@ const ChangeLanguage: React.FC = () => {
     <div className="change-language">
       <div className="change-language__wrapper">
         <IconButton className={classes.icon_button} onClick={() => changeLanguage(LANGUAGES.uk)}>
-          <img src={ukraineFlag} alt="Ukraine" className="change-languages--ua" />
+          <img src={ukraineFlag} alt="Ukraine" className="change-language--ua" />
         </IconButton>
         <IconButton className={classes.icon_button} onClick={() => changeLanguage(LANGUAGES.en)}>
-          <img src={ukFlag} alt="United Kingdom" className="change-languages--uk" />
+          <img src={ukFlag} alt="United Kingdom" className="change-language--uk" />
         </IconButton>
       </div>
     </div>
