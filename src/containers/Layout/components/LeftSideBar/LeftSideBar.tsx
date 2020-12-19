@@ -59,7 +59,7 @@ const LeftSideBar: React.FC = () => {
             <p className="left-sidebar__copyright--text">
               ©
               {' '}
-              <a className="left-sidebar__copyright--link" rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/yaroslavmykhalchuk/">Mykhalchuk Yaroslav</a>
+              <a className="left-sidebar__copyright--link" rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/yaroslavmykhalchuk/">Mykhalchuk Yaroslav,</a>
               {' '}
               2020
             </p>
