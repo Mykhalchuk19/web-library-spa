@@ -67,9 +67,11 @@ function* deleteCategory() {
       const action = yield take(categoriesTypes.CATEGORY_DELETE_REQUEST);
       const res = normalizeRequestData(yield call(categoriesRequestHelpers.deleteCategoryRequest,
         {}, { id: action.payload.id }));
+      console.log(res);
       yield put(categoryDeleteSuccess(({ ...res })));
       PushNotifications.success({ content: SUCCESS_MESSAGES.CATEGORY_SUCCESSFULLY_DELETED });
     } catch (e) {
+      console.log(e);
       yield put(categoryRequestFailure());
       PushNotifications.error({ content: e.response.data.error });
     }

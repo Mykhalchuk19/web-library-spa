@@ -30,6 +30,8 @@ const useEditBookModal = (
       value: author.id,
     })) : [{ label: 'None', value: null }]), [book.authors]));
 
+  const [categoryId, setCategoryId] = useState(useMemo(() => book.category_id || null, [book.category_id]));
+
   const initialValues = {
     title: book.title || '',
     short_description: book.short_description || '',
@@ -38,7 +40,7 @@ const useEditBookModal = (
     publishing_house: book.publishing_house || '',
     edition: book.edition || '',
     series: book.series || '',
-    category_id: book.category_id,
+    category_id: categoryId,
     file_id: book.file_id,
     file: undefined,
     authors: !isEmpty(defaultAuthors)
@@ -76,6 +78,11 @@ const useEditBookModal = (
     setNeedRequest(true);
   }, []);
 
+  const setCategory = useCallback((category) => {
+    setCategoryId(category);
+    setNeedRequest(true);
+  }, []);
+
   const onCloseHandler = useCallback(() => {
     onClose();
     resetForm();
@@ -102,6 +109,7 @@ const useEditBookModal = (
     onCloseHandler,
     defaultAuthors,
     setAuthors,
+    setCategory,
   };
 };
 

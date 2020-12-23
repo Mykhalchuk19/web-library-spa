@@ -12,13 +12,14 @@ const initialState: TCategoriesState = {
   },
 };
 
-const userReducer = handleActions<TCategoriesState, string>({
+const categoriesReducer = handleActions<TCategoriesState, string>({
   [categoriesTypes.CATEGORY_CREATE_REQUEST]: (state) => ({
     ...state,
     pending: true,
   }),
   [categoriesTypes.CATEGORY_CREATE_SUCCESS]: (state, action: TAction) => ({
     ...state,
+    pending: false,
     list: {
       ...state.list,
       categories: [...state.list.categories, action.payload.category],
@@ -59,7 +60,8 @@ const userReducer = handleActions<TCategoriesState, string>({
     ...state,
     pending: true,
   }),
-  [categoriesTypes.CATEGORY_DELETE_SUCCESS]: (state, action: TAction) => ({
+  // @ts-ignore
+  [categoriesTypes.CATEGORY_DELETE_SUCCESS]: (state, action: TAction) => console.log(action) || ({
     ...state,
     pending: false,
     list: {
@@ -77,4 +79,4 @@ const userReducer = handleActions<TCategoriesState, string>({
   ...initialState,
 });
 
-export default userReducer;
+export default categoriesReducer;

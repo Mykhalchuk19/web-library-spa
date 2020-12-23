@@ -15,6 +15,7 @@ const EditBookModal:React.FC<TBooksModalsProps> = ({ id, isOpen, onClose }: TBoo
     onCloseHandler,
     defaultAuthors,
     setAuthors,
+    setCategory,
   } = useEditBookModal(id, onClose);
   return (
     <ModalView
@@ -31,6 +32,7 @@ const EditBookModal:React.FC<TBooksModalsProps> = ({ id, isOpen, onClose }: TBoo
       authorsAutocomplete={authorsRequestHelpers.autocompleteAuthorsRequest}
       defaultValueForAuthors={defaultAuthors}
       setAuthors={setAuthors}
+      setCategory={setCategory}
     />
   );
 };

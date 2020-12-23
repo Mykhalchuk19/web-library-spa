@@ -20,5 +20,6 @@ export const {
   categoriesTypes.CATEGORY_UPDATE_REQUEST,
   categoriesTypes.CATEGORY_UPDATE_SUCCESS,
   categoriesTypes.CATEGORY_DELETE_REQUEST,
+  categoriesTypes.CATEGORY_DELETE_SUCCESS,
   categoriesTypes.CATEGORY_REQUEST_FAILURE,
 );

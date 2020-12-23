@@ -26,6 +26,7 @@ const ModalView:React.FC<TBooksModalView> = ({
   authorsAutocomplete,
   defaultValueForAuthors,
   setAuthors,
+  setCategory,
 }: TBooksModalView) => {
   const classes = useStyles();
   return (
@@ -124,10 +125,17 @@ const ModalView:React.FC<TBooksModalView> = ({
           <Form.CustomAsyncSelect
             label="Category"
             id="category_id"
-            onChange={(option: TAsyncOption) => setFieldValue('category_id', option.value)}
+            onChange={(option: TAsyncOption) => {
+              setFieldValue('category_id', option.value);
+              if (setCategory) {
+                setCategory(option.value);
+              }
+            }}
             value={values.category_id}
             asyncRequest={asyncRequest}
             handleChange={handleChange}
+            isMulti={false}
+            isClearable={false}
           />
         </div>
         <div className="books-modal__row">

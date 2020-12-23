@@ -91,7 +91,8 @@ export type TBooksModalView = {
     authorsAutocomplete: any,
     setFieldValue: (field: string, value: any, shouldValidate?: (boolean | undefined)) => any,
     defaultValueForAuthors?: Array<TAsyncOption>,
-    setAuthors?: (authors: Array<TAsyncOption>) => void
+    setAuthors?: (authors: Array<TAsyncOption>) => void,
+    setCategory?: (category: number | null) => void
 }
 
 export type TBookValues = {
@@ -128,7 +129,8 @@ export type TBooksModalsHook = {
     setFieldValue: (field: string, value: any, shouldValidate?: (boolean | undefined)) => any
     onCloseHandler: () => void,
     defaultAuthors?: Array<TAsyncOption>,
-    setAuthors?: (authors: Array<TAsyncOption>) => void
+    setAuthors?: (authors: Array<TAsyncOption>) => void,
+    setCategory?: (category: number | null) => void
 }
 
 export type TBooksTable = {
