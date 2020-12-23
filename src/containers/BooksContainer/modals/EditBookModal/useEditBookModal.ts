@@ -29,8 +29,9 @@ const useEditBookModal = (
       label: `${author.firstname} ${author.lastname}`,
       value: author.id,
     })) : [{ label: 'None', value: null }]), [book.authors]));
-
-  const [categoryId, setCategoryId] = useState(useMemo(() => book.category_id || null, [book.category_id]));
+  const [categoryId, setCategoryId] = useState(useMemo(
+    () => book.category_id || null, [book],
+  ));
 
   const initialValues = {
     title: book.title || '',
@@ -40,7 +41,7 @@ const useEditBookModal = (
     publishing_house: book.publishing_house || '',
     edition: book.edition || '',
     series: book.series || '',
-    category_id: categoryId,
+    category_id: book.category_id,
     file_id: book.file_id,
     file: undefined,
     authors: !isEmpty(defaultAuthors)

@@ -53,6 +53,8 @@ const useCustomAsyncSelect = ({
     if (value && typeof value === 'number') {
       const options = await autoCompleteRequest('', value);
       setDefaultValue(options[0]);
+    } else if (value === null) {
+      setDefaultValue(defaultObj);
     }
   }, [autoCompleteRequest, value]);
 
